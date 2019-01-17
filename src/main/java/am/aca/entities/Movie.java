@@ -148,11 +148,9 @@ public class Movie {
                 ", duration=" + duration +
                 ", budget=" + budget +
                 ", discribtion='" + discribtion + '\'' +
-                ", actors=" + actors +
-                ", genres=" + genres +
-                ", countries=" + countries +
+                ", genres=" + genres.toString() +
+                ", countries=" + countries.toString() +
                 ", language=" + language +
                 '}';
     }
-
 }
