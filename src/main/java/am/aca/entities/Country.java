@@ -13,30 +13,28 @@ public class Country {
     @Column(name = "country_id")
     private int id;
 
+    public Country(){}
+
+    public Country(String name) {
+        this.name = name;
+    }
+
     @Column(name = "name")
-    private int name;
+    private String name;
 
     @Override
     public String toString() {
         return "Country{" +
                 "id=" + id +
-                ", name=" + name +
+                ", name='" + name + '\'' +
                 '}';
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public int getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(int name) {
-        this.name = name;
-    }
-
-    public Country(int name) {
+    public void setName(String name) {
         this.name = name;
     }
 }

@@ -39,4 +39,6 @@ public class Language {
     public Language(String name) {
         this.name = name;
     }
+
+    public Language () {}
 }

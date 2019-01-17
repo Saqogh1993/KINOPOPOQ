@@ -20,13 +20,10 @@ public class Actor {
             name = "actor_movie",
             joinColumns = {@JoinColumn (name = "actor_id")},
             inverseJoinColumns = {@JoinColumn(name = "movie_id")}
-
     )
     private List<Movie> movies = new ArrayList<>();
 
-    public Actor() {
-
-    }
+    public Actor() {}
 
     public Actor(String name, List<Movie> movies) {
         this.name = name;

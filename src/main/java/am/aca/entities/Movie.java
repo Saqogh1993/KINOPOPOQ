@@ -39,6 +39,8 @@ public class Movie {
     @JoinColumn(name = "lang_id")
     private Language language;
 
+    public Movie () {}
+
     public Movie(String title, String director, int year, int duration, long budget, String discribtion, List<Actor> actors, List<Genre> genres, List<Country> countries, Language language) {
         this.title = title;
         this.director = director;

@@ -1,4 +1,5 @@
 import am.aca.entities.*;
+import dao.MovieDao;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -10,15 +11,15 @@ import java.util.List;
 public class Main {
 
     public static void main(String... args) {
-        SessionFactory sessionFactory = new Configuration()
-                .configure()
-                .addAnnotatedClass(Actor.class)
-                .addAnnotatedClass(Movie.class)
-                .addAnnotatedClass(Director.class)
-                .addAnnotatedClass(Genre.class)
-                .addAnnotatedClass(Language.class)
-                .addAnnotatedClass(Country.class)
-                .buildSessionFactory();
+//        SessionFactory sessionFactory = new Configuration()
+//                .configure()
+//                .addAnnotatedClass(Actor.class)
+//                .addAnnotatedClass(Movie.class)
+//                .addAnnotatedClass(Director.class)
+//                .addAnnotatedClass(Genre.class)
+//                .addAnnotatedClass(Language.class)
+//                .addAnnotatedClass(Country.class)
+//                .buildSessionFactory();
 
 
 //        Integer actorId = 1;
@@ -32,6 +33,8 @@ public class Main {
 //        System.out.println(movies);
 //
 //        session.close();
+
+        System.out.println(MovieDao.findAllMovies());
 
     }
 }

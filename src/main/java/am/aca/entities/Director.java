@@ -19,6 +19,8 @@ public class Director {
     @JoinColumn(name = "id")
     List<Movie> movies = new ArrayList<>();
 
+    public Director () {}
+
     public Director(String name, List<Movie> movies) {
         this.name = name;
         this.movies = movies;
