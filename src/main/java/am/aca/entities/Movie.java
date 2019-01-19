@@ -10,13 +10,13 @@ public class Movie {
 
     @Id
     @Column(name = "id")
-    private int id;
+    private String id;
     private String title;
     private String director;
     private int year;
     private int duration;
     private long budget;
-    private String discribtion;
+    private String description;
 
     @ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(
@@ -41,20 +41,20 @@ public class Movie {
 
     public Movie () {}
 
-    public Movie(String title, String director, int year, int duration, long budget, String discribtion, List<Actor> actors, List<Genre> genres, List<Country> countries, Language language) {
+    public Movie(String title, String director, int year, int duration, long budget, String description, List<Actor> actors, List<Genre> genres, List<Country> countries, Language language) {
         this.title = title;
         this.director = director;
         this.year = year;
         this.duration = duration;
         this.budget = budget;
-        this.discribtion = discribtion;
+        this.description = description;
         this.actors = actors;
         this.genres = genres;
         this.countries = countries;
         this.language = language;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
@@ -98,12 +98,12 @@ public class Movie {
         this.budget = budget;
     }
 
-    public String getDiscribtion() {
-        return discribtion;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDiscribtion(String discribtion) {
-        this.discribtion = discribtion;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public List<Actor> getActors() {
@@ -147,7 +147,7 @@ public class Movie {
                 ", year=" + year +
                 ", duration=" + duration +
                 ", budget=" + budget +
-                ", discribtion='" + discribtion + '\'' +
+                ", description='" + description + '\'' +
                 ", genres=" + genres.toString() +
                 ", countries=" + countries.toString() +
                 ", language=" + language +

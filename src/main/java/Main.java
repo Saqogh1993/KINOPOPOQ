@@ -1,12 +1,4 @@
-import am.aca.entities.*;
-import dao.MovieDao;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.query.Query;
-
-import javax.persistence.GeneratedValue;
-import java.util.List;
+import static dao.MovieDao.saveIn;
 
 public class Main {
 
@@ -34,7 +26,8 @@ public class Main {
 //
 //        session.close();
 
-        System.out.println(MovieDao.findAllMovies());
+        saveIn();
+//        System.out.println(MovieDao.findAllMovies());
 
     }
 }

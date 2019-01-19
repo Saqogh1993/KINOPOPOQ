@@ -10,9 +10,9 @@ public class Actor {
 
     @Id
     @Column(name = "act_id")
-    private int id;
+    private String id;
 
-    @Column(name = "name")
+    @Column(name = "act_name")
     private String name;
 
     @ManyToMany(cascade = { CascadeType.ALL })
@@ -30,7 +30,7 @@ public class Actor {
         this.movies = movies;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
