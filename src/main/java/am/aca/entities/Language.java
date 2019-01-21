@@ -11,34 +11,34 @@ public class Language {
 
     @Id
     @Column(name = "lang_id")
-    private int id;
+    private String id;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "lang_name")
+    private String langName;
+
+    public Language () {}
+
+    public Language(String langName) {
+        this.langName = langName;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getLangName() {
+        return langName;
+    }
+
+    public void setLangName(String langName) {
+        this.langName = langName;
+    }
 
     @Override
     public String toString() {
         return "Language{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
+                "id='" + id + '\'' +
+                ", langName='" + langName + '\'' +
                 '}';
     }
-
-    public int getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Language(String name) {
-        this.name = name;
-    }
-
-    public Language () {}
 }

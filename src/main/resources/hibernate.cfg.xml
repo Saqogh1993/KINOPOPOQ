@@ -9,7 +9,14 @@
         <property name="connection.username">postgres</property>
         <property name="connection.password">2505</property>
         <property name="hibernate.current_session_context_class">thread</property>
-        <property name="hbm2ddl.auto">update</property>
+        <property name="hbm2ddl.auto">create-drop</property>
         <property name="show_sql">true</property>
+
+        <mapping class="am.aca.entities.Actor"/>
+        <mapping class="am.aca.entities.Movie"/>
+        <mapping class="am.aca.entities.Language"/>
+        <mapping class="am.aca.entities.Genre"/>
+        <mapping class="am.aca.entities.Country"/>
+        <mapping class="am.aca.entities.Director"/>
     </session-factory>
 </hibernate-configuration>

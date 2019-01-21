@@ -9,26 +9,19 @@ import java.util.List;
 public class Movie {
 
     @Id
-    @Column(name = "id")
-    private int id;
+    @Column(name = "movie_id")
+    private String id;
     private String title;
     private String director;
-    private int year;
-    private int duration;
+    private long year;
+    private long duration;
     private long budget;
-    private String discribtion;
+    private String description;
 
-    @ManyToMany(cascade = { CascadeType.ALL })
-    @JoinTable(
-            name = "actor_movie",
-            joinColumns = {@JoinColumn (name = "movie_id")},
-            inverseJoinColumns = {@JoinColumn(name = "actor_id")}
-
-    )
+    @ManyToMany(mappedBy = "movies")
     private List<Actor> actors = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "genre_id")
+    @ManyToMany(mappedBy = "genreMovies")
     private List<Genre> genres = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL)
@@ -41,21 +34,17 @@ public class Movie {
 
     public Movie () {}
 
-    public Movie(String title, String director, int year, int duration, long budget, String discribtion, List<Actor> actors, List<Genre> genres, List<Country> countries, Language language) {
+    public Movie(String title, String director, int year, int duration, long budget, String description, List<Actor> actors, List<Genre> genres, List<Country> countries, Language language) {
         this.title = title;
         this.director = director;
         this.year = year;
         this.duration = duration;
         this.budget = budget;
-        this.discribtion = discribtion;
+        this.description = description;
         this.actors = actors;
         this.genres = genres;
         this.countries = countries;
         this.language = language;
-    }
-
-    public int getId() {
-        return id;
     }
 
     public String getTitle() {
@@ -74,19 +63,19 @@ public class Movie {
         this.director = director;
     }
 
-    public int getYear() {
+    public long getYear() {
         return year;
     }
 
-    public void setYear(int year) {
+    public void setYear(long year) {
         this.year = year;
     }
 
-    public int getDuration() {
+    public long getDuration() {
         return duration;
     }
 
-    public void setDuration(int duration) {
+    public void setDuration(long duration) {
         this.duration = duration;
     }
 
@@ -98,12 +87,12 @@ public class Movie {
         this.budget = budget;
     }
 
-    public String getDiscribtion() {
-        return discribtion;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDiscribtion(String discribtion) {
-        this.discribtion = discribtion;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public List<Actor> getActors() {
@@ -141,15 +130,16 @@ public class Movie {
     @Override
     public String toString() {
         return "Movie{" +
-                "id=" + id +
+                "id='" + id + '\'' +
                 ", title='" + title + '\'' +
                 ", director='" + director + '\'' +
                 ", year=" + year +
                 ", duration=" + duration +
                 ", budget=" + budget +
-                ", discribtion='" + discribtion + '\'' +
-                ", genres=" + genres.toString() +
-                ", countries=" + countries.toString() +
+                ", description='" + description + '\'' +
+                ", actors=" + actors +
+                ", genres=" + genres +
+                ", countries=" + countries +
                 ", language=" + language +
                 '}';
     }

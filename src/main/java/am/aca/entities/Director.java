@@ -9,42 +9,42 @@ import java.util.List;
 public class Director {
 
     @Id
-    @Column(name = "dir_id")
-    private int id;
+    @Column(name = "director_id")
+    private String dirID;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "director_name")
+    private String dirName;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "movie_id")
     List<Movie> movies = new ArrayList<>();
 
     public Director () {}
 
-    public Director(String name, List<Movie> movies) {
-        this.name = name;
+    public Director(String dirName, List<Movie> movies) {
+        this.dirName = dirName;
         this.movies = movies;
     }
 
     @Override
     public String toString() {
         return "Director{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", movies=" + movies +
+                "id=" + dirID +
+                ", name='" + dirName + '\'' +
+//                ", movies=" + movies +
                 '}';
     }
 
-    public int getId() {
-        return id;
+    public String getId() {
+        return dirID;
     }
 
     public String getName() {
-        return name;
+        return dirName;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.dirName = name;
     }
 
     public List<Movie> getMovies() {

@@ -1,9 +1,8 @@
 package am.aca.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "genre")
@@ -11,35 +10,52 @@ public class Genre {
 
     @Id
     @Column(name = "genre_id")
-    private int id;
+    private String genreId;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "genre_name")
+    private String genreName;
+
+    @ManyToMany(cascade = { CascadeType.ALL })
+    @JoinTable(
+            name = "genre_movie",
+            joinColumns = {@JoinColumn (name = "genre_id")},
+            inverseJoinColumns = {@JoinColumn(name = "movie_id")}
+    )
+    private List<Movie> genreMovies = new ArrayList<>();
 
     public Genre () {}
 
-    public Genre(String name) {
-        this.name = name;
+    public Genre(String genreName, List<Movie> genreMovies) {
+        this.genreName = genreName;
+        this.genreMovies = genreMovies;
     }
 
-    public int getId() {
-        return id;
+    public String getGenreId() {
+        return genreId;
     }
 
-    public String getName() {
-        return name;
+    public String getGenreName() {
+        return genreName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setGenreName(String genreName) {
+        this.genreName = genreName;
+    }
+
+    public List<Movie> getGenreMovies() {
+        return genreMovies;
+    }
+
+    public void setGenreMovies(List<Movie> genreMovies) {
+        this.genreMovies = genreMovies;
     }
 
     @Override
     public String toString() {
         return "Genre{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
+                "genreId='" + genreId + '\'' +
+                ", genreName='" + genreName + '\'' +
+                ", genreMovies=" + genreMovies +
                 '}';
     }
-
 }

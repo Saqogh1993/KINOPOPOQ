@@ -11,30 +11,35 @@ public class Country {
 
     @Id
     @Column(name = "country_id")
-    private int id;
+    private String countryId;
+
+    @Column(name = "country_name")
+    private String countryName;
 
     public Country(){}
 
-    public Country(String name) {
-        this.name = name;
+    public Country(String countryName) {
+        this.countryName = countryName;
     }
 
-    @Column(name = "name")
-    private String name;
 
     @Override
     public String toString() {
         return "Country{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
+                "id=" + countryId +
+                ", name='" + countryName + '\'' +
                 '}';
     }
 
-    public String getName() {
-        return name;
+    public String getCountryId() {
+        return countryId;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getCountryName() {
+        return countryName;
+    }
+
+    public void setCountryName(String name) {
+        this.countryName = name;
     }
 }

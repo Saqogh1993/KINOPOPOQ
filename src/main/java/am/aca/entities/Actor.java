@@ -10,10 +10,10 @@ public class Actor {
 
     @Id
     @Column(name = "act_id")
-    private int id;
+    private String actId;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "act_name")
+    private String actName;
 
     @ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(
@@ -25,21 +25,21 @@ public class Actor {
 
     public Actor() {}
 
-    public Actor(String name, List<Movie> movies) {
-        this.name = name;
+    public Actor(String actName, List<Movie> movies) {
+        this.actName = actName;
         this.movies = movies;
     }
 
-    public int getId() {
-        return id;
+    public String  getActId() {
+        return actId;
     }
 
-    public String getName() {
-        return name;
+    public String getActName() {
+        return actName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setActName(String name) {
+        this.actName = name;
     }
 
     public List<Movie> getMovies() {
@@ -53,9 +53,9 @@ public class Actor {
     @Override
     public String toString() {
         return "am.aca.entities.Actor{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", movies=" + movies +
+                "id=" + actId +
+                ", name='" + actName + '\'' +
+//                ", movies=" + movies +
                 '}';
     }
 }
