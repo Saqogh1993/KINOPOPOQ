@@ -15,7 +15,7 @@ public class Genre {
     @Column(name = "genre_name")
     private String genreName;
 
-    @ManyToMany(cascade = { CascadeType.ALL })
+    @ManyToMany
     @JoinTable(
             name = "genre_movie",
             joinColumns = {@JoinColumn (name = "genre_id")},
