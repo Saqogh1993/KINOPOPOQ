@@ -29,7 +29,7 @@ public class MovieDao {
         session.beginTransaction();
 
         for (Movie movie : actMvList) {
-                session.save(movie);
+            session.save(movie);
             session.flush();
 //            session.clear();
         }

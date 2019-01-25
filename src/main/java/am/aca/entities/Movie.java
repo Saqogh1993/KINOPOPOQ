@@ -38,7 +38,7 @@ public class Movie {
     )
     private Set<Genre> genres = new HashSet<>();
 
-    @OneToOne(cascade = {CascadeType.ALL})
+    @ManyToOne(cascade = {CascadeType.ALL})
 //    @JoinColumn(name = "country_id")
     private Country countries;
 

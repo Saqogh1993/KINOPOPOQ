@@ -1,6 +1,8 @@
 package am.aca.entities;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "country")
@@ -13,8 +15,8 @@ public class Country {
     @Column(name = "country_name")
     private String countryName;
 
-    @OneToOne(mappedBy = "countries", cascade = {CascadeType.ALL})
-    private Movie movie = new Movie();
+    @OneToMany(mappedBy = "countries", cascade = {CascadeType.ALL})
+    private Set<Movie> movieSet = new HashSet<>();
 
     public int getCountryId() {
         return countryId;
@@ -24,12 +26,12 @@ public class Country {
         this.countryId = countryId;
     }
 
-    public Movie getMovie() {
-        return movie;
+    public Set<Movie> getMovieSet() {
+        return movieSet;
     }
 
-    public void setMovie(Movie movie) {
-        this.movie = movie;
+    public void setMovieSet(Set<Movie> movieSet) {
+        this.movieSet = movieSet;
     }
 
     public Country() {
@@ -52,7 +54,7 @@ public class Country {
         return "Country{" +
                 "countryId=" + countryId +
                 ", countryName='" + countryName + '\'' +
-                ", movie=" + movie +
+                ", movie=" + movieSet +
                 '}';
     }
 }
