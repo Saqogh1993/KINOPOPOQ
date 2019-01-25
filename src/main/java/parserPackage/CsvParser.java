@@ -1,37 +1,52 @@
 package parserPackage;
 
+import am.aca.entities.*;
+import com.thedeanda.lorem.LoremIpsum;
+
 import java.io.*;
 import java.util.*;
 
 public class CsvParser {
 
-    public static List<insertedDataType> parser() {
+    public static Set<Movie> parser() {
 
-        String csvFile = "C:\\Users\\ANI\\Desktop\\ACA_JAVA\\imdb-5000-movie-dataset\\final\\Actors.csv";
-        String csvFile2 = "C:\\Users\\ANI\\Desktop\\ACA_JAVA\\imdb-5000-movie-dataset\\telij\\movie_.csv";
+        String csvFile = "C:\\Users\\ANI\\Desktop\\ACA_JAVA\\imdb-5000-movie-dataset\\origin_second.csv";
         BufferedReader br = null;
         String line;
-        String cvsSplitBy = ",";
-        List<insertedDataType> act_mv = new ArrayList();
+        ArrayList<insertedDataType> act_mv = new ArrayList<>();
+        LoremIpsum loremIpsum = new LoremIpsum();
+        Set<Movie> mv = new HashSet<>();
 
         try {
-
             br = new BufferedReader(new FileReader(csvFile));
-            FileOutputStream os = new FileOutputStream(csvFile2);
-            PrintWriter w = new PrintWriter(new OutputStreamWriter(os, "UTF-8"));
 
             while ((line = br.readLine()) != null) {
-
 //                line = line.replaceAll("[^\\x0A\\x0D\\x20-\\x7E]", "");
 
-                String[] cell = line.split(cvsSplitBy);
+                String[] c = line.split(",");
+                String[] genreSplit = c[2].split(":");
                 StringBuilder str = new StringBuilder();
-                str.append(cell[0]).append(",").append(cell[1]).append("\n");
-                act_mv.add(new insertedDataType(cell[0],cell[1]));
-                w.print(str);
+                Set<Actor> ac = new HashSet<>();
+                Set<Genre> gn = new HashSet<>();
+                ac.add(new Actor(String.valueOf(c[3])));
+                ac.add(new Actor(String.valueOf(c[4])));
+                ac.add(new Actor(String.valueOf(c[5])));
+
+                for (String s: genreSplit) {
+                    gn.add(new Genre(s));
+                }
+
+                mv.add(new Movie(c[0],
+                        new Director(c[1]),
+                        Integer.parseInt(c[6]),
+                        Integer.parseInt(c[9]),
+                        c[10],
+                        loremIpsum.getWords(20),
+                        ac,
+                        gn,
+                        new Country(c[8]),
+                        new Language(c[7])));
             }
-            w.flush();
-            w.close();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -44,7 +59,7 @@ public class CsvParser {
                 }
             }
         }
-        return act_mv;
+        return mv;
     }
 
 }

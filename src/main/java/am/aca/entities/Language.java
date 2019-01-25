@@ -1,44 +1,60 @@
 package am.aca.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "language")
 public class Language {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "lang_id")
-    private int id;
+    private int langId;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "lang_name", updatable = false)
+    private String languageName;
+
+    @OneToMany(mappedBy = "languages" ,cascade = {CascadeType.ALL})
+    private Set<Movie> movies;
+
+    public Language(String languageName) {
+        this.languageName = languageName;
+    }
+
+    public Language() {
+    }
+
+    public Set<Movie> getMovies() {
+        return movies;
+    }
+
+    public void setMovies(Set movies) {
+        this.movies = movies;
+    }
+
+    public int getLangId() {
+        return langId;
+    }
+
+    public void setLangId(int langId) {
+        this.langId = langId;
+    }
+
+    public String getLanguageName() {
+        return languageName;
+    }
+
+    public void setLanguageName(String name) {
+        this.languageName = name;
+    }
 
     @Override
     public String toString() {
         return "Language{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
+                "langId=" + langId +
+                ", languageName='" + languageName + '\'' +
+                ", movies=" + movies +
                 '}';
     }
-
-    public int getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Language(String name) {
-        this.name = name;
-    }
-
-    public Language () {}
 }

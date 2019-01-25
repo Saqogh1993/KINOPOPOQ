@@ -2,35 +2,33 @@ package am.aca.entities;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "actor")
 public class Actor {
 
-    @Id
-    @Column(name = "act_id")
-    private String id;
+    @ManyToMany(mappedBy = "actors", cascade = {CascadeType.ALL})
+    private Set<Movie> movies = new HashSet<>();
 
-    @Column(name = "act_name")
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "actor_id")
+    private int id;
+
+    @Column(name = "actor_name")
     private String name;
 
-    @ManyToMany(cascade = { CascadeType.ALL })
-    @JoinTable(
-            name = "actor_movie",
-            joinColumns = {@JoinColumn (name = "actor_id")},
-            inverseJoinColumns = {@JoinColumn(name = "movie_id")}
-    )
-    private List<Movie> movies = new ArrayList<>();
-
-    public Actor() {}
-
-    public Actor(String name, List<Movie> movies) {
+    public Actor(String name) {
         this.name = name;
-        this.movies = movies;
     }
 
-    public String getId() {
+    public Actor() {
+    }
+
+    public int getId() {
         return id;
     }
 
@@ -42,20 +40,12 @@ public class Actor {
         this.name = name;
     }
 
-    public List<Movie> getMovies() {
-        return movies;
-    }
-
-    public void setMovies(List<Movie> movies) {
-        this.movies = movies;
-    }
-
     @Override
     public String toString() {
-        return "am.aca.entities.Actor{" +
-                "id=" + id +
+        return "Actor{" +
+                "movies=" + movies +
+                ", id=" + id +
                 ", name='" + name + '\'' +
-                ", movies=" + movies +
                 '}';
     }
 }

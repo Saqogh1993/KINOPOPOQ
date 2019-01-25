@@ -1,38 +1,26 @@
 package am.aca.entities;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "director")
 public class Director {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "dir_id")
     private int id;
 
-    @Column(name = "name")
+    @Column(name = "dir_name")
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id")
-    List<Movie> movies = new ArrayList<>();
+    @OneToOne(mappedBy = "directors", cascade = {CascadeType.ALL})
+    private Movie movies = new Movie();
 
-    public Director () {}
-
-    public Director(String name, List<Movie> movies) {
-        this.name = name;
-        this.movies = movies;
+    public Director() {
     }
-
-    @Override
-    public String toString() {
-        return "Director{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", movies=" + movies +
-                '}';
+    public Director(String name) {
+        this.name = name;
     }
 
     public int getId() {
@@ -47,11 +35,20 @@ public class Director {
         this.name = name;
     }
 
-    public List<Movie> getMovies() {
+    public Movie getMovies() {
         return movies;
     }
 
-    public void setMovies(List<Movie> movies) {
+    public void setMovies(Movie movies) {
         this.movies = movies;
+    }
+
+    @Override
+    public String toString() {
+        return "Director{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", movies=" + movies +
+                '}';
     }
 }

@@ -1,49 +1,56 @@
 package am.aca.entities;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "movie")
 public class Movie {
 
     @Id
-    @Column(name = "id")
-    private String id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "movie_id")
+    private int mvId;
+
     private String title;
-    private String director;
+
+    @OneToOne(cascade = {CascadeType.ALL})
+    private Director directors;
+
     private int year;
     private int duration;
-    private long budget;
+    private String budget;
     private String description;
-
-    @ManyToMany(cascade = { CascadeType.ALL })
+    @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(
             name = "actor_movie",
-            joinColumns = {@JoinColumn (name = "movie_id")},
+            joinColumns = {@JoinColumn(name = "movie_id")},
             inverseJoinColumns = {@JoinColumn(name = "actor_id")}
-
     )
-    private List<Actor> actors = new ArrayList<>();
+    private Set<Actor> actors = new HashSet<>();
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "genre_id")
-    private List<Genre> genres = new ArrayList<>();
+    @ManyToMany(cascade = {CascadeType.ALL})
+    @JoinTable(
+            name = "movie_genre",
+            joinColumns = {@JoinColumn(name = "movie_id")},
+            inverseJoinColumns = {@JoinColumn(name = "genre_id")}
+    )
+    private Set<Genre> genres = new HashSet<>();
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "country_id")
-    private List<Country> countries = new ArrayList<>();
+    @OneToOne(cascade = {CascadeType.ALL})
+//    @JoinColumn(name = "country_id")
+    private Country countries;
 
-    @OneToOne
-    @JoinColumn(name = "lang_id")
-    private Language language;
+    @ManyToOne(cascade = {CascadeType.ALL})
+    private Language languages;
 
-    public Movie () {}
+    public Movie() {
+    }
 
-    public Movie(String title, String director, int year, int duration, long budget, String description, List<Actor> actors, List<Genre> genres, List<Country> countries, Language language) {
+    public Movie(String title, Director directors, int year, int duration, String budget, String description, Set<Actor> actors, Set<Genre> genres, Country countries, Language languages) {
         this.title = title;
-        this.director = director;
+        this.directors = directors;
         this.year = year;
         this.duration = duration;
         this.budget = budget;
@@ -51,11 +58,16 @@ public class Movie {
         this.actors = actors;
         this.genres = genres;
         this.countries = countries;
-        this.language = language;
+        this.languages = languages;
     }
 
-    public String getId() {
-        return id;
+
+    public int getMvId() {
+        return mvId;
+    }
+
+    public void setMvId(int movieId) {
+        this.mvId = movieId;
     }
 
     public String getTitle() {
@@ -66,12 +78,12 @@ public class Movie {
         this.title = title;
     }
 
-    public String getDirector() {
-        return director;
+    public Director getDirectors() {
+        return directors;
     }
 
-    public void setDirector(String director) {
-        this.director = director;
+    public void setDirectors(Director director) {
+        this.directors = director;
     }
 
     public int getYear() {
@@ -90,11 +102,11 @@ public class Movie {
         this.duration = duration;
     }
 
-    public long getBudget() {
+    public String getBudget() {
         return budget;
     }
 
-    public void setBudget(long budget) {
+    public void setBudget(String budget) {
         this.budget = budget;
     }
 
@@ -106,51 +118,52 @@ public class Movie {
         this.description = description;
     }
 
-    public List<Actor> getActors() {
+    public Set<Actor> getActors() {
         return actors;
     }
 
-    public void setActors(List<Actor> actors) {
+    public void setActors(Set<Actor> actors) {
         this.actors = actors;
     }
 
-    public List<Genre> getGenres() {
+    public Set<Genre> getGenres() {
         return genres;
     }
 
-    public void setGenres(List<Genre> genres) {
+    public void setGenres(Set<Genre> genres) {
         this.genres = genres;
     }
 
-    public List<Country> getCountries() {
+    public Country getCountries() {
         return countries;
     }
 
-    public void setCountries(List<Country> countries) {
+    public void setCountries(Country countries) {
         this.countries = countries;
     }
 
-    public Language getLanguage() {
-        return language;
+    public Language getLanguages() {
+        return languages;
     }
 
-    public void setLanguage(Language language) {
-        this.language = language;
+    public void setLanguages(Language language) {
+        this.languages = language;
     }
 
     @Override
     public String toString() {
         return "Movie{" +
-                "id=" + id +
+                "mvId=" + mvId +
                 ", title='" + title + '\'' +
-                ", director='" + director + '\'' +
+                ", directors=" + directors +
                 ", year=" + year +
                 ", duration=" + duration +
-                ", budget=" + budget +
+                ", budget='" + budget + '\'' +
                 ", description='" + description + '\'' +
-                ", genres=" + genres.toString() +
-                ", countries=" + countries.toString() +
-                ", language=" + language +
+                ", actors=" + actors +
+                ", genres=" + genres +
+                ", countries=" + countries +
+                ", languages=" + languages +
                 '}';
     }
 }

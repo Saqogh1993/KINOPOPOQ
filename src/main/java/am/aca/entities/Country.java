@@ -1,40 +1,58 @@
 package am.aca.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "country")
 public class Country {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "country_id")
-    private int id;
+    private int countryId;
+    @Column(name = "country_name")
+    private String countryName;
 
-    public Country(){}
+    @OneToOne(mappedBy = "countries", cascade = {CascadeType.ALL})
+    private Movie movie = new Movie();
 
-    public Country(String name) {
-        this.name = name;
+    public int getCountryId() {
+        return countryId;
     }
 
-    @Column(name = "name")
-    private String name;
+    public void setCountryId(int countryId) {
+        this.countryId = countryId;
+    }
+
+    public Movie getMovie() {
+        return movie;
+    }
+
+    public void setMovie(Movie movie) {
+        this.movie = movie;
+    }
+
+    public Country() {
+    }
+
+    public Country(String countryName) {
+        this.countryName = countryName;
+    }
+
+    public String getCountryName() {
+        return countryName;
+    }
+
+    public void setCountryName(String name) {
+        this.countryName = name;
+    }
 
     @Override
     public String toString() {
         return "Country{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
+                "countryId=" + countryId +
+                ", countryName='" + countryName + '\'' +
+                ", movie=" + movie +
                 '}';
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 }
