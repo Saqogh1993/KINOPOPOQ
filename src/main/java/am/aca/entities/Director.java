@@ -1,13 +1,16 @@
 package am.aca.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "director")
-public class Director {
+public class Director implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "dir_id")
     private int id;
 
@@ -20,6 +23,7 @@ public class Director {
     public Director() {
     }
     public Director(String name) {
+        this.id = name.hashCode();
         this.name = name;
     }
 

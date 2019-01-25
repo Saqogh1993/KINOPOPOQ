@@ -1,12 +1,12 @@
 package dao;
 
 import am.aca.entities.*;
+import org.hibernate.ReplicationMode;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import parserPackage.CsvParser;
 
-import java.util.List;
 import java.util.Set;
 
 public class MovieDao {
@@ -22,6 +22,7 @@ public class MovieDao {
             .buildSessionFactory();
 
     private static final Session session = sessionFactory.openSession();
+
     public static void saveIn() {
         Set<Movie> actMvList = CsvParser.parser();
 //        session.createNativeQuery("ALTER TABLE director DISABLE TRIGGER ALL").executeUpdate();
@@ -29,9 +30,11 @@ public class MovieDao {
         session.beginTransaction();
 
         for (Movie movie : actMvList) {
-            session.save(movie);
+//            session.saveOrUpdate(movie);
+//            session.saveOrUpdate(movie);
+            session.replicate(movie, ReplicationMode.LATEST_VERSION);
             session.flush();
-//            session.clear();
+            session.clear();
         }
         session.getTransaction().commit();
     }

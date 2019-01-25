@@ -1,20 +1,21 @@
 package am.aca.entities;
 
 import javax.persistence.*;
-import java.util.ArrayList;
+import java.io.Serializable;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
 @Table(name = "actor")
-public class Actor {
+public class Actor implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @ManyToMany(mappedBy = "actors", cascade = {CascadeType.ALL})
     private Set<Movie> movies = new HashSet<>();
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "actor_id")
     private int id;
 
@@ -22,6 +23,7 @@ public class Actor {
     private String name;
 
     public Actor(String name) {
+        this.id = name.hashCode();
         this.name = name;
     }
 

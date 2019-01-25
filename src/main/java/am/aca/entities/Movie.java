@@ -1,15 +1,18 @@
 package am.aca.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "movie")
-public class Movie {
+public class Movie implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "movie_id")
     private int mvId;
 
@@ -38,8 +41,7 @@ public class Movie {
     )
     private Set<Genre> genres = new HashSet<>();
 
-    @ManyToOne(cascade = {CascadeType.ALL})
-//    @JoinColumn(name = "country_id")
+    @ManyToOne(cascade = {CascadeType.ALL}, targetEntity = Country.class)
     private Country countries;
 
     @ManyToOne(cascade = {CascadeType.ALL})
@@ -49,6 +51,7 @@ public class Movie {
     }
 
     public Movie(String title, Director directors, int year, int duration, String budget, String description, Set<Actor> actors, Set<Genre> genres, Country countries, Language languages) {
+        this.mvId = title.hashCode();
         this.title = title;
         this.directors = directors;
         this.year = year;

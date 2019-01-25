@@ -3,14 +3,18 @@ package parserPackage;
 import am.aca.entities.*;
 import com.thedeanda.lorem.LoremIpsum;
 
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class CsvParser {
 
     public static Set<Movie> parser() {
 
-        String csvFile = "/Users/sargisghazaryan/Desktop/origin_second.csv";
+        String csvFile = "C:\\Users\\ANI\\Desktop\\ACA_JAVA\\imdb-5000-movie-dataset\\origin_second.csv";
         BufferedReader br = null;
         String line;
         ArrayList<insertedDataType> act_mv = new ArrayList<>();
@@ -25,14 +29,13 @@ public class CsvParser {
 
                 String[] c = line.split(",");
                 String[] genreSplit = c[2].split(":");
-                StringBuilder str = new StringBuilder();
                 Set<Actor> ac = new HashSet<>();
                 Set<Genre> gn = new HashSet<>();
                 ac.add(new Actor(String.valueOf(c[3])));
                 ac.add(new Actor(String.valueOf(c[4])));
                 ac.add(new Actor(String.valueOf(c[5])));
 
-                for (String s: genreSplit) {
+                for (String s : genreSplit) {
                     gn.add(new Genre(s));
                 }
 
