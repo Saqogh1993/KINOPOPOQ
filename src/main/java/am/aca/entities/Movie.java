@@ -153,20 +153,4 @@ public class Movie implements Serializable {
         this.languages = language;
     }
 
-    @Override
-    public String toString() {
-        return "Movie{" +
-                "mvId=" + mvId +
-                ", title='" + title + '\'' +
-                ", directors=" + directors +
-                ", year=" + year +
-                ", duration=" + duration +
-                ", budget='" + budget + '\'' +
-                ", description='" + description + '\'' +
-                ", actors=" + actors +
-                ", genres=" + genres +
-                ", countries=" + countries +
-                ", languages=" + languages +
-                '}';
-    }
 }

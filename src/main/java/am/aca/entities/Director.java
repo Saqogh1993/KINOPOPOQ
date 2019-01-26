@@ -22,6 +22,7 @@ public class Director implements Serializable {
 
     public Director() {
     }
+
     public Director(String name) {
         this.id = name.hashCode();
         this.name = name;
@@ -47,12 +48,4 @@ public class Director implements Serializable {
         this.movies = movies;
     }
 
-    @Override
-    public String toString() {
-        return "Director{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", movies=" + movies +
-                '}';
-    }
 }

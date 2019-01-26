@@ -21,6 +21,14 @@ public class Country implements Serializable {
     @OneToMany(mappedBy = "countries", cascade = {CascadeType.ALL}, targetEntity = Movie.class)
     private Set<Movie> movieSet = new HashSet<>();
 
+    public Country() {
+    }
+
+    public Country(String countryName) {
+        this.countryId = countryName.hashCode();
+        this.countryName = countryName;
+    }
+
     public int getCountryId() {
         return countryId;
     }
@@ -37,14 +45,6 @@ public class Country implements Serializable {
         this.movieSet = movieSet;
     }
 
-    public Country() {
-    }
-
-    public Country(String countryName) {
-        this.countryId = countryName.hashCode();
-        this.countryName = countryName;
-    }
-
     public String getCountryName() {
         return countryName;
     }
@@ -53,12 +53,4 @@ public class Country implements Serializable {
         this.countryName = name;
     }
 
-    @Override
-    public String toString() {
-        return "Country{" +
-                "countryId=" + countryId +
-                ", countryName='" + countryName + '\'' +
-                ", movie=" + movieSet +
-                '}';
-    }
 }

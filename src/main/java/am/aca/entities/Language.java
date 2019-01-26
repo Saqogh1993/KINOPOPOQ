@@ -18,7 +18,7 @@ public class Language implements Serializable {
     @Column(name = "lang_name")
     private String languageName;
 
-    @OneToMany(mappedBy = "languages" ,cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy = "languages", cascade = {CascadeType.ALL})
     private Set<Movie> movies;
 
     public Language(String languageName) {
@@ -53,12 +53,4 @@ public class Language implements Serializable {
         this.languageName = name;
     }
 
-    @Override
-    public String toString() {
-        return "Language{" +
-                "langId=" + langId +
-                ", languageName='" + languageName + '\'' +
-                ", movies=" + movies +
-                '}';
-    }
 }
