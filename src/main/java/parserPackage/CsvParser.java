@@ -14,7 +14,7 @@ public class CsvParser {
 
     public static Set<Movie> parser() {
 
-        String csvFile = "C:\\Users\\ANI\\Desktop\\ACA_JAVA\\imdb-5000-movie-dataset\\origin_second.csv";
+        String csvFile = "/Users/sargisghazaryan/Desktop/origin_second.csv";
         BufferedReader br = null;
         String line;
         ArrayList<insertedDataType> act_mv = new ArrayList<>();

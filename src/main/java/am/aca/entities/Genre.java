@@ -18,7 +18,13 @@ public class Genre implements Serializable {
 
     @Column(name = "genre_name")
     private String genreName;
-    @ManyToMany(mappedBy = "genres", cascade = {CascadeType.ALL})
+
+    @ManyToMany(cascade = {CascadeType.ALL})
+    @JoinTable(
+            name = "genre_movie",
+            joinColumns = {@JoinColumn(name = "genre_id")},
+            inverseJoinColumns = {@JoinColumn(name = "movie_id")}
+    )
     private Set<Movie> movies = new HashSet<>();
 
     public Genre() {
