@@ -49,16 +49,7 @@ public class Genre implements Serializable {
         return genreName;
     }
 
-    public void setGenreName(String name) {
-        this.genreName = name;
-    }
-
-    @Override
-    public String toString() {
-        return "Genre{" +
-                "genreId=" + genreId +
-                ", genreName='" + genreName + '\'' +
-                ", movies=" + movies +
-                '}';
+    public void setGenreName(String genreName) {
+        this.genreName = genreName;
     }
 }
