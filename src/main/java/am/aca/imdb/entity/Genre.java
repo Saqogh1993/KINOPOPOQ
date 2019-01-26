@@ -1,6 +1,4 @@
-package am.aca.imdb.entity;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+package am.aca.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -16,17 +14,16 @@ public class Genre implements Serializable {
     @Id
     //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "genre_id")
-    private long genreId;
+    private int genreId;
 
     @Column(name = "genre_name")
     private String genreName;
 
-    @JsonIgnore
     @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(
             name = "genre_movie",
-            joinColumns = {@JoinColumn(name = "genre_id", referencedColumnName = "genre_id")},
-            inverseJoinColumns = {@JoinColumn(name = "movie_id", referencedColumnName = "movie_id")}
+            joinColumns = {@JoinColumn(name = "genre_id")},
+            inverseJoinColumns = {@JoinColumn(name = "movie_id")}
     )
     private Set<Movie> movies = new HashSet<>();
 
@@ -38,11 +35,11 @@ public class Genre implements Serializable {
         this.genreName = genreName;
     }
 
-    public long getGenreId() {
+    public int getGenreId() {
         return genreId;
     }
 
-    public void setGenreId(long genreId) {
+    public void setGenreId(int genreId) {
         this.genreId = genreId;
     }
 

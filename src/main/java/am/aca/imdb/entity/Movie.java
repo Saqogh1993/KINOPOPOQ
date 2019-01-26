@@ -1,6 +1,4 @@
-package am.aca.imdb.entity;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
+package am.aca.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -14,21 +12,19 @@ public class Movie implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @JsonBackReference
     //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "movie_id")
-    private long mvId;
+    private int mvId;
 
     private String title;
-    @ManyToOne (cascade = {CascadeType.ALL})
-    @JsonBackReference
-    private Director director;
+
+    @OneToOne(cascade = {CascadeType.ALL})
+    private Director directors;
 
     private int year;
     private int duration;
     private String budget;
     private String description;
-    @JsonBackReference
     @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(
             name = "actor_movie",
@@ -36,37 +32,52 @@ public class Movie implements Serializable {
             inverseJoinColumns = {@JoinColumn(name = "actor_id")}
     )
     private Set<Actor> actors = new HashSet<>();
-    @JsonBackReference
+
     @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(
             name = "genre_movie",
-            joinColumns = {@JoinColumn(name = "movie_id", referencedColumnName = "movie_id")},
-            inverseJoinColumns = {@JoinColumn(name = "genre_id", referencedColumnName = "genre_id")}
+            joinColumns = {@JoinColumn(name = "movie_id")},
+            inverseJoinColumns = {@JoinColumn(name = "genre_id")}
     )
     private Set<Genre> genres = new HashSet<>();
 
-    @JsonBackReference
     @ManyToOne(cascade = {CascadeType.ALL}, targetEntity = Country.class)
     private Country countries;
 
-    @JsonBackReference
     @ManyToOne(cascade = {CascadeType.ALL})
     private Language languages;
 
     private String rating;
 
     private String pg;
-
+    @Column(name = "movie_link")
     private String movieLink;
 
     public Movie() {
     }
 
-    public long getMvId() {
+    public Movie(int mvId, String title, Director directors, int year, int duration, String budget, String description, Set<Actor> actors, Set<Genre> genres, Country countries, Language languages, String rating, String pg, String movieLink) {
+        this.mvId = mvId;
+        this.title = title;
+        this.directors = directors;
+        this.year = year;
+        this.duration = duration;
+        this.budget = budget;
+        this.description = description;
+        this.actors = actors;
+        this.genres = genres;
+        this.countries = countries;
+        this.languages = languages;
+        this.rating = rating;
+        this.pg = pg;
+        this.movieLink = movieLink;
+    }
+
+    public int getMvId() {
         return mvId;
     }
 
-    public void setMvId(long mvId) {
+    public void setMvId(int mvId) {
         this.mvId = mvId;
     }
 
@@ -78,12 +89,12 @@ public class Movie implements Serializable {
         this.title = title;
     }
 
-    public Director getDirector() {
-        return director;
+    public Director getDirectors() {
+        return directors;
     }
 
-    public void setDirector(Director director) {
-        this.director = director;
+    public void setDirectors(Director directors) {
+        this.directors = directors;
     }
 
     public int getYear() {
@@ -171,24 +182,6 @@ public class Movie implements Serializable {
     }
 
     public void setMovieLink(String movieLink) {
-        this.movieLink = movieLink;
-    }
-
-
-    public Movie(int mvId, String title, Director director, int year, int duration, String budget, String description, Set<Actor> actors, Set<Genre> genres, Country countries, Language languages, String rating, String pg, String movieLink) {
-        this.mvId = mvId;
-        this.title = title;
-        this.director = director;
-        this.year = year;
-        this.duration = duration;
-        this.budget = budget;
-        this.description = description;
-        this.actors = actors;
-        this.genres = genres;
-        this.countries = countries;
-        this.languages = languages;
-        this.rating = rating;
-        this.pg = pg;
         this.movieLink = movieLink;
     }
 }
