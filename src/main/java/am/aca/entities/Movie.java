@@ -47,30 +47,19 @@ public class Movie implements Serializable {
     @ManyToOne(cascade = {CascadeType.ALL})
     private Language languages;
 
+    private String rating;
+
+    private String pg;
+
     public Movie() {
     }
-
-    public Movie(String title, Director directors, int year, int duration, String budget, String description, Set<Actor> actors, Set<Genre> genres, Country countries, Language languages) {
-        this.mvId = title.hashCode();
-        this.title = title;
-        this.directors = directors;
-        this.year = year;
-        this.duration = duration;
-        this.budget = budget;
-        this.description = description;
-        this.actors = actors;
-        this.genres = genres;
-        this.countries = countries;
-        this.languages = languages;
-    }
-
 
     public int getMvId() {
         return mvId;
     }
 
-    public void setMvId(int movieId) {
-        this.mvId = movieId;
+    public void setMvId(int mvId) {
+        this.mvId = mvId;
     }
 
     public String getTitle() {
@@ -85,8 +74,8 @@ public class Movie implements Serializable {
         return directors;
     }
 
-    public void setDirectors(Director director) {
-        this.directors = director;
+    public void setDirectors(Director directors) {
+        this.directors = directors;
     }
 
     public int getYear() {
@@ -149,8 +138,50 @@ public class Movie implements Serializable {
         return languages;
     }
 
-    public void setLanguages(Language language) {
-        this.languages = language;
+    public void setLanguages(Language languages) {
+        this.languages = languages;
     }
 
+    public String getRating() {
+        return rating;
+    }
+
+    public void setRating(String rating) {
+        this.rating = rating;
+    }
+
+    public String getPg() {
+        return pg;
+    }
+
+    public void setPg(String pg) {
+        this.pg = pg;
+    }
+
+    public String getMovieLink() {
+        return movieLink;
+    }
+
+    public void setMovieLink(String movieLink) {
+        this.movieLink = movieLink;
+    }
+
+    private String movieLink;
+
+    public Movie(int mvId, String title, Director directors, int year, int duration, String budget, String description, Set<Actor> actors, Set<Genre> genres, Country countries, Language languages, String rating, String pg, String movieLink) {
+        this.mvId = mvId;
+        this.title = title;
+        this.directors = directors;
+        this.year = year;
+        this.duration = duration;
+        this.budget = budget;
+        this.description = description;
+        this.actors = actors;
+        this.genres = genres;
+        this.countries = countries;
+        this.languages = languages;
+        this.rating = rating;
+        this.pg = pg;
+        this.movieLink = movieLink;
+    }
 }

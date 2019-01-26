@@ -37,5 +37,18 @@ public class MovieDao {
             session.clear();
         }
         session.getTransaction().commit();
+
+
+        System.out.println(session.find(Movie.class, -1673652105).getTitle());
+
+
+        Movie load = session.load(Movie.class, -1673652105);
+        System.out.println(load.getTitle());
+        System.out.println(load.getBudget());
+        System.out.println(load.getLanguages().getLanguageName());
+        System.out.println(load.getCountries().getCountryName());
+        System.out.println(load.getDirectors().getName());
     }
+
+
 }
