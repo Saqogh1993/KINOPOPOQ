@@ -35,7 +35,7 @@ public class Movie implements Serializable {
 
     @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(
-            name = "movie_genre",
+            name = "genre_movie",
             joinColumns = {@JoinColumn(name = "movie_id")},
             inverseJoinColumns = {@JoinColumn(name = "genre_id")}
     )
