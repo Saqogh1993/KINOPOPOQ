@@ -42,12 +42,4 @@ public class Actor implements Serializable {
         this.name = name;
     }
 
-    @Override
-    public String toString() {
-        return "Actor{" +
-                "movies=" + movies +
-                ", id=" + id +
-                ", name='" + name + '\'' +
-                '}';
-    }
 }
