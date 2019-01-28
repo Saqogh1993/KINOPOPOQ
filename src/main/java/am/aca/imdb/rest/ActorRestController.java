@@ -14,27 +14,28 @@ import java.util.Set;
 @RestController
 public class ActorRestController {
 
-    private ActorDao actorDao;
+    private final ActorDao actorDao;
 
     @Autowired
     public ActorRestController(ActorDao actorDao) {
-        this.actorDao = actorDao
-        ;
+        this.actorDao = actorDao;
     }
-
 
     @GetMapping("/actors")
-    public List<Actor> findAllActors () {
+    public List<Actor> findAllActors() {
         return actorDao.findAll();
     }
+
     @GetMapping("/actors/{id}")
-    public Actor findByActorId(@PathVariable(value = "id") long id){
+    public Actor findActorId(@PathVariable(value = "id") long id) {
         return actorDao.findOne(id);
     }
-    @GetMapping("/actors/movies/{id}")
-    public Set<Movie> findMoviesByActorId(@PathVariable(value = "id") long id){
-        Set<Movie> movies = actorDao.findOne(id).getMovies();
-        return movies;
+
+    @GetMapping("/actorsmovie/{id}")
+    public Set<Movie> findActorId2(@PathVariable(value = "id") long id) {
+        Set<Movie> act = actorDao.findOne(id).getMovies();
+        System.out.println(act.iterator().next().getTitle());
+        return act;
     }
 }
 

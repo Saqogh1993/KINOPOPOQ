@@ -14,7 +14,7 @@ public class Genre implements Serializable {
     @Id
     //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "genre_id")
-    private int genreId;
+    private long genreId;
 
     @Column(name = "genre_name")
     private String genreName;
@@ -35,11 +35,11 @@ public class Genre implements Serializable {
         this.genreName = genreName;
     }
 
-    public int getGenreId() {
+    public long getGenreId() {
         return genreId;
     }
 
-    public void setGenreId(int genreId) {
+    public void setGenreId(long genreId) {
         this.genreId = genreId;
     }
 
