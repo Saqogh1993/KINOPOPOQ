@@ -1,5 +1,7 @@
 package am.aca.imdb.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -18,8 +20,8 @@ public class Movie implements Serializable {
 
     private String title;
 
-    @OneToOne(cascade = {CascadeType.ALL})
-    private Director directors;
+    @ManyToOne(cascade = {CascadeType.ALL})
+    private Director director;
 
     private int year;
     private int duration;
@@ -33,11 +35,12 @@ public class Movie implements Serializable {
     )
     private Set<Actor> actors = new HashSet<>();
 
+    @JsonIgnore
     @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(
             name = "genre_movie",
-            joinColumns = {@JoinColumn(name = "movie_id")},
-            inverseJoinColumns = {@JoinColumn(name = "genre_id")}
+            joinColumns = {@JoinColumn(name = "movie_id", referencedColumnName = "movie_id")},
+            inverseJoinColumns = {@JoinColumn(name = "genre_id", referencedColumnName = "genre_id")}
     )
     private Set<Genre> genres = new HashSet<>();
 
@@ -50,6 +53,8 @@ public class Movie implements Serializable {
     private String rating;
 
     private String pg;
+
+    private String movieLink;
 
     public Movie() {
     }
@@ -70,12 +75,12 @@ public class Movie implements Serializable {
         this.title = title;
     }
 
-    public Director getDirectors() {
-        return directors;
+    public Director getDirector() {
+        return director;
     }
 
-    public void setDirectors(Director directors) {
-        this.directors = directors;
+    public void setDirector(Director director) {
+        this.director = director;
     }
 
     public int getYear() {
@@ -166,12 +171,11 @@ public class Movie implements Serializable {
         this.movieLink = movieLink;
     }
 
-    private String movieLink;
 
     public Movie(int mvId, String title, Director directors, int year, int duration, String budget, String description, Set<Actor> actors, Set<Genre> genres, Country countries, Language languages, String rating, String pg, String movieLink) {
         this.mvId = mvId;
         this.title = title;
-        this.directors = directors;
+        this.director = directors;
         this.year = year;
         this.duration = duration;
         this.budget = budget;

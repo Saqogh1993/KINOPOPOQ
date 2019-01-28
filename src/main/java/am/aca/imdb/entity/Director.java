@@ -2,6 +2,8 @@ package am.aca.imdb.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "director")
@@ -17,8 +19,8 @@ public class Director implements Serializable {
     @Column(name = "dir_name")
     private String name;
 
-    @OneToOne(mappedBy = "directors", cascade = {CascadeType.ALL})
-    private Movie movies = new Movie();
+    @OneToMany(mappedBy = "director", cascade = {CascadeType.ALL})
+    private Set<Movie> movies = new HashSet<>();
 
     public Director() {
     }
@@ -40,12 +42,11 @@ public class Director implements Serializable {
         this.name = name;
     }
 
-    public Movie getMovies() {
+    public Set<Movie> getMovies() {
         return movies;
     }
 
-    public void setMovies(Movie movies) {
+    public void setMovies(Set<Movie> movies) {
         this.movies = movies;
     }
-
 }

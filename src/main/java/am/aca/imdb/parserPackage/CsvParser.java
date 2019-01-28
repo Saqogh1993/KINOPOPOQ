@@ -42,7 +42,7 @@ public class CsvParser {
 
                 movieInstance.setMvId(c[0].hashCode());
                 movieInstance.setTitle(c[0]);
-                movieInstance.setDirectors(new Director(c[1]));
+                movieInstance.setDirector(new Director(c[1]));
                 movieInstance.setActors(ac);
                 movieInstance.setGenres(gn);
                 movieInstance.setYear(Integer.parseInt(c[6]));
