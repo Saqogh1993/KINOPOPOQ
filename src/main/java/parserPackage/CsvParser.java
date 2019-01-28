@@ -17,7 +17,7 @@ public class CsvParser {
         String csvFile = "C:\\Users\\ANI\\Desktop\\ACA_JAVA\\imdb-5000-movie-dataset\\origin_second.csv";
         BufferedReader br = null;
         String line;
-        ArrayList<insertedDataType> act_mv = new ArrayList<>();
+        ArrayList<insertedDataType> actMv = new ArrayList<>();
         LoremIpsum loremIpsum = new LoremIpsum();
         Set<Movie> mv = new HashSet<>();
 

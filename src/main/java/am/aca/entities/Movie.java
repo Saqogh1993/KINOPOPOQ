@@ -50,8 +50,27 @@ public class Movie implements Serializable {
     private String rating;
 
     private String pg;
+    @Column(name = "movie_link")
+    private String movieLink;
 
     public Movie() {
+    }
+
+    public Movie(int mvId, String title, Director directors, int year, int duration, String budget, String description, Set<Actor> actors, Set<Genre> genres, Country countries, Language languages, String rating, String pg, String movieLink) {
+        this.mvId = mvId;
+        this.title = title;
+        this.directors = directors;
+        this.year = year;
+        this.duration = duration;
+        this.budget = budget;
+        this.description = description;
+        this.actors = actors;
+        this.genres = genres;
+        this.countries = countries;
+        this.languages = languages;
+        this.rating = rating;
+        this.pg = pg;
+        this.movieLink = movieLink;
     }
 
     public int getMvId() {
@@ -163,25 +182,6 @@ public class Movie implements Serializable {
     }
 
     public void setMovieLink(String movieLink) {
-        this.movieLink = movieLink;
-    }
-
-    private String movieLink;
-
-    public Movie(int mvId, String title, Director directors, int year, int duration, String budget, String description, Set<Actor> actors, Set<Genre> genres, Country countries, Language languages, String rating, String pg, String movieLink) {
-        this.mvId = mvId;
-        this.title = title;
-        this.directors = directors;
-        this.year = year;
-        this.duration = duration;
-        this.budget = budget;
-        this.description = description;
-        this.actors = actors;
-        this.genres = genres;
-        this.countries = countries;
-        this.languages = languages;
-        this.rating = rating;
-        this.pg = pg;
         this.movieLink = movieLink;
     }
 }
