@@ -1,7 +1,6 @@
 package am.aca.imdb.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -15,14 +14,11 @@ public class Movie implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @JsonIgnore
     @Column(name = "movie_id")
     private long mvId;
 
-    @JsonBackReference
     private String title;
 
-    @JsonBackReference
     @ManyToOne(cascade = {CascadeType.ALL})
     private Director directors;
 
