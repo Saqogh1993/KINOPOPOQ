@@ -6,7 +6,6 @@ import com.thedeanda.lorem.LoremIpsum;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -17,7 +16,6 @@ public class CsvParser {
         String csvFile = "/Users/sargisghazaryan/Desktop/origin_second.csv";
         BufferedReader br = null;
         String line;
-        ArrayList<insertedDataType> actMv = new ArrayList<>();
         LoremIpsum loremIpsum = new LoremIpsum();
         Set<Movie> mv = new HashSet<>();
 

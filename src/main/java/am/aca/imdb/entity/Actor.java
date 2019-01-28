@@ -1,5 +1,7 @@
 package am.aca.imdb.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -10,17 +12,19 @@ import java.util.Set;
 public class Actor implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
+    @JsonManagedReference
     @ManyToMany(mappedBy = "actors", cascade = {CascadeType.ALL})
     private Set<Movie> movies = new HashSet<>();
 
     @Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "actor_id")
-    private int id;
+    @JsonManagedReference
+    private long id;
 
+    @JsonManagedReference
     @Column(name = "actor_name")
     private String name;
+
 
     public Actor(String name) {
         this.id = name.hashCode();
@@ -30,7 +34,15 @@ public class Actor implements Serializable {
     public Actor() {
     }
 
-    public int getId() {
+    public Set<Movie> getMovies() {
+        return movies;
+    }
+
+    public void setMovies(Set<Movie> movies) {
+        this.movies = movies;
+    }
+
+    public long getId() {
         return id;
     }
 
