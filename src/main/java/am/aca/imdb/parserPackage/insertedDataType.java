@@ -1,4 +1,4 @@
-package parserPackage;
+package am.aca.imdb.parserPackage;
 
 public class insertedDataType {
 

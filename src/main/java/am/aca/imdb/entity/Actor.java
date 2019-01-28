@@ -1,4 +1,4 @@
-package am.aca.entities;
+package am.aca.imdb.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;

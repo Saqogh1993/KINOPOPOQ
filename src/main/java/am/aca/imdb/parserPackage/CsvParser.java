@@ -1,6 +1,6 @@
-package parserPackage;
+package am.aca.imdb.parserPackage;
 
-import am.aca.entities.*;
+import am.aca.imdb.entity.*;
 import com.thedeanda.lorem.LoremIpsum;
 
 import java.io.BufferedReader;
