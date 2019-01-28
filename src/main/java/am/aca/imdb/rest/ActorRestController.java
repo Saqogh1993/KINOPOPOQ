@@ -34,7 +34,6 @@ public class ActorRestController {
     @GetMapping("/actors/movie/{id}")
     public Set<Movie> findActorId2(@PathVariable(value = "id") long id) {
         Set<Movie> act = actorDao.findOne(id).getMovies();
-        System.out.println(act.iterator().next().getTitle());
         return act;
     }
 }
