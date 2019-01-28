@@ -12,9 +12,8 @@ public class Country implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "country_id")
-    private int countryId;
+    private long countryId;
     @Column(name = "country_name")
     private String countryName;
 
@@ -29,11 +28,11 @@ public class Country implements Serializable {
         this.countryName = countryName;
     }
 
-    public int getCountryId() {
+    public long getCountryId() {
         return countryId;
     }
 
-    public void setCountryId(int countryId) {
+    public void setCountryId(long countryId) {
         this.countryId = countryId;
     }
 

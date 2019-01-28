@@ -11,9 +11,8 @@ public class Language implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "lang_id")
-    private int langId;
+    private long langId;
 
     @Column(name = "lang_name")
     private String languageName;
@@ -37,11 +36,11 @@ public class Language implements Serializable {
         this.movies = movies;
     }
 
-    public int getLangId() {
+    public long getLangId() {
         return langId;
     }
 
-    public void setLangId(int langId) {
+    public void setLangId(long langId) {
         this.langId = langId;
     }
 
