@@ -18,7 +18,7 @@ public class Director implements Serializable {
     @Column(name = "dir_name")
     private String name;
 
-    @OneToMany(cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy = "director", cascade = {CascadeType.ALL})
     private Set<Movie> movies = new HashSet<>();
 
     public Director() {
@@ -48,5 +48,4 @@ public class Director implements Serializable {
     public void setMovies(Set<Movie> movies) {
         this.movies = movies;
     }
-
 }
