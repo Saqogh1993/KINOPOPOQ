@@ -1,6 +1,6 @@
 package am.aca.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -16,19 +16,16 @@ public class Genre implements Serializable {
     @Id
     //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "genre_id")
+    @JsonManagedReference
     private long genreId;
 
     @Column(name = "genre_name")
+    @JsonManagedReference
     private String genreName;
-
-    @JsonIgnore
-    @ManyToMany(cascade = {CascadeType.ALL})
-    @JoinTable(
-            name = "genre_movie",
-            joinColumns = {@JoinColumn(name = "genre_id", referencedColumnName = "genre_id")},
-            inverseJoinColumns = {@JoinColumn(name = "movie_id", referencedColumnName = "movie_id")}
-    )
+    @JsonManagedReference
+    @ManyToMany(mappedBy = "genres", cascade = {CascadeType.ALL})
     private Set<Movie> movies = new HashSet<>();
+
 
     public Genre() {
     }
