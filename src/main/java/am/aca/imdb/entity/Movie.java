@@ -22,7 +22,7 @@ public class Movie implements Serializable {
     private String title;
     @ManyToOne (cascade = {CascadeType.ALL})
     @JsonBackReference
-    private Director directors;
+    private Director director;
 
     private int year;
     private int duration;
@@ -44,9 +44,11 @@ public class Movie implements Serializable {
             inverseJoinColumns = {@JoinColumn(name = "genre_id", referencedColumnName = "genre_id")}
     )
     private Set<Genre> genres = new HashSet<>();
+
     @JsonBackReference
     @ManyToOne(cascade = {CascadeType.ALL}, targetEntity = Country.class)
     private Country countries;
+
     @JsonBackReference
     @ManyToOne(cascade = {CascadeType.ALL})
     private Language languages;
@@ -173,10 +175,10 @@ public class Movie implements Serializable {
     }
 
 
-    public Movie(int mvId, String title, Director directors, int year, int duration, String budget, String description, Set<Actor> actors, Set<Genre> genres, Country countries, Language languages, String rating, String pg, String movieLink) {
+    public Movie(int mvId, String title, Director director, int year, int duration, String budget, String description, Set<Actor> actors, Set<Genre> genres, Country countries, Language languages, String rating, String pg, String movieLink) {
         this.mvId = mvId;
         this.title = title;
-        this.director = directors;
+        this.director = director;
         this.year = year;
         this.duration = duration;
         this.budget = budget;

@@ -24,7 +24,7 @@ public class Director implements Serializable {
     @Column(name = "dir_name")
     @JsonManagedReference
     private String name;
-    @OneToMany(mappedBy = "directors",cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy = "director",cascade = {CascadeType.ALL})
     @JsonManagedReference
     private Set<Movie> movies = new HashSet<>();
 

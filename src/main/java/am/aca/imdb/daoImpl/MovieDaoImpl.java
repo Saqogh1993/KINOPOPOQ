@@ -11,6 +11,7 @@ import javax.persistence.EntityManager;
 @Transactional(readOnly = true)
 public abstract class MovieDaoImpl implements MovieDao {
     private EntityManager entityManager;
+
     @Autowired
     public MovieDaoImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
