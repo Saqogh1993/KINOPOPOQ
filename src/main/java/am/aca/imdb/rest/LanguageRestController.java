@@ -15,6 +15,7 @@ public class LanguageRestController {
     public LanguageRestController(LanguageDao languageDao) {
         this.languageDao = languageDao;
     }
+
     @GetMapping("/languages")
     public List<Language> findAllLanguages(){
         List<Language> languages = languageDao.findAll();
