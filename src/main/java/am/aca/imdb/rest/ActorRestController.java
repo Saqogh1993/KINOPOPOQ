@@ -26,10 +26,12 @@ public class ActorRestController {
     public List<Actor> findAllActors() {
         return actorDao.findAll();
     }
+
     @GetMapping("/actors/{id}")
     public Actor findByActorId(@PathVariable(value = "id") long id){
         return actorDAO.findOne(id);
     }
+
     @GetMapping("/actors/movies/{id}")
     public Set<Movie> findMoviesByActorId(@PathVariable(value = "id") long id){
         Set<Movie> movies = actorDAO.findOne(id).getMovies();
