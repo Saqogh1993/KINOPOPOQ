@@ -17,7 +17,6 @@ public class GenreRestController {
     public GenreRestController(GenreDao genreDao) {
         this.genreDao = genreDao;
     }
-
     @GetMapping("/genres")
     public List<Genre> findALlGenres(){
         List<Genre> genres = genreDao.findAll();

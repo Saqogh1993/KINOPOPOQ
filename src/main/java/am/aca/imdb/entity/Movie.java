@@ -23,7 +23,6 @@ public class Movie implements Serializable {
     @ManyToOne (cascade = {CascadeType.ALL})
     @JsonBackReference
     private Director director;
-
     private int year;
     private int duration;
     private String budget;
