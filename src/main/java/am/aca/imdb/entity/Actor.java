@@ -1,5 +1,6 @@
 package am.aca.imdb.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -17,12 +18,15 @@ public class Actor implements Serializable {
     private Set<Movie> movies = new HashSet<>();
 
     @Id
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @Column(name = "actor_id")
     @JsonManagedReference
     private long id;
 
     @JsonManagedReference
     @Column(name = "actor_name")
+    @JsonManagedReference
     private String name;
 
 
@@ -32,14 +36,6 @@ public class Actor implements Serializable {
     }
 
     public Actor() {
-    }
-
-    public Set<Movie> getMovies() {
-        return movies;
-    }
-
-    public void setMovies(Set<Movie> movies) {
-        this.movies = movies;
     }
 
     public long getId() {
@@ -54,4 +50,11 @@ public class Actor implements Serializable {
         this.name = name;
     }
 
+    public Set<Movie> getMovies() {
+        return movies;
+    }
+
+    public void setMovies(Set<Movie> movies) {
+        this.movies = movies;
+    }
 }

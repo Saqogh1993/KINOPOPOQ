@@ -19,6 +19,7 @@
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
+            <scope>provided</scope>
             <version>42.2.5</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/com.thedeanda/lorem -->
