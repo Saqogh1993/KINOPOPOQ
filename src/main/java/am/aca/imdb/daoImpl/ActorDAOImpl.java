@@ -1,6 +1,6 @@
 package am.aca.imdb.daoImpl;
 
-import am.aca.imdb.dao.ActorDAO;
+import am.aca.imdb.dao.ActorDao;
 import am.aca.imdb.entity.Actor;
 import am.aca.imdb.entity.Movie;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,12 +13,12 @@ import java.util.List;
 
 @Repository
 @Transactional(readOnly = true)
-public abstract class ActorDAOImpl implements ActorDAO {
+public abstract class ActorDaoImpl implements ActorDao {
 
     private EntityManager entityManager;
 
     @Autowired
-    public ActorDAOImpl(EntityManager entityManager) {
+    public ActorDaoImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 

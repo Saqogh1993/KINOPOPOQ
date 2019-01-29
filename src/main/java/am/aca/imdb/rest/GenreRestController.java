@@ -12,11 +12,14 @@ import java.util.Set;
 
 @RestController
 public class GenreRestController {
+
     private GenreDao genreDao;
+
     @Autowired
     public GenreRestController(GenreDao genreDao) {
         this.genreDao = genreDao;
     }
+
     @GetMapping("/genres")
     public List<Genre> findALlGenres(){
         List<Genre> genres = genreDao.findAll();

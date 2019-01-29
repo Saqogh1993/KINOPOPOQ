@@ -24,7 +24,6 @@ public class Actor implements Serializable {
     @JsonManagedReference
     private long id;
 
-    @JsonManagedReference
     @Column(name = "actor_name")
     @JsonManagedReference
     private String name;
