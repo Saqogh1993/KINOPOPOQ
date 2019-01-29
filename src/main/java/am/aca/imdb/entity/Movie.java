@@ -1,6 +1,6 @@
 package am.aca.imdb.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -14,12 +14,14 @@ public class Movie implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
+    @JsonBackReference
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "movie_id")
     private long mvId;
 
     private String title;
-
-    @ManyToOne(cascade = {CascadeType.ALL})
+    @ManyToOne (cascade = {CascadeType.ALL})
+    @JsonBackReference
     private Director director;
 
     private int year;
@@ -34,8 +36,7 @@ public class Movie implements Serializable {
             inverseJoinColumns = {@JoinColumn(name = "actor_id")}
     )
     private Set<Actor> actors = new HashSet<>();
-
-    @JsonIgnore
+    @JsonBackReference
     @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(
             name = "genre_movie",
@@ -174,10 +175,10 @@ public class Movie implements Serializable {
     }
 
 
-    public Movie(long mvId, String title, Director directors, int year, int duration, String budget, String description, Set<Actor> actors, Set<Genre> genres, Country countries, Language languages, String rating, String pg, String movieLink) {
+    public Movie(int mvId, String title, Director director, int year, int duration, String budget, String description, Set<Actor> actors, Set<Genre> genres, Country countries, Language languages, String rating, String pg, String movieLink) {
         this.mvId = mvId;
         this.title = title;
-        this.director = directors;
+        this.director = director;
         this.year = year;
         this.duration = duration;
         this.budget = budget;

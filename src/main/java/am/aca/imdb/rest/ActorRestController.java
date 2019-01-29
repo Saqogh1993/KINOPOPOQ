@@ -3,6 +3,7 @@ package am.aca.imdb.rest;
 import am.aca.imdb.dao.ActorDao;
 import am.aca.imdb.entity.Actor;
 import am.aca.imdb.entity.Movie;
+import com.sun.xml.internal.bind.annotation.XmlIsSet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,14 +28,14 @@ public class ActorRestController {
     }
 
     @GetMapping("/actors/{id}")
-    public Actor findActorId(@PathVariable(value = "id") long id) {
-        return actorDao.findOne(id);
+    public Actor findByActorId(@PathVariable(value = "id") long id){
+        return actorDAO.findOne(id);
     }
 
-    @GetMapping("/actors/movie/{id}")
-    public Set<Movie> findActorId2(@PathVariable(value = "id") long id) {
-        Set<Movie> act = actorDao.findOne(id).getMovies();
-        return act;
+    @GetMapping("/actors/movies/{id}")
+    public Set<Movie> findMoviesByActorId(@PathVariable(value = "id") long id){
+        Set<Movie> movies = actorDAO.findOne(id).getMovies();
+        return movies;
     }
 }
 
