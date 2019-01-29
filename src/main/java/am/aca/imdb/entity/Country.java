@@ -1,5 +1,8 @@
 package am.aca.imdb.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -14,12 +17,13 @@ public class Country implements Serializable {
     @Id
     //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "country_id")
-    private int countryId;
+    private long countryId;
     @Column(name = "country_name")
     private String countryName;
-
+    @JsonIgnore
     @OneToMany(mappedBy = "countries", cascade = {CascadeType.ALL}, targetEntity = Movie.class)
-    private Set<Movie> movieSet = new HashSet<>();
+    @JsonManagedReference
+    private Set<Movie> movies = new HashSet<>();
 
     public Country() {
     }
@@ -29,7 +33,7 @@ public class Country implements Serializable {
         this.countryName = countryName;
     }
 
-    public int getCountryId() {
+    public long getCountryId() {
         return countryId;
     }
 
@@ -38,11 +42,11 @@ public class Country implements Serializable {
     }
 
     public Set<Movie> getMovieSet() {
-        return movieSet;
+        return movies;
     }
 
     public void setMovieSet(Set<Movie> movieSet) {
-        this.movieSet = movieSet;
+        this.movies = movieSet;
     }
 
     public String getCountryName() {
