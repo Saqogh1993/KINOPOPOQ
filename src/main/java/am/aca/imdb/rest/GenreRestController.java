@@ -12,7 +12,9 @@ import java.util.Set;
 
 @RestController
 public class GenreRestController {
+
     private GenreDao genreDao;
+
     @Autowired
     public GenreRestController(GenreDao genreDao) {
         this.genreDao = genreDao;

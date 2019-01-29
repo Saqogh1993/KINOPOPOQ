@@ -27,7 +27,7 @@ public class DirectorRestController {
 
     @GetMapping("/directors/movies/{id}")
     public Set<Movie> findMoviesById(@PathVariable(value = "id") long id){
-        Set<Movie> dirMpvies = directorDao.findOne(id).getMovies();
-        return dirMpvies;
+        Set<Movie> dirMovies = directorDao.findOne(id).getMovies();
+        return dirMovies;
     }
 }
