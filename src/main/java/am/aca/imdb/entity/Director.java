@@ -1,5 +1,9 @@
 package am.aca.imdb.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -14,12 +18,14 @@ public class Director implements Serializable {
     @Id
     //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "dir_id")
-    private int id;
+    @JsonManagedReference
+    private long id;
 
     @Column(name = "dir_name")
+    @JsonManagedReference
     private String name;
-
-    @OneToMany(mappedBy = "director", cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy = "directors",cascade = {CascadeType.ALL})
+    @JsonManagedReference
     private Set<Movie> movies = new HashSet<>();
 
     public Director() {
@@ -30,8 +36,12 @@ public class Director implements Serializable {
         this.name = name;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getName() {

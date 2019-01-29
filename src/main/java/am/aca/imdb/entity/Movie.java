@@ -1,6 +1,6 @@
 package am.aca.imdb.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -14,19 +14,21 @@ public class Movie implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
+    @JsonBackReference
     //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "movie_id")
-    private int mvId;
+    private long mvId;
 
     private String title;
-
-    @ManyToOne(cascade = {CascadeType.ALL})
-    private Director director;
+    @ManyToOne (cascade = {CascadeType.ALL})
+    @JsonBackReference
+    private Director directors;
 
     private int year;
     private int duration;
     private String budget;
     private String description;
+    @JsonBackReference
     @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(
             name = "actor_movie",
@@ -34,8 +36,7 @@ public class Movie implements Serializable {
             inverseJoinColumns = {@JoinColumn(name = "actor_id")}
     )
     private Set<Actor> actors = new HashSet<>();
-
-    @JsonIgnore
+    @JsonBackReference
     @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(
             name = "genre_movie",
@@ -43,10 +44,10 @@ public class Movie implements Serializable {
             inverseJoinColumns = {@JoinColumn(name = "genre_id", referencedColumnName = "genre_id")}
     )
     private Set<Genre> genres = new HashSet<>();
-
+    @JsonBackReference
     @ManyToOne(cascade = {CascadeType.ALL}, targetEntity = Country.class)
     private Country countries;
-
+    @JsonBackReference
     @ManyToOne(cascade = {CascadeType.ALL})
     private Language languages;
 
@@ -59,7 +60,7 @@ public class Movie implements Serializable {
     public Movie() {
     }
 
-    public int getMvId() {
+    public long getMvId() {
         return mvId;
     }
 
