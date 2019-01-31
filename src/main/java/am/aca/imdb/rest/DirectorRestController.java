@@ -1,32 +1,30 @@
 package am.aca.imdb.rest;
 
 import am.aca.imdb.dao.DirectorDao;
-import am.aca.imdb.entity.Director;
+import am.aca.imdb.dto.DirectorDto;
 import am.aca.imdb.entity.Movie;
+import am.aca.imdb.mappers.DirectorMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 import java.util.Set;
 
 @RestController
 public class DirectorRestController {
-    private DirectorDao directorDao;
     @Autowired
+    private DirectorMapper directorMapper;
+    private DirectorDao directorDao;
     public DirectorRestController(DirectorDao directorDao) {
         this.directorDao = directorDao;
     }
 
     @GetMapping("/directors")
-    public List<Director> findAllDirectors(){
-        return directorDao.findAll();
+    public List<DirectorDto> findAllActors () {
+        return directorMapper.mapEntitiesToDto(directorDao.findAll());
     }
-    @GetMapping("/directors/movies/{id}")
-    public Set<Movie> findMoviesById(@PathVariable(value = "id") long id){
-        Set<Movie> dirMpvies = directorDao.findOne(id).getMovies();
-        return dirMpvies;
-    }
+
 }

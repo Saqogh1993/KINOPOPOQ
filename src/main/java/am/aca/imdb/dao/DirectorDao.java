@@ -1,5 +1,6 @@
 package am.aca.imdb.dao;
 
+import am.aca.imdb.dto.DirectorDto;
 import am.aca.imdb.entity.Director;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

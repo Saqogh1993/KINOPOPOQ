@@ -1,26 +1,25 @@
 package am.aca.imdb.rest;
 
 import am.aca.imdb.dao.GenreDao;
-import am.aca.imdb.entity.Genre;
+import am.aca.imdb.dto.GenreDto;
+import am.aca.imdb.mappers.GenreMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @RestController
 public class GenreRestController {
-    private GenreDao genreDao;
     @Autowired
+    private GenreMapper genreMapper;
+    private GenreDao genreDao;
     public GenreRestController(GenreDao genreDao) {
         this.genreDao = genreDao;
     }
     @GetMapping("/genres")
-    public List<Genre> findALlGenres(){
-        List<Genre> genres = genreDao.findAll();
-        return genres;
-
+    public List<GenreDto> findAllActors () {
+        return genreMapper.mapEntitiesToDto(genreDao.findAll());
     }
 }

@@ -1,5 +1,6 @@
 package am.aca.imdb.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -20,9 +21,7 @@ public class Genre implements Serializable {
     private long genreId;
 
     @Column(name = "genre_name")
-    @JsonManagedReference
     private String genreName;
-    @JsonManagedReference
     @ManyToMany(mappedBy = "genres", cascade = {CascadeType.ALL})
     private Set<Movie> movies = new HashSet<>();
 

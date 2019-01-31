@@ -1,5 +1,6 @@
 package am.aca.imdb.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -20,9 +21,7 @@ public class Country implements Serializable {
     private long countryId;
     @Column(name = "country_name")
     private String countryName;
-    @JsonIgnore
     @OneToMany(mappedBy = "countries", cascade = {CascadeType.ALL}, targetEntity = Movie.class)
-    @JsonManagedReference
     private Set<Movie> movies = new HashSet<>();
 
     public Country() {
@@ -45,8 +44,8 @@ public class Country implements Serializable {
         return movies;
     }
 
-    public void setMovieSet(Set<Movie> movieSet) {
-        this.movies = movieSet;
+    public void setMovieSet(Set<Movie> movies) {
+        this.movies = movies;
     }
 
     public String getCountryName() {

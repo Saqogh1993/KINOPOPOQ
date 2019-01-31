@@ -18,14 +18,11 @@ public class Director implements Serializable {
     @Id
     //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "dir_id")
-    @JsonManagedReference
     private long id;
 
     @Column(name = "dir_name")
-    @JsonManagedReference
     private String name;
     @OneToMany(mappedBy = "directors",cascade = {CascadeType.ALL})
-    @JsonManagedReference
     private Set<Movie> movies = new HashSet<>();
 
     public Director() {

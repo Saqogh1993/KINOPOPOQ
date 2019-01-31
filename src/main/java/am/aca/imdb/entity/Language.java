@@ -1,5 +1,6 @@
 package am.aca.imdb.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -15,15 +16,12 @@ public class Language implements Serializable {
     @Id
     //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "lang_id")
-    @JsonManagedReference
     private long langId;
 
     @Column(name = "lang_name")
-    @JsonManagedReference
     private String languageName;
 
     @OneToMany(mappedBy = "languages", cascade = {CascadeType.ALL})
-    @JsonManagedReference
     private Set<Movie> movies;
 
     public Language(String languageName) {
