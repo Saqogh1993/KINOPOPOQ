@@ -19,7 +19,7 @@ public class LanguageRestController {
         this.languageDao = languageDao;
     }
     @GetMapping("/languages")
-    public List<LanguageDto> findAllActors () {
+    public List<LanguageDto> findAllLanguages() {
         return languageMapper.mapEntitiesToDto(languageDao.findAll());
     }
 }

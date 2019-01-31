@@ -10,4 +10,5 @@ import java.util.List;
 
 
 public interface DirectorDao extends JpaRepository<Director, Long> {
+
 }

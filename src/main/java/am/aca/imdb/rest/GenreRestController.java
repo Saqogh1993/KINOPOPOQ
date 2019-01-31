@@ -19,7 +19,7 @@ public class GenreRestController {
         this.genreDao = genreDao;
     }
     @GetMapping("/genres")
-    public List<GenreDto> findAllActors () {
+    public List<GenreDto> findAllGenres() {
         return genreMapper.mapEntitiesToDto(genreDao.findAll());
     }
 }

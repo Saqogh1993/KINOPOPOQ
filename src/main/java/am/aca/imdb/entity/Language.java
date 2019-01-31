@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -22,7 +24,7 @@ public class Language implements Serializable {
     private String languageName;
 
     @OneToMany(mappedBy = "languages", cascade = {CascadeType.ALL})
-    private Set<Movie> movies;
+    private List<Movie> movies = new ArrayList<>();
 
     public Language(String languageName) {
         this.langId = languageName.hashCode();
@@ -32,11 +34,11 @@ public class Language implements Serializable {
     public Language() {
     }
 
-    public Set<Movie> getMovies() {
+    public List<Movie> getMovies() {
         return movies;
     }
 
-    public void setMovies(Set movies) {
+    public void setMovies(List<Movie> movies) {
         this.movies = movies;
     }
 

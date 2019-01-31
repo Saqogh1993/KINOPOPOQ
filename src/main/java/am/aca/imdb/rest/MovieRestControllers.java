@@ -21,7 +21,7 @@ public class MovieRestControllers  {
 
 
     @GetMapping("/movies")
-    public List<MovieDto> findAllActors () {
+    public List<MovieDto> findAllMovies() {
         return movieMapper.mapEntitiesToDto(movieDao.findAll());
     }
 }

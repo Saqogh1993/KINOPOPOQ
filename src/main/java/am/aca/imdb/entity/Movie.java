@@ -1,11 +1,14 @@
 package am.aca.imdb.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -33,14 +36,14 @@ public class Movie implements Serializable {
             joinColumns = {@JoinColumn(name = "movie_id")},
             inverseJoinColumns = {@JoinColumn(name = "actor_id")}
     )
-    private Set<Actor> actors = new HashSet<>();
+    private List<Actor> actors = new ArrayList<>();
     @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(
             name = "genre_movie",
             joinColumns = {@JoinColumn(name = "movie_id")},
             inverseJoinColumns = {@JoinColumn(name = "genre_id")}
     )
-    private Set<Genre> genres = new HashSet<>();
+    private List<Genre> genres = new ArrayList<>();
     @ManyToOne(cascade = {CascadeType.ALL}, targetEntity = Country.class)
     private Country countries;
     @ManyToOne(cascade = {CascadeType.ALL})
@@ -109,19 +112,19 @@ public class Movie implements Serializable {
         this.description = description;
     }
 
-    public Set<Actor> getActors() {
+    public List<Actor> getActors() {
         return actors;
     }
 
-    public void setActors(Set<Actor> actors) {
+    public void setActors(List<Actor> actors) {
         this.actors = actors;
     }
 
-    public Set<Genre> getGenres() {
+    public List<Genre> getGenres() {
         return genres;
     }
 
-    public void setGenres(Set<Genre> genres) {
+    public void setGenres(List<Genre> genres) {
         this.genres = genres;
     }
 
@@ -167,7 +170,7 @@ public class Movie implements Serializable {
 
     private String movieLink;
 
-    public Movie(int mvId, String title, Director directors, int year, int duration, String budget, String description, Set<Actor> actors, Set<Genre> genres, Country countries, Language languages, String rating, String pg, String movieLink) {
+    public Movie(int mvId, String title, Director directors, int year, int duration, String budget, String description, List<Actor> actors, List<Genre> genres, Country countries, Language languages, String rating, String pg, String movieLink) {
         this.mvId = mvId;
         this.title = title;
         this.directors = directors;

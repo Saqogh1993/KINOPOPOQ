@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 public class CountryRestController {
@@ -21,7 +22,7 @@ public class CountryRestController {
     }
 
     @GetMapping("/countries")
-    public List<CountryDto> findAllActors () {
-        return countryMapper.mapEntitiesToDto(countryDao.findAll());
+    public List<CountryDto> findAllCountries () {
+        return countryMapper.mapEntitiesToDto( countryDao.findAll());
     }
 }

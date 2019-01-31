@@ -6,7 +6,9 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -22,7 +24,7 @@ public class Country implements Serializable {
     @Column(name = "country_name")
     private String countryName;
     @OneToMany(mappedBy = "countries", cascade = {CascadeType.ALL}, targetEntity = Movie.class)
-    private Set<Movie> movies = new HashSet<>();
+    private List<Movie> movies = new ArrayList<>();
 
     public Country() {
     }
@@ -40,11 +42,11 @@ public class Country implements Serializable {
         this.countryId = countryId;
     }
 
-    public Set<Movie> getMovieSet() {
+    public List<Movie> getMovieSet() {
         return movies;
     }
 
-    public void setMovieSet(Set<Movie> movies) {
+    public void setMovieSet(List<Movie> movies) {
         this.movies = movies;
     }
 

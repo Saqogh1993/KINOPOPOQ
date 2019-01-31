@@ -23,6 +23,7 @@ public class ActorRestController {
 
     @GetMapping("/actors")
     public List<ActorDto> findAllActors () {
+
         return actorMapper.mapEntitiesToDto(actorDAO.findAll());
     }
 

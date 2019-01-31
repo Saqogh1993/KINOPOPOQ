@@ -8,18 +8,19 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class CsvParser {
 
-    public static Set<Movie> parser() {
+    public static List<Movie> parser() {
 
         String csvFile = "/Users/sargisghazaryan/Desktop/origin_second.csv";
         BufferedReader br = null;
         String line;
         ArrayList<insertedDataType> act_mv = new ArrayList<>();
         LoremIpsum loremIpsum = new LoremIpsum();
-        Set<Movie> mv = new HashSet<>();
+        List<Movie> mv = new ArrayList<>();
 
         try {
             br = new BufferedReader(new FileReader(csvFile));
@@ -29,8 +30,8 @@ public class CsvParser {
 
                 String[] c = line.split(",");
                 String[] genreSplit = c[2].split(":");
-                Set<Actor> ac = new HashSet<>();
-                Set<Genre> gn = new HashSet<>();
+                List<Actor> ac = new ArrayList<>();
+                List<Genre> gn = new ArrayList<>();
                 ac.add(new Actor(String.valueOf(c[3])));
                 ac.add(new Actor(String.valueOf(c[4])));
                 ac.add(new Actor(String.valueOf(c[5])));
