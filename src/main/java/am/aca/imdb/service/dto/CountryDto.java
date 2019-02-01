@@ -11,15 +11,6 @@ public class CountryDto implements Serializable {
 
     private long id;
     private String name;
-    private List<String> movieNames;
-
-    public List<String> getMovieNames() {
-        return movieNames;
-    }
-
-    public void setMovieNames(List<String> movieNames) {
-        this.movieNames = movieNames;
-    }
 
     public long getId() {
         return id;
@@ -55,7 +46,6 @@ public class CountryDto implements Serializable {
         CountryDto countryDto = new CountryDto();
         countryDto.setId(country.getCountryName().hashCode());
         countryDto.setName(country.getCountryName());
-        countryDto.setMovieNames(country.getMovieSet().stream().map(m -> m.getTitle()).collect(Collectors.toList()));
 
         return countryDto;
     }

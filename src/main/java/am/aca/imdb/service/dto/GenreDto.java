@@ -11,15 +11,6 @@ public class GenreDto implements Serializable {
 
     private long id;
     private String name;
-    private List<String> movieName;
-
-    public List<String> getMovieName() {
-        return movieName;
-    }
-
-    public void setMovieName(List<String> movieName) {
-        this.movieName = movieName;
-    }
 
     public long getId() {
         return id;
@@ -56,7 +47,7 @@ public class GenreDto implements Serializable {
         GenreDto genreDto = new GenreDto();
         genreDto.setId(genre.getGenreName().hashCode());
         genreDto.setName(genre.getGenreName());
-        genreDto.setMovieName(genre.getMovies().stream().map(m -> m.getTitle()).collect(Collectors.toList()));
+
         return genreDto;
     }
 

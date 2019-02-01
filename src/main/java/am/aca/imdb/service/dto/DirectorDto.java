@@ -11,15 +11,6 @@ public class DirectorDto implements Serializable {
 
     private long id;
     private String name;
-    private List<String> movieName;
-
-    public List<String> getMovieName() {
-        return movieName;
-    }
-
-    public void setMovieName(List<String> movieName) {
-        this.movieName = movieName;
-    }
 
     public long getId() {
         return id;
@@ -58,7 +49,6 @@ public class DirectorDto implements Serializable {
 
         directorDto.setId(director.getName().hashCode());
         directorDto.setName(director.getName());
-        directorDto.setMovieName(director.getMovies().stream().map(m -> m.getTitle()).collect(Collectors.toList()));
 
         return directorDto;
     }
