@@ -11,15 +11,6 @@ public class LanguageDto implements Serializable {
 
     private long id;
     private String name;
-    private List<String> movieName;
-
-    public List<String> getMovieName() {
-        return movieName;
-    }
-
-    public void setMovieName(List<String> movieName) {
-        this.movieName = movieName;
-    }
 
     public long getId() {
         return id;
@@ -57,7 +48,6 @@ public class LanguageDto implements Serializable {
 
         languageDto.setId(language.getLanguageName().hashCode());
         languageDto.setName(language.getLanguageName());
-        languageDto.setMovieName(language.getMovies().stream().map(m -> m.getTitle()).collect(Collectors.toList()));
 
         return languageDto;
     }

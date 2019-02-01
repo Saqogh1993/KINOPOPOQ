@@ -4,5 +4,5 @@ import am.aca.imdb.repository.entity.Director;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 
-public interface DirectorDao extends JpaRepository<Director, Long> {
+public interface DirectorRepository extends JpaRepository<Director, Long> {
 }
