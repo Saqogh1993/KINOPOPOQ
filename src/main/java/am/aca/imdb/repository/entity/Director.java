@@ -1,14 +1,10 @@
-package am.aca.imdb.entity;
+package am.aca.imdb.repository.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -18,14 +14,14 @@ public class Director implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "dir_id")
     private long id;
 
     @Column(name = "dir_name")
     private String name;
-    @OneToMany(mappedBy = "directors",cascade = {CascadeType.ALL})
-    private List<Movie> movies = new ArrayList<>();
+
+    @OneToMany(mappedBy = "director",cascade = {CascadeType.ALL})
+    private Set<Movie> movies = new HashSet<>();
 
     public Director() {
     }
@@ -51,11 +47,11 @@ public class Director implements Serializable {
         this.name = name;
     }
 
-    public List<Movie> getMovies() {
+    public Set<Movie> getMovies() {
         return movies;
     }
 
-    public void setMovies(List<Movie> movies) {
+    public void setMovies(Set<Movie> movies) {
         this.movies = movies;
     }
 }

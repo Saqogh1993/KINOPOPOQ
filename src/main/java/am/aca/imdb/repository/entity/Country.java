@@ -1,14 +1,11 @@
-package am.aca.imdb.entity;
+package am.aca.imdb.repository.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -18,13 +15,14 @@ public class Country implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "country_id")
     private long countryId;
+
     @Column(name = "country_name")
     private String countryName;
-    @OneToMany(mappedBy = "countries", cascade = {CascadeType.ALL}, targetEntity = Movie.class)
-    private List<Movie> movies = new ArrayList<>();
+
+    @OneToMany(mappedBy = "country", cascade = {CascadeType.ALL}, targetEntity = Movie.class)
+    private Set<Movie> movies = new HashSet<>();
 
     public Country() {
     }
@@ -38,16 +36,16 @@ public class Country implements Serializable {
         return countryId;
     }
 
-    public void setCountryId(int countryId) {
+    public void setCountryId(long countryId) {
         this.countryId = countryId;
     }
 
-    public List<Movie> getMovieSet() {
+    public Set<Movie> getMovieSet() {
         return movies;
     }
 
-    public void setMovieSet(List<Movie> movies) {
-        this.movies = movies;
+    public void setMovieSet(Set<Movie> movieSet) {
+        this.movies = movieSet;
     }
 
     public String getCountryName() {

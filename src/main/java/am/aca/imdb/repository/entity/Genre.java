@@ -1,13 +1,10 @@
-package am.aca.imdb.entity;
+package am.aca.imdb.repository.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -17,15 +14,14 @@ public class Genre implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "genre_id")
-    @JsonManagedReference
     private long genreId;
 
     @Column(name = "genre_name")
     private String genreName;
+
     @ManyToMany(mappedBy = "genres", cascade = {CascadeType.ALL})
-    private List<Movie> movies = new ArrayList<>();
+    private Set<Movie> movies = new HashSet<>();
 
 
     public Genre() {
@@ -40,15 +36,15 @@ public class Genre implements Serializable {
         return genreId;
     }
 
-    public void setGenreId(int genreId) {
+    public void setGenreId(long genreId) {
         this.genreId = genreId;
     }
 
-    public List<Movie> getMovies() {
+    public Set<Movie> getMovies() {
         return movies;
     }
 
-    public void setMovies(List<Movie> movies) {
+    public void setMovies(Set<Movie> movies) {
         this.movies = movies;
     }
 

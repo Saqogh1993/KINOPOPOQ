@@ -1,12 +1,9 @@
-package am.aca.imdb.entity;
+package am.aca.imdb.repository.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -16,15 +13,14 @@ public class Language implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "lang_id")
     private long langId;
 
     @Column(name = "lang_name")
     private String languageName;
 
-    @OneToMany(mappedBy = "languages", cascade = {CascadeType.ALL})
-    private List<Movie> movies = new ArrayList<>();
+    @OneToMany(mappedBy = "language", cascade = {CascadeType.ALL})
+    private Set<Movie> movies;
 
     public Language(String languageName) {
         this.langId = languageName.hashCode();
@@ -34,11 +30,11 @@ public class Language implements Serializable {
     public Language() {
     }
 
-    public List<Movie> getMovies() {
+    public Set<Movie> getMovies() {
         return movies;
     }
 
-    public void setMovies(List<Movie> movies) {
+    public void setMovies(Set movies) {
         this.movies = movies;
     }
 
@@ -46,7 +42,7 @@ public class Language implements Serializable {
         return langId;
     }
 
-    public void setLangId(int langId) {
+    public void setLangId(long langId) {
         this.langId = langId;
     }
 
