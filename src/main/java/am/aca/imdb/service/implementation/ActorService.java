@@ -2,7 +2,6 @@ package am.aca.imdb.service.implementation;
 
 import am.aca.imdb.repository.dao.ActorRepository;
 import am.aca.imdb.service.dto.ActorDto;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
