@@ -1,7 +1,5 @@
 package am.aca.imdb.repository.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -23,9 +21,10 @@ public class Movie implements Serializable {
     private String description;
     private String rating;
     private String pg;
+    @Column(name = "movie_link")
     private String movieLink;
 
-    @ManyToOne (cascade = {CascadeType.ALL})
+    @ManyToOne(cascade = {CascadeType.ALL})
     private Director director;
 
     @ManyToOne(cascade = {CascadeType.ALL}, targetEntity = Country.class)
@@ -45,13 +44,14 @@ public class Movie implements Serializable {
     @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(
             name = "genre_movie",
-            joinColumns = {@JoinColumn(name = "movie_id", referencedColumnName = "movie_id")},
-            inverseJoinColumns = {@JoinColumn(name = "genre_id", referencedColumnName = "genre_id")}
+            joinColumns = {@JoinColumn(name = "movie_id")},
+            inverseJoinColumns = {@JoinColumn(name = "genre_id")}
     )
     private Set<Genre> genres = new HashSet<>();
 
 
-    public Movie() { }
+    public Movie() {
+    }
 
     public Movie(int mvId, String title, Director director, int year, int duration, String budget, String description, Set<Actor> actors, Set<Genre> genres, Country country, Language language, String rating, String pg, String movieLink) {
         this.mvId = mvId;
