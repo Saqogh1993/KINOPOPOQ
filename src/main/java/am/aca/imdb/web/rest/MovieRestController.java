@@ -41,4 +41,12 @@ public class MovieRestController {
         modelAndView.addObject("movies", collect);
         return modelAndView;
     }
+
+    @GetMapping("/content")
+    public ModelAndView findAllMoviesContent() {
+        ModelAndView modelAndView = new ModelAndView("content");
+        List<MovieDto> collect = movieService.findAllMovies().stream().limit(10L).collect(Collectors.toList());
+        modelAndView.addObject("content", collect);
+        return modelAndView;
+    }
 }

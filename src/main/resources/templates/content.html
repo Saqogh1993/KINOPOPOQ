@@ -6,20 +6,12 @@
 </head>
 <body>
 
-<div id="wrapper" th:each="movie: ${movies}">
-
-    <header id="header"></header>
-    <section id="main">
-        <section class="thumbnails">
-            <div th:replace="content.html :: footer"></div>
-        </section>
-    </section>
-
-    <!-- Footer -->
-    <footer id="footer">
-        <p>Footer</p>
-    </footer>
-
+<div th:each="movie: ${content}">
+    <!--/*@thymesVar id="getId" type="templates"*/-->
+    <a href="" th:href="${movie.getId()}">
+        <img alt="" th:src="${movie.getMovieLink()}"/>
+        <h2 th:text="${movie.getTitle()}"></h2>
+    </a>
 </div>
 
 <!-- Scripts -->
