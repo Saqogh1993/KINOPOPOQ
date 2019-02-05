@@ -655,6 +655,11 @@ u\24 + *,
 
 }
 
+.oneline {
+    display: inline;
+}
+
+
 @media screen and (max-width: 1280px) {
 
     .row > * {
@@ -1735,7 +1740,7 @@ body {
 
 body {
     background-color: #000;
-    background-image: url("../images/bg.jpg");
+    background-image: url("../../images/bg.jpg");
     background-size: cover;
     background-position: top center;
 }
@@ -2756,7 +2761,7 @@ button:disabled,
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
-    width: calc(100% / 3);
+    width: calc(100% / 4);
     padding-left: 2em;
 }
 
@@ -2849,7 +2854,7 @@ button:disabled,
     content: "";
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
-    font-family: FontAwesome;
+    font-family: FontAwesome, serif;
     font-style: normal;
     font-weight: normal;
     text-transform: none !important;
@@ -2878,7 +2883,7 @@ button:disabled,
 /* Wrapper */
 
 #wrapper {
-    max-width: 68em;
+    max-width: 50em;
     width: 100%;
     margin: 0 auto;
     padding: 0 2em;

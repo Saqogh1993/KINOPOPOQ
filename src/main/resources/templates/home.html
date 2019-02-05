@@ -1,27 +1,53 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<head>
     <link rel="stylesheet" th:href="@{css/main.css}" type="text/css"/>
-    <title></title>
 </head>
 <body>
 
+<!-- Wrapper -->
 <div id="wrapper" th:each="movie: ${movies}">
 
+    <!-- Header -->
     <header id="header"></header>
+
+    <!-- Main -->
     <section id="main">
+
+        <!-- Thumbnails -->
         <section class="thumbnails">
-            <div th:replace="content.html :: footer"></div>
+            <div class="oneline">
+                <!--/*@thymesVar id="getId" type="templates"*/-->
+                <a href="" th:href="${movie.getMovieLink()}">
+                    <img alt="" th:src="${movie.getMovieLink()}"/>
+                    <h3 th:text="${movie.getTitle()}"></h3>
+                </a>
+            </div>
+            <div class="oneline">
+                <a href="" th:href="${movie.getMovieLink()}">
+                    <img th:src="${movie.getMovieLink()}" alt=""/>
+                    <h3 th:text="${movie.getTitle()}"></h3>
+                </a>
+            </div>
+            <div class="oneline">
+                <a href="" th:href="${movie.getMovieLink()}">
+                    <img alt="" th:src="${movie.getMovieLink()}"/>
+                    <h3 th:text="${movie.getTitle()}"></h3>
+                </a>
+            </div>
+            <div>
+                <a href="" th:href="${movie.getMovieLink()}">
+                    <img th:src="${movie.getMovieLink()}" alt=""/>
+                    <h3 th:text="${movie.getTitle()}"></h3>
+                </a>
+            </div>
         </section>
     </section>
-
-    <!-- Footer -->
-    <footer id="footer">
-        <p>Footer</p>
-    </footer>
-
 </div>
-
 <!-- Scripts -->
 <script th:src="@{js/jquery.min.js}"></script>
 <script th:src="@{js/jquery.poptrox.min.js}"></script>
