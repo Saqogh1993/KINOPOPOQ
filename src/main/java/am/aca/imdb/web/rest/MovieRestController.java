@@ -34,10 +34,10 @@ public class MovieRestController {
         return movieService.findMovieByTitle(title);
     }
 
-    @GetMapping("/h")
+    @GetMapping("/")
     public ModelAndView findAllMoviesWithModelAndView() {
         ModelAndView modelAndView = new ModelAndView("home");
-        modelAndView.addObject("movies", movieService.findAllMovies().stream().limit(20L).collect(Collectors.toList()));
+        modelAndView.addObject("movies", movieService.findAllMovies().stream().limit(50L).collect(Collectors.toList()));
         return modelAndView;
     }
 }

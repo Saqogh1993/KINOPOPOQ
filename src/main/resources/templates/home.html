@@ -3,43 +3,41 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Title</title>
-</head>
-<head>
     <link rel="stylesheet" th:href="@{css/main.css}" type="text/css"/>
 </head>
 <body>
 
 <!-- Wrapper -->
-<div id="wrapper" th:each="movie: ${movies}">
+<div id="wrapper">
 
     <!-- Header -->
-    <header id="header"></header>
+    <header id="header">KinoPopoq</header>
 
     <!-- Main -->
     <section id="main">
 
         <!-- Thumbnails -->
         <section class="thumbnails">
-            <div class="oneline">
-                <!--/*@thymesVar id="getId" type="templates"*/-->
+            <!--/*@thymesVar id="getId" type="templates"*/-->
+            <div class="oneline" th:each="movie: ${movies}">
                 <a href="" th:href="${movie.getMovieLink()}">
                     <img alt="" th:src="${movie.getMovieLink()}"/>
                     <h3 th:text="${movie.getTitle()}"></h3>
                 </a>
             </div>
-            <div class="oneline">
+            <div class="oneline" th:each="movie: ${movies}">
                 <a href="" th:href="${movie.getMovieLink()}">
                     <img th:src="${movie.getMovieLink()}" alt=""/>
                     <h3 th:text="${movie.getTitle()}"></h3>
                 </a>
             </div>
-            <div class="oneline">
+            <div class="oneline" th:each="movie: ${movies}">
                 <a href="" th:href="${movie.getMovieLink()}">
                     <img alt="" th:src="${movie.getMovieLink()}"/>
                     <h3 th:text="${movie.getTitle()}"></h3>
                 </a>
             </div>
-            <div>
+            <div class="oneline" th:each="movie: ${movies}">
                 <a href="" th:href="${movie.getMovieLink()}">
                     <img th:src="${movie.getMovieLink()}" alt=""/>
                     <h3 th:text="${movie.getTitle()}"></h3>
