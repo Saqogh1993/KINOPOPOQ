@@ -13,7 +13,7 @@ public class CsvParser {
 
     public static Set<Movie> parser() {
 
-        String csvFile = "/Users/sargisghazaryan/Desktop/origin_second.csv";
+        String csvFile = "C:\\Users\\User\\Desktop\\origin_second.csv";
         BufferedReader br = null;
         String line;
         LoremIpsum loremIpsum = new LoremIpsum();

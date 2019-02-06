@@ -26,6 +26,7 @@ public class MovieDto implements Serializable {
     private String pg;
     private String movieLink;
 
+
     public static List<MovieDto> mapEntitiesToDto(List<Movie> movieList) {
         List<MovieDto> dtos = new ArrayList<>();
         if(movieList == null)

@@ -45,8 +45,8 @@ public class Movie implements Serializable {
     @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(
             name = "genre_movie",
-            joinColumns = {@JoinColumn(name = "movie_id", referencedColumnName = "movie_id")},
-            inverseJoinColumns = {@JoinColumn(name = "genre_id", referencedColumnName = "genre_id")}
+            joinColumns = {@JoinColumn(name = "movie_id")},
+            inverseJoinColumns = {@JoinColumn(name = "genre_id")}
     )
     private Set<Genre> genres = new HashSet<>();
 
