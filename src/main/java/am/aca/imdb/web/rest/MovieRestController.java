@@ -45,7 +45,6 @@ public class MovieRestController {
         return modelAndView;
     }
     @GetMapping("/movact/{name}")
-    @ResponseBody
     public ModelAndView getMoviesByActor(@PathVariable(name = "name") String name){
         ModelAndView modelAndView = new ModelAndView("index");
         modelAndView.addObject("actormovies",findMoviesByActorsName(name).stream()

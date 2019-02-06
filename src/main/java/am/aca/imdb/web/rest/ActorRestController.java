@@ -2,8 +2,10 @@ package am.aca.imdb.web.rest;
 
 import am.aca.imdb.service.dto.ActorDto;
 import am.aca.imdb.service.implementation.ActorService;
+import am.aca.imdb.service.implementation.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -11,10 +13,11 @@ import java.util.List;
 
 @RestController
 public class ActorRestController {
+    @Autowired
+    private MovieService movieService;
 
     private ActorService actorService;
 
-    @Autowired
     public ActorRestController(ActorService actorService) {
         this.actorService = actorService;
     }
@@ -23,10 +26,12 @@ public class ActorRestController {
     public List<ActorDto> findAllActors() {
         return actorService.findAllActors();
     }
-    @GetMapping("/act")
-    public ModelAndView getActors(){
+
+    @GetMapping("/act/{name}")
+    public ModelAndView getActors(@PathVariable(name = "name") String name){
         ModelAndView modelAndView = new ModelAndView("index");
-        modelAndView.addObject("actors",findAllActors());
+        modelAndView.addObject("actors",actorService.findActorByName(name));
+        modelAndView.addObject("movies", movieService.findMoviesByActorName(name));
         return modelAndView;
     }
 }
