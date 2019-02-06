@@ -18,6 +18,7 @@ public class GenreService {
     }
 
     public List<GenreDto> findALlGenres(){
+
         return GenreDto.mapEntitiesToDto(genreRepository.findAll());
     }
 }

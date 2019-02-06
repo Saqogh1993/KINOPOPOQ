@@ -20,5 +20,7 @@ public class ActorService {
     public List<ActorDto> findAllActors () {
         return ActorDto.mapEntitiesToDto(actorRepository.findAll());
     }
-
+    public ActorDto findActorByName(String name){
+        return ActorDto.mapEntityToDto(actorRepository.findActorByName(name));
+    }
 }

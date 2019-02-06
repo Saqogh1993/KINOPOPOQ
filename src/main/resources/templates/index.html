@@ -8,9 +8,10 @@
     <div th:each = "actor: ${actors}" >
         <p th:text="${actor.getId()}">444</p>
         <p th:text="${actor.getName()}">444</p>
+        <div th:each = "movie:${movies}">
+            <p th:text = "${movie.getTitle()}"></p>
+        </div>
     </div>
-    <div th:each = "actormovies: ${actormovies}" >
-        <p th:text="${actormovies}">444</p>
-    </div>
+
 </body>
 </html>
