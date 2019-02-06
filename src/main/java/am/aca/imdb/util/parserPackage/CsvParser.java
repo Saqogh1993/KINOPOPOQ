@@ -12,13 +12,13 @@ import java.util.Set;
 
 public class CsvParser {
 
-    public static List<Movie> parser() {
+    public static Set<Movie> parser() {
 
-        String csvFile = "/Users/sargisghazaryan/Desktop/origin_second.csv";
+        String csvFile = "C:\\Users\\User\\Desktop\\origin_second.csv";
         BufferedReader br = null;
         String line;
         LoremIpsum loremIpsum = new LoremIpsum();
-        List<Movie> mv = new ArrayList<>();
+        Set<Movie> mv = new HashSet<>();
 
         try {
             br = new BufferedReader(new FileReader(csvFile));
@@ -28,8 +28,8 @@ public class CsvParser {
 
                 String[] c = line.split(",");
                 String[] genreSplit = c[2].split(":");
-                List<Actor> ac = new ArrayList<>();
-                List<Genre> gn = new ArrayList<>();
+                Set<Actor> ac = new HashSet<>();
+                Set<Genre> gn = new HashSet<>();
                 ac.add(new Actor(String.valueOf(c[3])));
                 ac.add(new Actor(String.valueOf(c[4])));
                 ac.add(new Actor(String.valueOf(c[5])));

@@ -29,4 +29,7 @@ public class MovieService {
     public MovieDto findMovieByTitle(String string) {
         return MovieDto.mapEntityToDto(movieRepository.findByTitle(string));
     }
+    public List<MovieDto> findMoviesByActorName(String name){
+        return MovieDto.mapEntitiesToDto(movieRepository.findAllByActorsName(name));
+    }
 }

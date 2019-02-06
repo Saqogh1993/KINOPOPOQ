@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Movies</title>
+</head>
+<body>
+
+    <div th:each = "actor: ${actors}" >
+        <p th:text="${actor.getId()}">444</p>
+        <p th:text="${actor.getName()}">444</p>
+    </div>
+    <div th:each = "actormovies: ${actormovies}" >
+        <p th:text="${actormovies}">444</p>
+    </div>
+</body>
+</html>
