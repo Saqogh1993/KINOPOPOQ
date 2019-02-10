@@ -38,7 +38,7 @@ public class MovieRestController {
     public List<MovieDto> findMoviesByActorsName(@RequestParam String name){
         return movieService.findMoviesByActorName(name);
     }
-    @GetMapping("/")
+    @GetMapping("/home")
     public ModelAndView getMovies(){
         ModelAndView modelAndView = new ModelAndView("home");
         modelAndView.addObject("movies",findAllMovies());

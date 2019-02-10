@@ -4,6 +4,10 @@
     <title>Home page</title>
 </head>
 <body>
+<h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+ <form th:action="@{/logout}" method="post">
+    <input type="submit" value="Sign Out"/>
+</form>
 <div th:each = "movie: ${movies}" >
     <p th:text="${movie.getTitle()}">444</p>
     <p th:text="${movie.getCountryDto().getName()}">444</p>
