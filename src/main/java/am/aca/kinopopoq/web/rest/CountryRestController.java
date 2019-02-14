@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RestController("/countries")
+@RestController
 public class CountryRestController {
 
     private CountryService countryService;
@@ -16,7 +16,7 @@ public class CountryRestController {
         this.countryService = countryService;
     }
 
-    @GetMapping("/")
+    @GetMapping("/countries")
     public List<CountryDto> findAllCountries() {
         return countryService.findAllCountries();
     }

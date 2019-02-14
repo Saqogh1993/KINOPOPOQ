@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RestController("/languages")
+@RestController
 public class LanguageRestController {
 
     private LanguageService languageService;
@@ -16,7 +16,7 @@ public class LanguageRestController {
         this.languageService = languageService;
     }
 
-    @GetMapping("/")
+    @GetMapping("/languages")
     public List<LanguageDto> findAllLanguages(){
         return languageService.findAllLanguages();
     }

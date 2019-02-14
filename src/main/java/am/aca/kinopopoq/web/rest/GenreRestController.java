@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RestController("/genres")
+@RestController
 public class GenreRestController {
 
     private GenreService genreService;
@@ -16,7 +16,7 @@ public class GenreRestController {
         this.genreService = genreService;
     }
 
-    @GetMapping("/")
+    @GetMapping("/genres")
     public List<GenreDto> findALlGenres(){
         return genreService.findALlGenres();
     }

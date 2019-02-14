@@ -11,19 +11,17 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
-@RestController("/actors")
+@RestController
 public class ActorRestController {
 
+    @Autowired
     private ActorService actorService;
 
     @Autowired
     private MovieService movieService;
 
-    public ActorRestController(ActorService actorService) {
-        this.actorService = actorService;
-    }
 
-    @GetMapping("/")
+    @GetMapping
     public List<ActorDto> findAllActors() {
         return actorService.findAllActors();
     }
