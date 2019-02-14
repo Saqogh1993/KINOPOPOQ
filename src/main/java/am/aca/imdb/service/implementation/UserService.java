@@ -31,7 +31,7 @@ public class UserService implements UserDetailsService {
         if(userFromDb != null){
             return false;
         }
-        user.setActive(true);
+        //user.setActive(true);
         user.setRoles(Collections.singleton(Role.USER));
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setActivationCode(UUID.randomUUID().toString());
@@ -55,6 +55,8 @@ public class UserService implements UserDetailsService {
             return  false;
         }
         user.setActivationCode(null);
+        user.setActive(true);
+
         userRepository.save(user);
         return true;
     }
