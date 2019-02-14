@@ -1,27 +1,56 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Home page</title>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{css/main.css}" type="text/css"/>
 </head>
 <body>
-<h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
- <form th:action="@{/logout}" method="post">
-    <input type="submit" value="Sign Out"/>
-</form>
-<div th:each = "movie: ${movies}" >
-    <p th:text="${movie.getTitle()}">444</p>
-    <p th:text="${movie.getCountryDto().getName()}">444</p>
-    <p th:text="${movie.getBudget()}">444</p>
-    <p th:text="${movie.getDuration()}">444</p>
-    <p th:text="${movie.getYear()}">444</p>
-    <p th:text="${movie.getDirectorDto().getName()}">444</p>
-    <p th:text="${movie.getMovieLink()}">444</p>
-    <div th:each="actors:${movie.getActorDtos()}">
-        <p th:text="${actors.getName()}">444</p>
-    </div>
-    <div th:each="genres:${movie.getGenreDtos()}">
-        <p th:text="${genres.getName()}">444</p>
-    </div>
+
+<!-- Wrapper -->
+<div id="wrapper">
+
+    <!-- Header -->
+    <header id="header">KinoPopoq</header>
+
+    <!-- Main -->
+    <section id="main">
+
+        <!-- Thumbnails -->
+        <section class="thumbnails">
+            <!--/*@thymesVar id="getId" type="templates"*/-->
+            <div class="oneline" th:each="movie: ${movies}">
+                <a href="" th:href="${movie.getMovieLink()}">
+                    <img alt="" th:src="${movie.getMovieLink()}"/>
+                    <h3 th:text="${movie.getTitle()}"></h3>
+                </a>
+            </div>
+            <div class="oneline" th:each="movie: ${movies}">
+                <a href="" th:href="${movie.getMovieLink()}">
+                    <img th:src="${movie.getMovieLink()}" alt=""/>
+                    <h3 th:text="${movie.getTitle()}"></h3>
+                </a>
+            </div>
+            <div class="oneline" th:each="movie: ${movies}">
+                <a href="" th:href="${movie.getMovieLink()}">
+                    <img alt="" th:src="${movie.getMovieLink()}"/>
+                    <h3 th:text="${movie.getTitle()}"></h3>
+                </a>
+            </div>
+            <div class="oneline" th:each="movie: ${movies}">
+                <a href="" th:href="${movie.getMovieLink()}">
+                    <img th:src="${movie.getMovieLink()}" alt=""/>
+                    <h3 th:text="${movie.getTitle()}"></h3>
+                </a>
+            </div>
+        </section>
+    </section>
 </div>
+<!-- Scripts -->
+<script th:src="@{js/jquery.min.js}"></script>
+<script th:src="@{js/jquery.poptrox.min.js}"></script>
+<script th:src="@{js/skel.min.js}"></script>
+<script th:src="@{js/main.js}"></script>
+
 </body>
 </html>
