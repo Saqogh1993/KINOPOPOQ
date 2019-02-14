@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
-@RestController("/directors")
+@RestController
 public class DirectorRestController {
 
     private DirectorService directorService;
@@ -15,7 +15,7 @@ public class DirectorRestController {
         this.directorService = directorService;
     }
 
-    @GetMapping("/")
+    @GetMapping("/directors")
     public List<DirectorDto> findAllDirectors(){
         return directorService.findAllDirectors();
     }

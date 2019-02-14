@@ -40,4 +40,14 @@ public class MovieService {
         movieRepository.save(movie);
         return MovieDto.mapEntityToDto(movie);
     }
+
+    public MovieDto updateMovie(MovieDto movieDto) {
+        Movie movie = MovieDto.mapDtoToEntity(movieDto);
+        movieRepository.save(movie);
+        return MovieDto.mapEntityToDto(movie);
+    }
+
+    public void deleteMovie(Long id) {
+        movieRepository.delete(id);
+    }
 }
