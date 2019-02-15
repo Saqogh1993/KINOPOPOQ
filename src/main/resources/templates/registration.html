@@ -20,19 +20,19 @@
                         <div> <input type="text" name="username" placeholder="username"/></div>
 
                         <div class="alert alert-danger" role="alert">
-                                <p th:text="*{usernameError}"></p>
+                            <p th:text="*{usernameError}"></p>
                         </div>
 
                         <div><label> <input type="password" name="password"  placeholder="password"/> </label></div>
 
                         <div th:if="${passwordError}" class="alert alert-danger" role="alert"
-                            th:errors="*{passwordError}">
+                             th:errors="*{passwordError}">
                         </div>
 
                         <div><label> <input type="password" name="password2" placeholder="Repeat password"/> </label></div>
 
                         <div th:if="${passwordError2}" class="alert alert-danger" role="alert"
-                            th:text ="${passwordError2}">
+                             th:text ="${passwordError2}">
                         </div>
 
                         <div><label> <input type="email" name="email"  placeholder="some@some.com"/> </label></div>
@@ -44,7 +44,7 @@
 
                         <div><input type="submit" value="Register"/></div>
                     </form>
-                    <a th:href="@{/login}"><input type="submit" value="Sign In"/></a>
+                    <!--<a th:href="@{/login}"><input type="submit" value="Sign In"/></a>-->
                 </div>
             </div>
         </div>

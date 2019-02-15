@@ -1,4 +1,4 @@
-package am.aca.imdb.web.rest;
+package am.aca.kinopopoq.web.rest;
 
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;

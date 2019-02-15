@@ -1,4 +1,4 @@
-package am.aca.imdb.config;
+package am.aca.kinopopoq.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

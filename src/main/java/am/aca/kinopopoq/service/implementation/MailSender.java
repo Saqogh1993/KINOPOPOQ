@@ -1,4 +1,4 @@
-package am.aca.imdb.service.implementation;
+package am.aca.kinopopoq.service.implementation;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
