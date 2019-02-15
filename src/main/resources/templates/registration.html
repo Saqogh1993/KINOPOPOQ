@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title> Registration page </title>
+    <!--
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
+    -->
+    <link rel="stylesheet" th:href="@{/css/login.css}"/>
+</head>
+<body>
+<div class="login-screen">
+    <div class="left-item">
+        <div class="login-panel">
+            <div class="inner-login-panel">
+                <div class="content-panel">
+                    <h3 class="title">Create acount</h3>
+                    <form th:action="@{/registration}" method="post">
+                        <div> <input type="text" name="username" placeholder="username"/></div>
+
+                        <div class="alert alert-danger" role="alert">
+                            <p th:text="*{usernameError}"></p>
+                        </div>
+
+                        <div><label> <input type="password" name="password"  placeholder="password"/> </label></div>
+
+                        <div th:if="${passwordError}" class="alert alert-danger" role="alert"
+                             th:errors="*{passwordError}">
+                        </div>
+
+                        <div><label> <input type="password" name="password2" placeholder="Repeat password"/> </label></div>
+
+                        <div th:if="${passwordError2}" class="alert alert-danger" role="alert"
+                             th:text ="${passwordError2}">
+                        </div>
+
+                        <div><label> <input type="email" name="email"  placeholder="some@some.com"/> </label></div>
+
+                        <div th:if="${emailError}" class="alert alert-danger" role="alert"
+                             th:text ="${emailError}">
+                        </div>
+
+
+                        <div><input type="submit" value="Register"/></div>
+                    </form>
+                    <!--<a th:href="@{/login}"><input type="submit" value="Sign In"/></a>-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="right-item">
+        <div class="slider-panel">
+            <div class="inner-slider-panel">
+                <h1>KinoPopoQ</h1>
+                <p>Registration</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!--
+ Add new user
+<form th:action="@{/registration}" method="post">
+    <div><label> User Name : <input type="text" name="username"/> </label></div>
+    <div><label> Password: <input type="password" name="password"/> </label></div>
+    <div><label> Email: <input type="email" name="email"/> </label></div>
+
+    <div><input type="submit" value="Register"/></div>
+</form>
+-->
+</body>
+</html>
