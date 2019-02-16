@@ -5,9 +5,9 @@
 </head>
 <body>
 
-    <div th:each = "actor: ${actors}" >
-        <p th:text="${actor.getId()}">444</p>
-        <p th:text="${actor.getName()}">444</p>
+    <div th:each = "actors:${actors}" >
+        <p th:text="${actors.getId()}">444</p>
+        <p th:text="${actors.getName()}">444</p>
         <div th:each = "movie:${movies}">
             <p th:text = "${movie.getTitle()}"></p>
         </div>

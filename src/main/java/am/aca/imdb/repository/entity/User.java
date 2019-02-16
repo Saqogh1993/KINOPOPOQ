@@ -19,7 +19,7 @@ public class User implements UserDetails {
     @NotBlank(message = "Username can not be empty")
     private String username;
 
-    @NotBlank(message = "password can not be empty")
+    @NotBlank(message = "Password can not be empty")
     private String password;
 
     @Transient

@@ -26,10 +26,10 @@ public class UserController {
     @Autowired
     PasswordEncoder passwordEncoder;
 
-    @GetMapping("/main")
-    public String goMain() {
-        return "main";
-    }
+    //@GetMapping("/main")
+    //public String goMain() {
+    //    return "main";
+   // }
 
     @GetMapping("/login")
     public String loginPage() {
@@ -37,7 +37,7 @@ public class UserController {
         if (authentication instanceof AnonymousAuthenticationToken) {
             return "login";
         }
-        return "redirect:/main";
+        return "redirect:/home";
     }
 
     @GetMapping("/registration")

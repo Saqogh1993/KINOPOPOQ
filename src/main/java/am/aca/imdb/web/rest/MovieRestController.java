@@ -1,10 +1,11 @@
 package am.aca.imdb.web.rest;
 
-import am.aca.imdb.repository.dao.MovieRepository;
 import am.aca.imdb.service.dto.MovieDto;
 import am.aca.imdb.service.implementation.MovieService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -41,7 +42,8 @@ public class MovieRestController {
     @GetMapping("/home")
     public ModelAndView getMovies(){
         ModelAndView modelAndView = new ModelAndView("home");
-        modelAndView.addObject("movies",findAllMovies());
+        modelAndView.addObject("movies",findAllMovies().stream()
+        .limit(20L).collect(Collectors.toList()));
         return modelAndView;
     }
     @GetMapping("/movact/{name}")
