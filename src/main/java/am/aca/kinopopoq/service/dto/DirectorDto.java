@@ -46,15 +46,16 @@ public class DirectorDto implements Serializable {
 
         DirectorDto directorDto = new DirectorDto();
 
-        directorDto.setId(director.getName().hashCode());
+        directorDto.setId(director.getId());
         directorDto.setName(director.getName());
 
         return directorDto;
     }
 
     public static Director mapDtoToEntity(DirectorDto directorDto) {
-        if (directorDto == null)
+        if (directorDto == null) {
             return null;
+        }
 
         Director director = new Director();
 

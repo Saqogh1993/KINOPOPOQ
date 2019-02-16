@@ -30,7 +30,7 @@ public class LanguageDto implements Serializable {
     public static List<LanguageDto> mapEntitiesToDto(List<Language> languages) {
         List<LanguageDto> languageList = new ArrayList<>();
         if (languages == null)
-            return null;
+            return languageList;
 
         for (Language language : languages) {
             languageList.add(LanguageDto.mapEntityToDto(language));
@@ -45,7 +45,7 @@ public class LanguageDto implements Serializable {
 
         LanguageDto languageDto = new LanguageDto();
 
-        languageDto.setId(language.getLanguageName().hashCode());
+        languageDto.setId(language.getLangId());
         languageDto.setName(language.getLanguageName());
 
         return languageDto;

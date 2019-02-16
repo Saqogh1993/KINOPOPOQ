@@ -1,14 +1,14 @@
 package am.aca.kinopopoq.web.rest;
 
+//import org.springframework.security.access.prepost.PreAuthorize;
+import com.sun.deploy.net.HttpResponse;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
 import am.aca.kinopopoq.service.dto.MovieDto;
 import am.aca.kinopopoq.service.implementation.MovieService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
@@ -20,10 +20,10 @@ public class MovieRestController {
         this.movieService = movieService;
     }
 
-    @GetMapping("/movies")
-    public List<MovieDto> findAllMovies() {
-        return movieService.findAllMovies();
-    }
+//    @GetMapping("/")
+//    public List<MovieDto> findAllMovies() {
+//        return movieService.findAllMovies();
+//    }
 
     @GetMapping("/movies/id")
     public MovieDto findByMovieId(@RequestParam Long id) {
@@ -32,26 +32,45 @@ public class MovieRestController {
 
     @GetMapping("/movies/title")
     public MovieDto findByMovieTitle(@RequestParam String title) {
-
         return movieService.findMovieByTitle(title);
     }
-    @GetMapping("movies/name")
-    public List<MovieDto> findMoviesByActorsName(@RequestParam String name){
-        return movieService.findMoviesByActorName(name);
-    }
+
     @GetMapping("/home")
-    public ModelAndView getMovies(){
+    public ModelAndView findAllMoviesWithModelAndView() {
         ModelAndView modelAndView = new ModelAndView("home");
-        modelAndView.addObject("movies",findAllMovies().stream()
-        .limit(20L).collect(Collectors.toList()));
+        modelAndView.addObject("movies", movieService.findAllMovies().stream().limit(50L).collect(Collectors.toList()));
         return modelAndView;
     }
+//
+//    @GetMapping("/movies/home")
+//    public ModelAndView getMovies(){
+//        ModelAndView modelAndView = new ModelAndView("home");
+//        modelAndView.addObject("movies", movieService.findAllMovies());
+//        return modelAndView;
+//    }
     @GetMapping("/movact/{name}")
     public ModelAndView getMoviesByActor(@PathVariable(name = "name") String name){
         ModelAndView modelAndView = new ModelAndView("index");
-        modelAndView.addObject("actormovies",findMoviesByActorsName(name).stream()
-        .map(MovieDto::getTitle).collect(Collectors.toList()));
+        modelAndView.addObject("actormovies", movieService.findMoviesByActorName(name).stream()
+                .map(MovieDto::getTitle).collect(Collectors.toList()));
         return modelAndView;
     }
 
+    @PostMapping("/movies")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public MovieDto saveMovie(@RequestBody MovieDto movieDto) {
+        return movieService.saveMovie(movieDto);
+    }
+
+    @PutMapping("/movies")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public MovieDto updateMovie(@RequestBody MovieDto movieDto) {
+        return movieService.updateMovie(movieDto);
+    }
+
+    @DeleteMapping("/movies/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public void deleteMovie(@PathVariable Long id, HttpResponse httpResponse) {
+        movieService.deleteMovie(id);
+    }
 }

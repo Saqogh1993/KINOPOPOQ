@@ -43,7 +43,7 @@ public class CountryDto implements Serializable {
             return null;
 
         CountryDto countryDto = new CountryDto();
-        countryDto.setId(country.getCountryName().hashCode());
+        countryDto.setId(country.getCountryId());
         countryDto.setName(country.getCountryName());
 
         return countryDto;

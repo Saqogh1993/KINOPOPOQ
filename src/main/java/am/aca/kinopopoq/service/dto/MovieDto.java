@@ -44,7 +44,7 @@ public class MovieDto implements Serializable {
             return null;
 
         MovieDto movieDto = new MovieDto();
-        movieDto.setId(movie.getTitle().hashCode());
+        movieDto.setId(movie.getMvId());
         movieDto.setTitle(movie.getTitle());
         movieDto.setBudget(movie.getBudget());
         movieDto.setDescription(movie.getDescription());
@@ -87,8 +87,13 @@ public class MovieDto implements Serializable {
         movie.setPg(movieDto.getPg());
         movie.setDuration(movieDto.getDuration());
         movie.setRating(movieDto.getRating());
-        movie.setYear(movie.getYear());
-        movie.setTitle(movie.getTitle());
+        movie.setYear(movieDto.getYear());
+        movie.setTitle(movieDto.getTitle());
+        movie.setDirector(DirectorDto.mapDtoToEntity(movieDto.getDirectorDto()));
+        movie.setActors(ActorDto.mapDtosToEntity(movieDto.getActorDtos()));
+        movie.setGenres(GenreDto.mapDtosToEntity(movieDto.getGenreDtos()));
+        movie.setCountry(CountryDto.mapDtoToEntity(movieDto.getCountryDto()));
+        movie.setLanguage(LanguageDto.mapDtoToEntity(movieDto.getLanguageDto()));
 
         return movie;
     }

@@ -8,7 +8,6 @@ import java.util.List;
 public interface MovieRepository extends JpaRepository<Movie, Long> {
 
     Movie findByMvId(Long id);
-
     Movie findByTitle(String string);
     List<Movie> findAllByActorsName(String name);
 }

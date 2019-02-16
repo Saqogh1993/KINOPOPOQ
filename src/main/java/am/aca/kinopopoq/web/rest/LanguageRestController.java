@@ -9,7 +9,6 @@ import java.util.List;
 
 @RestController
 public class LanguageRestController {
-
     private LanguageService languageService;
 
     public LanguageRestController(LanguageService languageService) {

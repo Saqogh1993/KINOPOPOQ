@@ -34,11 +34,11 @@ public class CsvParser {
                 ac.add(new Actor(String.valueOf(c[5])));
                 Movie movieInstance = new Movie();
 
-                for (String s : genreSplit) {
-                    gn.add(new Genre(s));
-                }
+//                for (String s : genreSplit) {
+//                    gn.add(new Genre(s));
+//                }
 
-                movieInstance.setMvId(c[0].hashCode());
+                movieInstance.setMvId((long)c[0].hashCode());
                 movieInstance.setTitle(c[0]);
                 movieInstance.setDirector(new Director(c[1]));
                 movieInstance.setActors(ac);
@@ -47,8 +47,8 @@ public class CsvParser {
                 movieInstance.setDuration(Integer.parseInt(c[9]));
                 movieInstance.setBudget(c[10]);
                 movieInstance.setDescription(loremIpsum.getWords(20));
-                movieInstance.setCountry(new Country(c[8]));
-                movieInstance.setLanguage(new Language(c[7]));
+//                movieInstance.setCountry(new Country(c[8]));
+//                movieInstance.setLanguage(new Language(c[7]));
                 movieInstance.setRating(c[11]);
                 movieInstance.setPg(c[12]);
                 movieInstance.setMovieLink(c[13]);

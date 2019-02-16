@@ -3,6 +3,7 @@ package am.aca.kinopopoq.repository.entity;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -13,28 +14,23 @@ public class Genre implements Serializable {
 
     @Id
     @Column(name = "genre_id")
-    private long genreId;
+    private Long genreId;
 
     @Column(name = "genre_name")
     private String genreName;
 
-    @ManyToMany(mappedBy = "genres", cascade = {CascadeType.ALL})
+    @ManyToMany(mappedBy = "genres")
     private Set<Movie> movies = new HashSet<>();
 
 
     public Genre() {
     }
 
-    public Genre(String genreName) {
-        this.genreId = genreName.hashCode();
-        this.genreName = genreName;
-    }
-
-    public long getGenreId() {
+    public Long getGenreId() {
         return genreId;
     }
 
-    public void setGenreId(long genreId) {
+    public void setGenreId(Long genreId) {
         this.genreId = genreId;
     }
 
@@ -52,5 +48,19 @@ public class Genre implements Serializable {
 
     public void setGenreName(String genreName) {
         this.genreName = genreName;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+
+        result = prime * result + (genreId == null ? 0 : genreId.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return Objects.equals(genreId, obj);
     }
 }

@@ -3,6 +3,7 @@ package am.aca.kinopopoq.repository.entity;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -13,7 +14,8 @@ public class Movie implements Serializable {
 
     @Id
     @Column(name = "movie_id")
-    private long mvId;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long mvId;
     private String title;
     private int year;
     private int duration;
@@ -21,18 +23,19 @@ public class Movie implements Serializable {
     private String description;
     private String rating;
     private String pg;
+    @Column(name = "movie_link")
     private String movieLink;
 
-    @ManyToOne (cascade = {CascadeType.ALL})
+    @ManyToOne()
     private Director director;
 
-    @ManyToOne(cascade = {CascadeType.ALL}, targetEntity = Country.class)
+    @ManyToOne(targetEntity = Country.class)
     private Country country;
 
-    @ManyToOne(cascade = {CascadeType.ALL})
+    @ManyToOne
     private Language language;
 
-    @ManyToMany(cascade = {CascadeType.ALL})
+    @ManyToMany
     @JoinTable(
             name = "actor_movie",
             joinColumns = {@JoinColumn(name = "movie_id")},
@@ -40,7 +43,7 @@ public class Movie implements Serializable {
     )
     private Set<Actor> actors = new HashSet<>();
 
-    @ManyToMany(cascade = {CascadeType.ALL})
+    @ManyToMany
     @JoinTable(
             name = "genre_movie",
             joinColumns = {@JoinColumn(name = "movie_id")},
@@ -49,9 +52,10 @@ public class Movie implements Serializable {
     private Set<Genre> genres = new HashSet<>();
 
 
-    public Movie() { }
+    public Movie() {
+    }
 
-    public Movie(int mvId, String title, Director director, int year, int duration, String budget, String description, Set<Actor> actors, Set<Genre> genres, Country country, Language language, String rating, String pg, String movieLink) {
+    public Movie(Long mvId, String title, Director director, int year, int duration, String budget, String description, Set<Actor> actors, Set<Genre> genres, Country country, Language language, String rating, String pg, String movieLink) {
         this.mvId = mvId;
         this.title = title;
         this.director = director;
@@ -69,11 +73,11 @@ public class Movie implements Serializable {
     }
 
 
-    public long getMvId() {
+    public Long getMvId() {
         return mvId;
     }
 
-    public void setMvId(long mvId) {
+    public void setMvId(Long mvId) {
         this.mvId = mvId;
     }
 
@@ -181,4 +185,17 @@ public class Movie implements Serializable {
         this.movieLink = movieLink;
     }
 
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+
+        result = prime * result + (mvId == null ? 0 : mvId.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return Objects.equals(mvId, obj);
+    }
 }

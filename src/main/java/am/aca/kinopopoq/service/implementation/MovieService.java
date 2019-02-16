@@ -1,6 +1,7 @@
 package am.aca.kinopopoq.service.implementation;
 
 import am.aca.kinopopoq.repository.dao.MovieRepository;
+import am.aca.kinopopoq.repository.entity.Movie;
 import am.aca.kinopopoq.service.dto.MovieDto;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,7 +29,25 @@ public class MovieService {
     public MovieDto findMovieByTitle(String string) {
         return MovieDto.mapEntityToDto(movieRepository.findByTitle(string));
     }
+
     public List<MovieDto> findMoviesByActorName(String name){
         return MovieDto.mapEntitiesToDto(movieRepository.findAllByActorsName(name));
+    }
+
+    public MovieDto saveMovie(MovieDto movieDto) {
+        Movie movie = MovieDto.mapDtoToEntity(movieDto);
+        movie.setMvId(null);
+        movieRepository.save(movie);
+        return MovieDto.mapEntityToDto(movie);
+    }
+
+    public MovieDto updateMovie(MovieDto movieDto) {
+        Movie movie = MovieDto.mapDtoToEntity(movieDto);
+        movieRepository.save(movie);
+        return MovieDto.mapEntityToDto(movie);
+    }
+
+    public void deleteMovie(Long id) {
+        movieRepository.delete(id);
     }
 }

@@ -4,7 +4,9 @@ import am.aca.kinopopoq.repository.entity.Actor;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ActorDto implements Serializable {
 
@@ -44,7 +46,7 @@ public class ActorDto implements Serializable {
 
         ActorDto actorDto = new ActorDto();
 
-        actorDto.setId(actor.getName().hashCode());
+        actorDto.setId(actor.getId());
         actorDto.setName(actor.getName());
         return actorDto;
     }
@@ -54,9 +56,21 @@ public class ActorDto implements Serializable {
             return null;
 
         Actor actor = new Actor();
-        actor.setId(dto.getName().hashCode());
+        actor.setId(dto.getId());
         actor.setName(dto.getName());
 
         return actor;
+    }
+
+    public static Set<Actor> mapDtosToEntity(List<ActorDto> actorDtos) {
+        Set<Actor> actors = new HashSet<>();
+        if (actorDtos == null) {
+            return actors;
+        }
+
+        for (ActorDto actorDto : actorDtos) {
+            actors.add(mapDtoToEntity(actorDto));
+        }
+        return actors;
     }
 }

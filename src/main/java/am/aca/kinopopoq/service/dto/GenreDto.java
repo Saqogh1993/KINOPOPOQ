@@ -4,7 +4,9 @@ import am.aca.kinopopoq.repository.entity.Genre;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class GenreDto implements Serializable {
 
@@ -50,8 +52,27 @@ public class GenreDto implements Serializable {
         return genreDto;
     }
 
-    public static Genre mapDtoToEntity(GenreDto genreDto) {
-        return null;
+    public static Genre mapDtoToEntity(GenreDto dto) {
+        if (dto == null)
+            return null;
+
+        Genre genre = new Genre();
+        genre.setGenreId(dto.getId());
+        genre.setGenreName(dto.getName());
+
+        return genre;
+    }
+
+    public static Set<Genre> mapDtosToEntity(List<GenreDto> genreDtos) {
+        Set<Genre> genreSet = new HashSet<>();
+        if (genreDtos == null) {
+            return genreSet;
+        }
+
+        for (GenreDto genreDto : genreDtos) {
+            genreSet.add(mapDtoToEntity(genreDto));
+        }
+        return genreSet;
     }
 
 
