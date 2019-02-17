@@ -35,19 +35,18 @@ public class MovieRestController {
         return movieService.findMovieByTitle(title);
     }
 
-    @GetMapping("/home")
+    @GetMapping("/")
     public ModelAndView findAllMoviesWithModelAndView() {
-        ModelAndView modelAndView = new ModelAndView("home");
-        modelAndView.addObject("movies", movieService.findAllMovies().stream().limit(50L).collect(Collectors.toList()));
+        ModelAndView modelAndView = new ModelAndView("index");
+        modelAndView.addObject("movies", movieService.findAllMovies().stream().limit(5L).collect(Collectors.toList()));
         return modelAndView;
     }
-//
-//    @GetMapping("/movies/home")
-//    public ModelAndView getMovies(){
-//        ModelAndView modelAndView = new ModelAndView("home");
-//        modelAndView.addObject("movies", movieService.findAllMovies());
-//        return modelAndView;
-//    }
+    @GetMapping("/home")
+    public ModelAndView findAllMoviesWith() {
+        ModelAndView modelAndView = new ModelAndView("home");
+        modelAndView.addObject("movies", movieService.findAllMovies().stream().limit(5L).collect(Collectors.toList()));
+        return modelAndView;
+    }
     @GetMapping("/movact/{name}")
     public ModelAndView getMoviesByActor(@PathVariable(name = "name") String name){
         ModelAndView modelAndView = new ModelAndView("index");

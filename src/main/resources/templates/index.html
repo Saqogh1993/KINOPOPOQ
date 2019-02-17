@@ -4,7 +4,8 @@
     <title>Main page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
-    <link rel="stylesheet" th:href="@{/css/login.css}"/>
+    <!--<link rel="stylesheet" th:href="@{/css/login.css}"/>-->
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -15,9 +16,11 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
+            <!--
             <li class="nav-item active">
                 <a class="nav-link" th:href="@{/home}">Home <span class="sr-only">(current)</span></a>
             </li>
+            -->
             <li class="nav-item">
                 <a class="nav-link" th:href="@{/login}">Login</a>
             </li>
@@ -54,15 +57,47 @@
         </div>
     </div>
 </nav>
-<div class="login-screen">
-<div class="right-item">
-    <div class="slider-panel">
-        <div class="inner-slider-panel">
-            <h1>KinoPopoQ</h1>
-            <p><h3>Welcome</h3></p>
-        </div>
-    </div>
+<div id="wrapper">
+
+    <!-- Header -->
+    <header id="header">KinoPopoq</header>
+
+    <!-- Main -->
+    <section id="main">
+
+        <!-- Thumbnails -->
+        <section class="thumbnails">
+            <!--/*@thymesVar id="getId" type="templates"*/-->
+            <div class="oneline" th:each="movie: ${movies}">
+                <a href="" th:href="${movie.getMovieLink()}">
+                    <img alt="" th:src="${movie.getMovieLink()}"/>
+                    <h3 th:text="${movie.getTitle()}"></h3>
+                </a>
+            </div>
+            <!--
+            <div class="oneline" th:each="movie: ${movies}">
+                <a href="" th:href="${movie.getMovieLink()}">
+                    <img th:src="${movie.getMovieLink()}" alt=""/>
+                    <h3 th:text="${movie.getTitle()}"></h3>
+                </a>
+            </div>
+            <div class="oneline" th:each="movie: ${movies}">
+                <a href="" th:href="${movie.getMovieLink()}">
+                    <img alt="" th:src="${movie.getMovieLink()}"/>
+                    <h3 th:text="${movie.getTitle()}"></h3>
+                </a>
+            </div>
+            <div class="oneline" th:each="movie: ${movies}">
+                <a href="" th:href="${movie.getMovieLink()}">
+                    <img th:src="${movie.getMovieLink()}" alt=""/>
+                    <h3 th:text="${movie.getTitle()}"></h3>
+                </a>
+            </div>
+            -->
+        </section>
+    </section>
 </div>
-</div>
+
+
 </body>
 </html>
