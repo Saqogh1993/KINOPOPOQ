@@ -1,3 +1,4 @@
+
 package am.aca.kinopopoq.repository.entity;
 
 import javax.persistence.*;

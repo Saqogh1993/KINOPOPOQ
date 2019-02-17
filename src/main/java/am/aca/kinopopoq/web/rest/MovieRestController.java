@@ -4,6 +4,7 @@ package am.aca.kinopopoq.web.rest;
 import am.aca.kinopopoq.repository.entity.Movie;
 import com.sun.deploy.net.HttpResponse;
 import org.springframework.data.domain.Page;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import am.aca.kinopopoq.service.dto.MovieDto;
 import am.aca.kinopopoq.service.implementation.MovieService;
@@ -11,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
@@ -29,7 +29,7 @@ public class MovieRestController {
     }
 
     @GetMapping("/movies/title")
-    public MovieDto findByMovieTitle(@RequestParam("title") String title)  {
+    public MovieDto findByMovieTitle(@RequestParam String title) {
         return movieService.findMovieByTitle(title);
     }
 
@@ -54,16 +54,19 @@ public class MovieRestController {
     }
 
     @PostMapping("/movies")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public MovieDto saveMovie(@RequestBody MovieDto movieDto) {
         return movieService.saveMovie(movieDto);
     }
 
     @PutMapping("/movies")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public MovieDto updateMovie(@RequestBody MovieDto movieDto) {
         return movieService.updateMovie(movieDto);
     }
 
     @DeleteMapping("/movies/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void deleteMovie(@PathVariable Long id, HttpResponse httpResponse) {
         movieService.deleteMovie(id);
     }

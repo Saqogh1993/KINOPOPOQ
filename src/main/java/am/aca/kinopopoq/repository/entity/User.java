@@ -1,6 +1,5 @@
 package am.aca.kinopopoq.repository.entity;
 
-import am.aca.kinopopoq.repository.entity.Role;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.security.core.GrantedAuthority;
@@ -20,7 +19,7 @@ public class User implements UserDetails {
     @NotBlank(message = "Username can not be empty")
     private String username;
 
-    @NotBlank(message = "password can not be empty")
+    @NotBlank(message = "Password can not be empty")
     private String password;
 
     @Transient
