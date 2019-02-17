@@ -3,6 +3,8 @@ package am.aca.kinopopoq.service.dto;
 import am.aca.kinopopoq.repository.entity.Actor;
 import am.aca.kinopopoq.repository.entity.Genre;
 import am.aca.kinopopoq.repository.entity.Movie;
+import org.springframework.core.convert.converter.Converter;
+import org.springframework.data.domain.Page;
 
 import java.io.Serializable;
 import java.util.ArrayList;

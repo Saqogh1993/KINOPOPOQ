@@ -3,6 +3,8 @@ package am.aca.kinopopoq.service.implementation;
 import am.aca.kinopopoq.repository.dao.MovieRepository;
 import am.aca.kinopopoq.repository.entity.Movie;
 import am.aca.kinopopoq.service.dto.MovieDto;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,10 +14,10 @@ import java.util.List;
 @Transactional
 public class MovieService {
 
+    @Autowired
     private MovieRepository movieRepository;
 
-    public MovieService(MovieRepository movieRepository) {
-        this.movieRepository = movieRepository;
+    public MovieService() {
     }
 
     public List<MovieDto> findAllMovies() {
@@ -49,5 +51,10 @@ public class MovieService {
 
     public void deleteMovie(Long id) {
         movieRepository.delete(id);
+    }
+
+    public List<MovieDto> findAllMoviesWithPages(int limit, int offset){
+        LimitOffsetPageRequest pageable = new LimitOffsetPageRequest(limit, offset);
+        return MovieDto.mapEntitiesToDto(movieRepository.findAll(pageable).getContent());
     }
 }
