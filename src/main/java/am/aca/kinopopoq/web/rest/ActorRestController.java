@@ -13,15 +13,16 @@ import java.util.List;
 
 @RestController
 public class ActorRestController {
-
-    @Autowired
-    private ActorService actorService;
-
     @Autowired
     private MovieService movieService;
 
+    private ActorService actorService;
 
-    @GetMapping
+    public ActorRestController(ActorService actorService) {
+        this.actorService = actorService;
+    }
+
+    @GetMapping("/actors")
     public List<ActorDto> findAllActors() {
         return actorService.findAllActors();
     }

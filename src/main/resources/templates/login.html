@@ -2,6 +2,8 @@
 <html  xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Login page </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
     <link rel="stylesheet" th:href="@{/css/login.css}"/>
 </head>
 <body>
@@ -12,8 +14,12 @@
                 <div class="content-panel">
                     <h3 class="title">Sign In</h3>
                     <form th:action="@{/login}" method="post">
-                        <div><label>  <input type="text" name="username" placeholder="Username"/> </label></div>
-                        <div><label>  <input type="password" name="password" placeholder="Password"/> </label></div>
+                        <div class="alert alert-danger" role="alert">
+                            <input type="text" name="username" placeholder="username"/>
+                        </div>
+                        <div class="alert alert-danger" role="alert">
+                            <input type="password" name="password" placeholder="Password"/>
+                        </div>
                         <div><input type="submit" value="Sign In"/></div>
                     </form>
                     <a th:href="@{/registration}"><input type="submit" value="Registration"/></a>
