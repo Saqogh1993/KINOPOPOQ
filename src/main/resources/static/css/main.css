@@ -1,14 +1,6 @@
 @charset "UTF-8";
-@import url(font-awesome.min.css);
 @import url("http://fonts.googleapis.com/css?family=Source+Sans+Pro:200");
 
-/*
-	Visualize by TEMPLATED
-	templated.co @templatedco
-	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
-*/
-
-/* Reset */
 
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
     margin: 0;
@@ -103,7 +95,7 @@ body {
 }
 
 body {
-    background-color: #51326a;
+    background-color: #336a5a;
     background-image: url("../../images/bg.jpg");
     background-size: cover;
     background-position: top center;
@@ -141,6 +133,7 @@ body, input, select, textarea {
 a {
     color: inherit;
     text-decoration: none;
+    font-weight: bold;
     border-bottom: dotted 1px rgba(255, 255, 255, 0.35);
     -moz-transition: border-bottom-color 0.2s ease-in-out, color 0.2s ease-in-out;
     -webkit-transition: border-bottom-color 0.2s ease-in-out, color 0.2s ease-in-out;
@@ -1073,13 +1066,13 @@ button:disabled,
     display: -moz-flex;
     display: -webkit-flex;
     display: -ms-flex;
-    display: flex;
+    display: inline-flex;
     -moz-flex-direction: row;
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
     position: relative;
-    margin: 0 0 2em -2em;
+    margin: 0 0 0 0;
 }
 
 .thumbnails a {
@@ -1117,15 +1110,15 @@ button:disabled,
 }
 
 .thumbnails > div {
-    display: -moz-flex;
-    display: -webkit-flex;
-    display: -ms-flex;
-    display: flex;
+    display: -moz-inline-grid;
+    display: -webkit-inline-flex;
+    display: -ms-inline-grid;
+    display: inline-grid;
     -moz-flex-direction: column;
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
-    width: calc(100% / 4);
+    width: calc(100% / 5);
     padding-left: 2em;
 }
 
@@ -1136,7 +1129,7 @@ button:disabled,
 @media screen and (max-width: 1280px) {
 
     .thumbnails {
-        margin: 0 0 2em -1.5em;
+        margin: 1em 8% 2em 8%;
     }
 
     .thumbnails a {

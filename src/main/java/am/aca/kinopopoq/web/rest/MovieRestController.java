@@ -39,12 +39,12 @@ public class MovieRestController {
         modelAndView.addObject("movies", movieService.findAllMovies().stream().limit(50L).collect(Collectors.toList()));
         return modelAndView;
     }
-    @GetMapping("/home")
-    public ModelAndView getMovies(){
-        ModelAndView modelAndView = new ModelAndView("home");
-        modelAndView.addObject("movies", movieService.findAllMovies());
-        return modelAndView;
-    }
+//    @GetMapping("/home")
+//    public ModelAndView getMovies(){
+//        ModelAndView modelAndView = new ModelAndView("home");
+//        modelAndView.addObject("movies", movieService.findAllMovies());
+//        return modelAndView;
+//    }
     @GetMapping("/movact/{name}")
     public ModelAndView getMoviesByActor(@PathVariable(name = "name") String name){
         ModelAndView modelAndView = new ModelAndView("index");
@@ -71,8 +71,10 @@ public class MovieRestController {
         movieService.deleteMovie(id);
     }
 
-    @GetMapping("/movies/get")
-    public List<MovieDto> findPaginated(@RequestParam("limit") int limit, @RequestParam("offset") int offset){
-        return movieService.findAllMoviesWithPages(limit, offset);
+    @GetMapping("/home")
+    public ModelAndView findPaginated(@RequestParam("limit") int limit, @RequestParam("offset") int offset){
+        ModelAndView modelAndView = new ModelAndView("home");
+        modelAndView.addObject("movies", movieService.findAllMoviesWithPages(limit, offset));
+        return modelAndView;
     }
 }
