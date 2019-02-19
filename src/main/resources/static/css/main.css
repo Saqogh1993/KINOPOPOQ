@@ -1129,7 +1129,7 @@ button:disabled,
 @media screen and (max-width: 1280px) {
 
     .thumbnails {
-        margin: 1em 8% 2em 8%;
+        margin: 1em 10% 2em 12%;
     }
 
     .thumbnails a {
