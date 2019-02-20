@@ -3,6 +3,7 @@ package am.aca.kinopopoq.service.dto;
 import am.aca.kinopopoq.repository.entity.Actor;
 import am.aca.kinopopoq.repository.entity.Genre;
 import am.aca.kinopopoq.repository.entity.Movie;
+import am.aca.kinopopoq.repository.entity.Rating;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.data.domain.Page;
 
@@ -27,7 +28,8 @@ public class MovieDto implements Serializable {
     private String rating;
     private String pg;
     private String movieLink;
-
+    private Double avgRating;
+    private List<RatingDto> userRatings;
 
     public static List<MovieDto> mapEntitiesToDto(List<Movie> movieList) {
         List<MovieDto> dtos = new ArrayList<>();
@@ -55,6 +57,7 @@ public class MovieDto implements Serializable {
         movieDto.setMovieLink(movie.getMovieLink());
         movieDto.setRating(movie.getRating());
         movieDto.setYear(movie.getYear());
+        movieDto.setAvgRating(movie.getAvgRating());
 
         Set<Actor> actorSet = movie.getActors();
         if(actorSet != null) {
@@ -74,6 +77,8 @@ public class MovieDto implements Serializable {
 
         movieDto.setLanguageDto(LanguageDto.mapEntityToDto(movie.getLanguage()));
 
+        movieDto.setUserRatings(RatingDto.mapEntitiesToDto(movie.getUserRatings()));
+
         return movieDto;
     }
 
@@ -91,13 +96,23 @@ public class MovieDto implements Serializable {
         movie.setRating(movieDto.getRating());
         movie.setYear(movieDto.getYear());
         movie.setTitle(movieDto.getTitle());
+        movie.setAvgRating(movieDto.getAvgRating());
         movie.setDirector(DirectorDto.mapDtoToEntity(movieDto.getDirectorDto()));
         movie.setActors(ActorDto.mapDtosToEntity(movieDto.getActorDtos()));
         movie.setGenres(GenreDto.mapDtosToEntity(movieDto.getGenreDtos()));
         movie.setCountry(CountryDto.mapDtoToEntity(movieDto.getCountryDto()));
         movie.setLanguage(LanguageDto.mapDtoToEntity(movieDto.getLanguageDto()));
+        movie.setUserRatings(RatingDto.mapDtosToEntity(movieDto.getUserRatings()));
 
         return movie;
+    }
+
+    public Double getAvgRating() {
+        return avgRating;
+    }
+
+    public void setAvgRating(Double avgRating) {
+        this.avgRating = avgRating;
     }
 
     public long getId() {
@@ -212,4 +227,11 @@ public class MovieDto implements Serializable {
         this.movieLink = movieLink;
     }
 
+    public List<RatingDto> getUserRatings() {
+        return userRatings;
+    }
+
+    public void setUserRatings(List<RatingDto> userRatings) {
+        this.userRatings = userRatings;
+    }
 }

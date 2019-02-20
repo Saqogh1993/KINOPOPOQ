@@ -3,6 +3,7 @@ package am.aca.kinopopoq.repository.entity;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -51,6 +52,10 @@ public class Movie implements Serializable {
     )
     private Set<Genre> genres = new HashSet<>();
 
+    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
+    private List<Rating> userRatings;
+
+    private Double avgRating;
 
     public Movie() {
     }
@@ -72,6 +77,21 @@ public class Movie implements Serializable {
         this.movieLink = movieLink;
     }
 
+    public List<Rating> getUserRatings() {
+        return userRatings;
+    }
+
+    public Double getAvgRating() {
+        return avgRating;
+    }
+
+    public void setAvgRating(Double avgRating) {
+        this.avgRating = avgRating;
+    }
+
+    public void setUserRatings(List<Rating> userRatings) {
+        this.userRatings = userRatings;
+    }
 
     public Long getMvId() {
         return mvId;

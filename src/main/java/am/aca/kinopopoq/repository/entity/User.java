@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -35,6 +36,9 @@ public class User implements UserDetails {
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
     private Set<Role> roles;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Rating> userRatings;
 
     public User() {
     }
@@ -126,5 +130,13 @@ public class User implements UserDetails {
 
     public void setPassword2(String password2) {
         this.password2 = password2;
+    }
+
+    public List<Rating> getUserRatings() {
+        return userRatings;
+    }
+
+    public void setUserRatings(List<Rating> userRatings) {
+        this.userRatings = userRatings;
     }
 }

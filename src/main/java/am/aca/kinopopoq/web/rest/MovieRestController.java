@@ -59,7 +59,7 @@ public class MovieRestController {
     }
 
     @PutMapping("/movies")
-    @PreAuthorize("hasAuthority('ADMIN')")
+//    @PreAuthorize("hasAuthority('ADMIN')")
     public MovieDto updateMovie(@RequestBody MovieDto movieDto) {
         return movieService.updateMovie(movieDto);
     }
@@ -76,4 +76,10 @@ public class MovieRestController {
         modelAndView.addObject("movies", movieService.findAllMoviesWithPages(limit, offset));
         return modelAndView;
     }
+
+    @GetMapping("/movies/{movieId}/rating")
+    public MovieDto setRating(@PathVariable Long movieId, @RequestParam Long rating) {
+        return movieService.setRating(movieId, rating);
+    }
+
 }
