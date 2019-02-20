@@ -40,7 +40,7 @@ public class MovieRestController {
     @GetMapping("/home")
     public ModelAndView getMovies() {
         ModelAndView modelAndView = new ModelAndView("home");
-        modelAndView.addObject("movies", movieService.findAllMoviesWithPages(10, 0));
+        modelAndView.addObject("movies", movieService.findAllMoviesWithPages(15, 0));
         return modelAndView;
     }
 
