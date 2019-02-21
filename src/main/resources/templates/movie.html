@@ -5,15 +5,20 @@
     <link rel="stylesheet" th:href="@{/css/main.css}"/>
 </head>
 <body>
-    <form method="post" th:action="@{/movie}">
-        <div class="content" >
-                <p th:text="${movie.getTitle()}"></p>
-                <p th:text="${movie.getBudget()}"></p>
-                <p th:text="${movie.getDirectorDto()}"></p>
-                <p th:text="${movie.getDuration()}"></p>
-                <p th:text="${movie.getCountryDto()}"></p>
-        </div>
-    </form>
+    <div class="content">
+        <img th:src="${movie.getMovieLink()}"/>
+        <p th:text="${movie.getTitle()}"></p>
+        <p th:text="${movie.getDuration()}"></p>
+        <p th:text="${movie.getCountryDto().getName()}"></p>
+        <p th:text="${movie.getYear()}"></p>
+        <p th:text="${movie.getBudget()}"></p>
+        <p th:text="${movie.getDirectorDto().getName()}"></p>
+        <p th:text="${movie.getLanguageDto().getName()}"></p>
+        <p th:text="${movie.getRating()}"></p>
+        <p th:text="${movie.getAvgRating()}"></p>
+    </div>
+
+
 
 </body>
 </html>

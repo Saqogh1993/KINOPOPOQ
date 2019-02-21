@@ -1,7 +1,10 @@
 package am.aca.kinopopoq.util.parserPackage;
 
 import am.aca.kinopopoq.repository.entity.*;
+import com.fasterxml.classmate.AnnotationConfiguration;
 import com.thedeanda.lorem.LoremIpsum;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -10,10 +13,25 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class CsvParser {
+    private static SessionFactory sessionFactory;
+    public static void main(String[] args) {
+        Set<Movie> parser = parser();
+        Configuration conf = new Configuration()
+                .addAnnotatedClass(Actor.class)
+                .addAnnotatedClass(Country.class)
+                .addAnnotatedClass(Director.class)
+                .addAnnotatedClass(Genre.class)
+                .addAnnotatedClass(Language.class)
+                .addAnnotatedClass(Movie.class).configure();
+
+                conf.buildSessionFactory()
+                        .getCurrentSession()
+                        .save(parser);
+    }
 
     public static Set<Movie> parser() {
 
-        String csvFile = "C:\\Users\\User\\Desktop\\origin_second.csv";
+        String csvFile = "C:\\Users\\ANI\\Desktop\\ACA_JAVA\\imdb-5000-movie-dataset\\origin.csv";
         BufferedReader br = null;
         String line;
         LoremIpsum loremIpsum = new LoremIpsum();

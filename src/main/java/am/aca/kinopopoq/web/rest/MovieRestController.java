@@ -2,11 +2,11 @@ package am.aca.kinopopoq.web.rest;
 
 //import org.springframework.security.access.prepost.PreAuthorize;
 import am.aca.kinopopoq.repository.entity.Movie;
-import com.sun.deploy.net.HttpResponse;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.*;
+
 import am.aca.kinopopoq.service.dto.MovieDto;
 import am.aca.kinopopoq.service.implementation.MovieService;
+import com.sun.deploy.net.HttpResponse;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -21,13 +21,8 @@ public class MovieRestController {
         this.movieService = movieService;
     }
 
-//    @GetMapping("/")
-//    public List<MovieDto> findAllMovies() {
-//        return movieService.findAllMovies();
-//    }
-
-    @GetMapping("/movies/id")
-    public MovieDto findByMovieId(@RequestParam Long id) {
+    @GetMapping("/movies/{id}")
+    public MovieDto findByMovieId(@PathVariable Long id) {
         return movieService.findMovieById(id);
     }
 
@@ -42,16 +37,16 @@ public class MovieRestController {
         modelAndView.addObject("movies", movieService.findAllMovies().stream().limit(5L).collect(Collectors.toList()));
         return modelAndView;
     }
-//    @GetMapping("/movie")
-//    public ModelAndView findMovieByTitle(String title) {
-//        ModelAndView modelAndView = new ModelAndView("movie");
-//        modelAndView.addObject("movie", movieService.findMovieByTitle(title));
-//        return modelAndView;
-//    }
+    @GetMapping("/movie/{id}")
+    public ModelAndView goMovie(@PathVariable Long id) {
+        ModelAndView modelAndView = new ModelAndView("movie");
+        modelAndView.addObject("movie", movieService.findMovieById(id));
+        return modelAndView;
+    }
     @GetMapping("/home")
-    public ModelAndView findAllMoviesWith() {
+    public ModelAndView getMovies() {
         ModelAndView modelAndView = new ModelAndView("home");
-        modelAndView.addObject("movies", movieService.findAllMovies().stream().limit(5L).collect(Collectors.toList()));
+        modelAndView.addObject("movies", movieService.findAllMoviesWithPages(6, 0));
         return modelAndView;
     }
     @GetMapping("/actmovies/{name}")
@@ -80,4 +75,17 @@ public class MovieRestController {
     public void deleteMovie(@PathVariable Long id, HttpResponse httpResponse) {
         movieService.deleteMovie(id);
     }
+
+    @GetMapping("/movies/get")
+    public ModelAndView findPaginated(@RequestParam("limit") int limit, @RequestParam("offset") int offset) {
+        ModelAndView modelAndView = new ModelAndView("home");
+        modelAndView.addObject("movies", movieService.findAllMoviesWithPages(limit, offset));
+        return modelAndView;
+    }
+
+    @GetMapping("/movies/{movieId}/rating")
+    public MovieDto setRating(@PathVariable Long movieId, @RequestParam Long rating) {
+        return movieService.setRating(movieId, rating);
+    }
+
 }

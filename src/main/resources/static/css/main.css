@@ -1,14 +1,6 @@
 @charset "UTF-8";
-@import url(font-awesome.min.css);
 @import url("http://fonts.googleapis.com/css?family=Source+Sans+Pro:200");
 
-/*
-	Visualize by TEMPLATED
-	templated.co @templatedco
-	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
-*/
-
-/* Reset */
 
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
     margin: 0;
@@ -17,6 +9,35 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     font-size: 100%;
     font: inherit;
     vertical-align: baseline;
+}
+
+/*body {*/
+/*background: url('https://i.pinimg.com/originals/5f/b4/b3/5fb4b3eabaa013d3246dc579d10617db.jpg') top left/cover no-repeat !important;*/
+/*}*/
+
+h1 { font-size: 60px; }
+h3 {
+    font-size: 32px;
+    font-weight: normal;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+}
+h6 { font-size: 22px; }
+
+.banner h1, .banner h3, .banner h6 {
+    margin: 0;
+    text-shadow: 2px 2px 6px #000;
+    text-align: center;
+}
+
+.banner {
+    color: white;
+    background: url('http://images.firstcovers.com/covers/g/girl_with_the_dragon_tattoo-3994.jpg') top left/cover no-repeat;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 1px #ffffff;
 }
 
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
@@ -103,7 +124,7 @@ body {
 }
 
 body {
-    background-color: #51326a;
+    background-color: rgb(112, 115, 111);
     background-image: url("../../images/bg.jpg");
     background-size: cover;
     background-position: top center;
@@ -141,6 +162,7 @@ body, input, select, textarea {
 a {
     color: inherit;
     text-decoration: none;
+    font-weight: bold;
     border-bottom: dotted 1px rgba(255, 255, 255, 0.35);
     -moz-transition: border-bottom-color 0.2s ease-in-out, color 0.2s ease-in-out;
     -webkit-transition: border-bottom-color 0.2s ease-in-out, color 0.2s ease-in-out;
@@ -1073,13 +1095,13 @@ button:disabled,
     display: -moz-flex;
     display: -webkit-flex;
     display: -ms-flex;
-    display: flex;
+    display: inline-flex;
     -moz-flex-direction: row;
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
     position: relative;
-    margin: 0 0 2em -2em;
+    margin: 0 0 0 0;
 }
 
 .thumbnails a {
@@ -1117,15 +1139,15 @@ button:disabled,
 }
 
 .thumbnails > div {
-    display: -moz-flex;
-    display: -webkit-flex;
-    display: -ms-flex;
-    display: flex;
+    display: -moz-inline-grid;
+    display: -webkit-inline-flex;
+    display: -ms-inline-grid;
+    display: inline-grid;
     -moz-flex-direction: column;
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
-    width: calc(100% / 4);
+    width: calc(100% / 5);
     padding-left: 2em;
 }
 
@@ -1136,7 +1158,7 @@ button:disabled,
 @media screen and (max-width: 1280px) {
 
     .thumbnails {
-        margin: 0 0 2em -1.5em;
+        margin: 1em 10% 2em 12%;
     }
 
     .thumbnails a {
