@@ -13,7 +13,8 @@
             <div class="inner-login-panel">
                 <div class="content-panel">
                     <h3 class="title">Sign In</h3>
-                    <form th:action="@{/login}" method="post">
+                    <form  th:action="@{/login}" method="post">
+                        <p th:if="*{message}" th:text="*{message}"></p>
                         <div class="alert alert-danger" role="alert">
                             <input type="text" name="username" placeholder="username"/>
                         </div>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <title>Movie</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+</head>
+<body>
+    <form method="post" th:action="@{/movie}">
+        <div class="content" >
+                <p th:text="${movie.getTitle()}"></p>
+                <p th:text="${movie.getBudget()}"></p>
+                <p th:text="${movie.getDirectorDto()}"></p>
+                <p th:text="${movie.getDuration()}"></p>
+                <p th:text="${movie.getCountryDto()}"></p>
+        </div>
+    </form>
+
+</body>
+</html>

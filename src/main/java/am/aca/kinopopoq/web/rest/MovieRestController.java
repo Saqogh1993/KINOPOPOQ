@@ -1,6 +1,7 @@
 package am.aca.kinopopoq.web.rest;
 
 //import org.springframework.security.access.prepost.PreAuthorize;
+import am.aca.kinopopoq.repository.entity.Movie;
 import com.sun.deploy.net.HttpResponse;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -41,17 +42,24 @@ public class MovieRestController {
         modelAndView.addObject("movies", movieService.findAllMovies().stream().limit(5L).collect(Collectors.toList()));
         return modelAndView;
     }
+//    @GetMapping("/movie")
+//    public ModelAndView findMovieByTitle(String title) {
+//        ModelAndView modelAndView = new ModelAndView("movie");
+//        modelAndView.addObject("movie", movieService.findMovieByTitle(title));
+//        return modelAndView;
+//    }
     @GetMapping("/home")
     public ModelAndView findAllMoviesWith() {
         ModelAndView modelAndView = new ModelAndView("home");
         modelAndView.addObject("movies", movieService.findAllMovies().stream().limit(5L).collect(Collectors.toList()));
         return modelAndView;
     }
-    @GetMapping("/movact/{name}")
+    @GetMapping("/actmovies/{name}")
     public ModelAndView getMoviesByActor(@PathVariable(name = "name") String name){
-        ModelAndView modelAndView = new ModelAndView("index");
-        modelAndView.addObject("actormovies", movieService.findMoviesByActorName(name).stream()
-                .map(MovieDto::getTitle).collect(Collectors.toList()));
+        ModelAndView modelAndView = new ModelAndView("home");
+        modelAndView.addObject("actor_movies", movieService.findMoviesByActorName(name));
+        //.stream()
+               // .map(MovieDto::getTitle).collect(Collectors.toList()));
         return modelAndView;
     }
 

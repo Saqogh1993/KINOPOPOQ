@@ -33,6 +33,9 @@ public class MovieService {
     public List<MovieDto> findMoviesByActorName(String name){
         return MovieDto.mapEntitiesToDto(movieRepository.findAllByActorsName(name));
     }
+    public  List<MovieDto> findMoviesByGenreName(String genre){
+        return MovieDto.mapEntitiesToDto(movieRepository.findAllByGenres(genre));
+    }
 
     public MovieDto saveMovie(MovieDto movieDto) {
         Movie movie = MovieDto.mapDtoToEntity(movieDto);
