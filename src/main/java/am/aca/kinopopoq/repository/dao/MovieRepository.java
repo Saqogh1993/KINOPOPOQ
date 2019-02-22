@@ -16,7 +16,7 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
     List<Movie> findAllByActorsName(String name);
     List<Movie> findAllByGenres(String name);
 
-   @Query("SELECT m FROM Movie m  WHERE m.title LIKE %:title%")
+   @Query(value = "SELECT * FROM movie m  WHERE m.title ILIKE %:title%", nativeQuery = true)
    List<Movie> findMoviesByTitle(@Param("title") String title);
 
 //   @Query("SELECT m FROM Movie m WHERE m.actors LIKE %:actor%")

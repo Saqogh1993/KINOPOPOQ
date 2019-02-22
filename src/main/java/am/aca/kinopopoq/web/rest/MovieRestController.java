@@ -10,6 +10,9 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
@@ -21,10 +24,10 @@ public class MovieRestController {
         this.movieService = movieService;
     }
 
-    @GetMapping("/movies/{id}")
-    public MovieDto findByMovieId(@PathVariable Long id) {
-        return movieService.findMovieById(id);
-    }
+//    @GetMapping("/movies/{id}")
+//    public MovieDto findByMovieId(@PathVariable Long id) {
+//        return movieService.findMovieById(id);
+//    }
 
     @GetMapping("/movies/title")
     public MovieDto findByMovieTitle(@RequestParam String title) {
@@ -37,10 +40,13 @@ public class MovieRestController {
         modelAndView.addObject("movies", movieService.findAllMovies().stream().limit(5L).collect(Collectors.toList()));
         return modelAndView;
     }
-    @GetMapping("/movie/{id}")
+    @GetMapping("/movies/{id}")
     public ModelAndView goMovie(@PathVariable Long id) {
         ModelAndView modelAndView = new ModelAndView("movie");
         modelAndView.addObject("movie", movieService.findMovieById(id));
+        Integer a[] = new Integer[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+        List<Integer> arr = Arrays.asList(a);
+        modelAndView.addObject("rating",arr);
         return modelAndView;
     }
     @GetMapping("/home")
@@ -84,7 +90,9 @@ public class MovieRestController {
     }
 
     @GetMapping("/movies/{movieId}/rating")
-    public MovieDto setRating(@PathVariable Long movieId, @RequestParam Long rating) {
+    public MovieDto setRating(@PathVariable Long movieId, @RequestParam("rating") Long rating) {
+        ModelAndView modelAndView = new ModelAndView("movie");
+
         return movieService.setRating(movieId, rating);
     }
 

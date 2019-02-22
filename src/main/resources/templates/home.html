@@ -13,15 +13,19 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="btn-group" role="group">
-        <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Genres
-        </button>
-        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-            <a class="dropdown-item" >Dropdown link</a>
-            <a class="dropdown-item" >Dropdown link</a>
-        </div>
-    </div>
+
+    <!--<li class="nav-item dropdown">-->
+        <!--<a class="navbar-brand" th:href="@{/genres}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+            <!--Genres-->
+        <!--</a>-->
+        <!--<div class="dropdown-menu" aria-labelledby="navbarDropdown">-->
+            <!--<a class="dropdown-item" href="#">Action</a>-->
+            <!--<a class="dropdown-item" href="#">Another action</a>-->
+            <!--<div class="dropdown-divider"></div>-->
+            <!--<a class="dropdown-item" href="#">Something else here</a>-->
+        <!--</div>-->
+    <!--</li>-->
+
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
@@ -48,32 +52,32 @@
     <section id="mtusain">
         <section class="thumbnails">
             <div th:each="movies:${movies}">
-                <a th:href="@{'/movie/'+${movies.getId()}}">
+                <a th:href="@{'/movies/'+${movies.getId()}}">
                     <img alt="" th:src="${movies.getMovieLink()}"/>
                     <h3 th:text="${movies.getTitle()}"></h3>
                 </a>
             </div>
         </section>
-
     </section>
 
 </div>
 <div class="gold">
-    <section class="thumbnails">
-        <div th:each="result:${result}">
-            <a th:href="@{'/movie/'+${result.getMvId()}}">
-                <img alt="" th:src="${result.getMovieLink()}"/>
-                <h3 th:text="${result.getTitle()}"></h3>
-            </a>
-        </div>
-        <div th:each="actmovies:${actor_movies}">
-            <a th:href="@{'/movie/'+${actmovies.getMvId()}}">
-                <img alt="" th:src="${actmovies.getMovieLink()}"/>
-                <h3 th:text="${actmovies.getTitle()}"></h3>
-            </a>
-        </div>
+    <section id="mtusain">
+        <section class="thumbnails">
+            <div th:each="result:${result}">
+                <a th:href="@{'/movies/'+${result.getMvId()}}">
+                    <img alt="" th:src="${result.getMovieLink()}"/>
+                    <h3 th:text="${result.getTitle()}"></h3>
+                </a>
+            </div>
+            <div th:each="actmovies:${actor_movies}">
+                <a th:href="@{'/movies/'+${actmovies.getMvId()}}">
+                    <img alt="" th:src="${actmovies.getMovieLink()}"/>
+                    <h3 th:text="${actmovies.getTitle()}"></h3>
+                </a>
+            </div>
+        </section>
     </section>
-
 </div>
 
 

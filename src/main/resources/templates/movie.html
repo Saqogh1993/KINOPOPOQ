@@ -5,20 +5,33 @@
     <link rel="stylesheet" th:href="@{/css/main.css}"/>
 </head>
 <body>
-    <div class="content">
+    <div class="gold">
         <img th:src="${movie.getMovieLink()}"/>
-        <p th:text="${movie.getTitle()}"></p>
-        <p th:text="${movie.getDuration()}"></p>
-        <p th:text="${movie.getCountryDto().getName()}"></p>
-        <p th:text="${movie.getYear()}"></p>
-        <p th:text="${movie.getBudget()}"></p>
-        <p th:text="${movie.getDirectorDto().getName()}"></p>
-        <p th:text="${movie.getLanguageDto().getName()}"></p>
-        <p th:text="${movie.getRating()}"></p>
-        <p th:text="${movie.getAvgRating()}"></p>
+        <form >
+            <label>
+                <select name="rating">
+                    <option name="rating" selected="selected">rating</option>
+
+                    <option th:each="rating:${rating}"
+                            th:value="${rating}"
+                            th:text="${rating}">
+                    </option>
+                </select>
+                <input type="submit" value="rate" />
+            </label>
+
+        </form>
+
+        <h3>Title:</h3> <label th:text="${movie.getTitle()}"></label>
+        <h3>Duration:</h3> <label th:text="${movie.getDuration()}"></label>
+        <h3>Country:</h3>  <label th:text="${movie.getCountryDto().getName()}"></label>
+        <h3>Year:</h3>   <label th:text="${movie.getYear()}"></label>
+        <h3>Budget:</h3>  <label th:text="${movie.getBudget()}"></label>
+        <h3>Director:</h3>  <label th:text="${movie.getDirectorDto().getName()}"></label>
+        <h3>Language:</h3>   <label th:text="${movie.getLanguageDto().getName()}"></label>
+        <h3>Rating:</h3>  <label th:text="${movie.getRating()}"></label>
+        <h3>Our rating:</h3>  <label th:text="${movie.getAvgRating()}"></label>
     </div>
-
-
 
 </body>
 </html>
