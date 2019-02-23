@@ -23,7 +23,7 @@ public class SearchController {
         modelAndView.setViewName("home");
         modelAndView.addObject("result", movieRepository.findMoviesByTitle(search));
         modelAndView.addObject("actor_movies",movieRepository.findAllByActorsName(search));
-        //modelAndView.addObject("genre_movies", movieRepository.findAllByGenres(search));
         return modelAndView;
     }
+
 }

@@ -7,105 +7,75 @@
     <link rel="stylesheet" th:href="@{/css/main.css}"/>
 </head>
 <body>
-<!--
-<h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
--->
-<!--
- <form th:action="@{/logout}" method="post">
-    <input type="submit" value="Sign Out"/>
-</form>
--->
-
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Kinopopoq</a>
+    <a class="navbar-brand" href="#" th:href="@{/home}">KinoPopoQ</a>
+    <!--<a style="color:blue;" class="navbar-brand" th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</a>-->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
+    <!--<li class="nav-item dropdown">-->
+    <!--<a class="navbar-brand" th:href="@{/genres}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+    <!--Genres-->
+    <!--</a>-->
+    <!--<div class="dropdown-menu" aria-labelledby="navbarDropdown">-->
+    <!--<a class="dropdown-item" href="#">Action</a>-->
+    <!--<a class="dropdown-item" href="#">Another action</a>-->
+    <!--<div class="dropdown-divider"></div>-->
+    <!--<a class="dropdown-item" href="#">Something else here</a>-->
+    <!--</div>-->
+    <!--</li>-->
+
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <!--
-            <li class="nav-item active">
-                <a class="nav-link" th:href="@{/home}">Home <span class="sr-only">(current)</span></a>
-            </li>
-            -->
             <li class="nav-item">
                 <a class="nav-link" th:href="@{/login}">Login</a>
             </li>
-            <!--
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Dropdown
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link disabled" href="#">Disabled</a>
-            </li>
-            -->
         </ul>
 
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" th:action="@{/search}" placeholder="Search" aria-label="Search"/>
+        <form class="form-inline my-2 my-lg-0" method="post" th:action="@{/search}">
+            <input class="form-control mr-sm-2" name="search" type="search" placeholder="Search" aria-label="Search"/>
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
-        <!--
-        </div>
-        <div th:each = "actor:${actors}" >
-            <p th:text="${actors.getId()}">444</p>
-            <p th:text="${actors.getName()}">444</p>
-            <div th:each = "movie:${movies}">
-                <p th:text = "${movie.getTitle()}"></p>
-            </div>
-        </div>
-        -->
     </div>
 </nav>
-<div id="wrapper">
 
-    <!-- Header -->
-    <header id="header">KinoPopoq</header>
+<div class="banner">
+    <div class="banner-text">
+        <h1>KinoPopoQ</h1>
+        <!--<h3>ԽԱՎԱՐՄԱՆ  ՕՐԸ</h3>-->
+        <h3> Kino Production</h3>
+    </div>
+</div>
 
-    <!-- Main -->
-    <section id="main">
-
-        <!-- Thumbnails -->
+<div class="gold">
+    <section id="mtusain">
         <section class="thumbnails">
-            <!--/*@thymesVar id="getId" type="templates"*/-->
-            <div class="oneline" th:each="movie: ${movies}">
-                <a href="" th:href="${movie.getMovieLink()}">
-                    <img alt="" th:src="${movie.getMovieLink()}"/>
-                    <h3 th:text="${movie.getTitle()}"></h3>
+            <div th:each="movies:${movies}">
+                <a th:href="@{'/movie/'+${movies.getId()}}">
+                    <img alt="" th:src="${movies.getMovieLink()}"/>
+                    <h3 th:text="${movies.getTitle()}"></h3>
                 </a>
             </div>
+        </section>
+    </section>
 
-
-            <!--
-            <div class="oneline" th:each="movie: ${movies}">
-                <a href="" th:href="${movie.getMovieLink()}">
-                    <img th:src="${movie.getMovieLink()}" alt=""/>
-                    <h3 th:text="${movie.getTitle()}"></h3>
+</div>
+<div class="gold">
+    <section id="mtusain">
+        <section class="thumbnails">
+            <div th:each="result:${result}">
+                <a th:href="@{'/movie/'+${result.getMvId()}}">
+                    <img alt="" th:src="${result.getMovieLink()}"/>
+                    <h3 th:text="${result.getTitle()}"></h3>
                 </a>
             </div>
-            <div class="oneline" th:each="movie: ${movies}">
-                <a href="" th:href="${movie.getMovieLink()}">
-                    <img alt="" th:src="${movie.getMovieLink()}"/>
-                    <h3 th:text="${movie.getTitle()}"></h3>
+            <div th:each="actmovies:${actor_movies}">
+                <a th:href="@{'/movie/'+${actmovies.getMvId()}}">
+                    <img alt="" th:src="${actmovies.getMovieLink()}"/>
+                    <h3 th:text="${actmovies.getTitle()}"></h3>
                 </a>
             </div>
-            <div class="oneline" th:each="movie: ${movies}">
-                <a href="" th:href="${movie.getMovieLink()}">
-                    <img th:src="${movie.getMovieLink()}" alt=""/>
-                    <h3 th:text="${movie.getTitle()}"></h3>
-                </a>
-            </div>
-            -->
         </section>
     </section>
 </div>

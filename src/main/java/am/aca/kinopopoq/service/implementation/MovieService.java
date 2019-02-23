@@ -77,12 +77,20 @@ public class MovieService {
         }
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User user = (User)authentication.getPrincipal();
-        Rating ratingEntity = new Rating();
-        ratingEntity.setRating(rating);
-        ratingEntity.setMovie(movie);
-        ratingEntity.setUser(user);
-        movie.getUserRatings().add(ratingEntity);
-
+        boolean exists = false;
+        for (Rating ratingExisting : movie.getUserRatings()) {
+            if (ratingExisting.getUser().getId().equals(user.getId())) {
+                exists = true;
+                ratingExisting.setRating(rating);
+            }
+        }
+        if (!exists) {
+            Rating ratingEntity = new Rating();
+            ratingEntity.setRating(rating);
+            ratingEntity.setMovie(movie);
+            ratingEntity.setUser(user);
+            movie.getUserRatings().add(ratingEntity);
+        }
         double avg = movie.getUserRatings().stream().mapToDouble(Rating::getRating).average().orElse(0);
         movie.setAvgRating(avg);
 

@@ -37,7 +37,7 @@ public class MovieRestController {
     @GetMapping("/")
     public ModelAndView findAllMoviesWithModelAndView() {
         ModelAndView modelAndView = new ModelAndView("index");
-        modelAndView.addObject("movies", movieService.findAllMovies().stream().limit(5L).collect(Collectors.toList()));
+        modelAndView.addObject("movies",  movieService.findAllMoviesWithPages(6, 0));
         return modelAndView;
     }
     @GetMapping("/movies/{id}")
@@ -47,6 +47,12 @@ public class MovieRestController {
         Integer a[] = new Integer[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
         List<Integer> arr = Arrays.asList(a);
         modelAndView.addObject("rating",arr);
+        return modelAndView;
+    }
+    @GetMapping("/movie/{id}")
+    public ModelAndView goIndexMovie(@PathVariable Long id) {
+        ModelAndView modelAndView = new ModelAndView("indexmovie");
+        modelAndView.addObject("movie", movieService.findMovieById(id));
         return modelAndView;
     }
     @GetMapping("/home")
@@ -59,8 +65,6 @@ public class MovieRestController {
     public ModelAndView getMoviesByActor(@PathVariable(name = "name") String name){
         ModelAndView modelAndView = new ModelAndView("home");
         modelAndView.addObject("actor_movies", movieService.findMoviesByActorName(name));
-        //.stream()
-               // .map(MovieDto::getTitle).collect(Collectors.toList()));
         return modelAndView;
     }
 
@@ -90,10 +94,10 @@ public class MovieRestController {
     }
 
     @GetMapping("/movies/{movieId}/rating")
-    public MovieDto setRating(@PathVariable Long movieId, @RequestParam("rating") Long rating) {
+    public ModelAndView setRating(@PathVariable Long movieId, @RequestParam("rating") Long rating) {
         ModelAndView modelAndView = new ModelAndView("movie");
-
-        return movieService.setRating(movieId, rating);
+        movieService.setRating(movieId, rating);
+        modelAndView.setViewName("redirect:/movies/{movieId}");
+        return modelAndView;
     }
-
 }
