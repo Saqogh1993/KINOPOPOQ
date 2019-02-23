@@ -16,7 +16,7 @@
                 <div class="content-panel">
                     <h2 class="title">Create account</h2>
                     <form th:action="@{/registration}" method="post">
-                        <div class="alert alert-danger" role="alert">
+                        <div class="alert alert-dark" role="alert">
                             <input type="text" name="username" placeholder="username"
                             th:text="*{usernameError}"/>
                         </div>
@@ -25,17 +25,17 @@
                                 <!--<p th:text="*{usernameError}"></p>-->
                         <!--</div>-->
 
-                        <div class="alert alert-danger" role="alert">
+                        <div class="alert alert-dark" role="alert">
                             <input type="password" name="password" placeholder="password"
                             th:text="*{passwordError}"/>
                         </div>
 
-                        <div class="alert alert-danger" role="alert">
+                        <div class="alert alert-dark" role="alert">
                             <input type="password" name="password2" placeholder="Repeat password"
                             th:text="*{passwordError2}"/>
                         </div>
 
-                        <div class="alert alert-danger" role="alert">
+                        <div class="alert alert-dark" role="alert">
                             <input type="email" name="email" placeholder="some@some.com"
                             th:text="*{emailError}"/>
                         </div>

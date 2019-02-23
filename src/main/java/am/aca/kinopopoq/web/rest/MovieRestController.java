@@ -1,6 +1,7 @@
 package am.aca.kinopopoq.web.rest;
 
 //import org.springframework.security.access.prepost.PreAuthorize;
+import am.aca.kinopopoq.repository.entity.Movie;
 
 import am.aca.kinopopoq.service.dto.MovieDto;
 import am.aca.kinopopoq.service.implementation.MovieService;
@@ -9,6 +10,9 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
@@ -20,35 +24,47 @@ public class MovieRestController {
         this.movieService = movieService;
     }
 
-    @GetMapping("/movies/{id}")
-    public MovieDto findByMovieId(@PathVariable Long id) {
-        return movieService.findMovieById(id);
-    }
+//    @GetMapping("/movies/{id}")
+//    public MovieDto findByMovieId(@PathVariable Long id) {
+//        return movieService.findMovieById(id);
+//    }
 
     @GetMapping("/movies/title")
     public MovieDto findByMovieTitle(@RequestParam String title) {
         return movieService.findMovieByTitle(title);
     }
 
-    @GetMapping("/movies")
+    @GetMapping("/")
     public ModelAndView findAllMoviesWithModelAndView() {
-        ModelAndView modelAndView = new ModelAndView("home");
-        modelAndView.addObject("movies", movieService.findAllMovies().stream().limit(50L).collect(Collectors.toList()));
+        ModelAndView modelAndView = new ModelAndView("index");
+        modelAndView.addObject("movies",  movieService.findAllMoviesWithPages(6, 0));
         return modelAndView;
     }
-
+    @GetMapping("/movies/{id}")
+    public ModelAndView goMovie(@PathVariable Long id) {
+        ModelAndView modelAndView = new ModelAndView("movie");
+        modelAndView.addObject("movie", movieService.findMovieById(id));
+        Integer a[] = new Integer[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+        List<Integer> arr = Arrays.asList(a);
+        modelAndView.addObject("rating",arr);
+        return modelAndView;
+    }
+    @GetMapping("/movie/{id}")
+    public ModelAndView goIndexMovie(@PathVariable Long id) {
+        ModelAndView modelAndView = new ModelAndView("indexmovie");
+        modelAndView.addObject("movie", movieService.findMovieById(id));
+        return modelAndView;
+    }
     @GetMapping("/home")
     public ModelAndView getMovies() {
         ModelAndView modelAndView = new ModelAndView("home");
-        modelAndView.addObject("movies", movieService.findAllMoviesWithPages(15, 0));
+        modelAndView.addObject("movies", movieService.findAllMoviesWithPages(6, 0));
         return modelAndView;
     }
-
-    @GetMapping("/movact/{name}")
-    public ModelAndView getMoviesByActor(@PathVariable(name = "name") String name) {
-        ModelAndView modelAndView = new ModelAndView("index");
-        modelAndView.addObject("actormovies", movieService.findMoviesByActorName(name).stream()
-                .map(MovieDto::getTitle).collect(Collectors.toList()));
+    @GetMapping("/actmovies/{name}")
+    public ModelAndView getMoviesByActor(@PathVariable(name = "name") String name){
+        ModelAndView modelAndView = new ModelAndView("home");
+        modelAndView.addObject("actor_movies", movieService.findMoviesByActorName(name));
         return modelAndView;
     }
 
@@ -59,7 +75,7 @@ public class MovieRestController {
     }
 
     @PutMapping("/movies")
-//    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public MovieDto updateMovie(@RequestBody MovieDto movieDto) {
         return movieService.updateMovie(movieDto);
     }
@@ -78,8 +94,10 @@ public class MovieRestController {
     }
 
     @GetMapping("/movies/{movieId}/rating")
-    public MovieDto setRating(@PathVariable Long movieId, @RequestParam Long rating) {
-        return movieService.setRating(movieId, rating);
+    public ModelAndView setRating(@PathVariable Long movieId, @RequestParam("rating") Long rating) {
+        ModelAndView modelAndView = new ModelAndView("movie");
+        movieService.setRating(movieId, rating);
+        modelAndView.setViewName("redirect:/movies/{movieId}");
+        return modelAndView;
     }
-
 }

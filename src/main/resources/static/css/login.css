@@ -16,7 +16,7 @@ div {
 body {
     position: relative;
     height: 100vh;
-    background-color: #51326a;
+    background-color: dimgray;
     margin: 0;
     font-family: "Josefin Sans", sans-serif;
 }
@@ -85,7 +85,7 @@ body {
     opacity: 0.8;
     border-bottom-right-radius: 7px;
     border-top-right-radius: 7px;
-    background-image: -moz-linear-gradient(45deg, #51326a 0%, #c24581 100%);
+    background-image: -moz-linear-gradient(45deg, #595959 0%, #7c7c7c 100%);
     background-image: -webkit-linear-gradient(45deg, #51326a 0%, #c24581 100%);
     background-image: -ms-linear-gradient(45deg, #51326a 0%, #c24581 100%);
 }
@@ -111,7 +111,7 @@ body {
     margin: 0 0 40px 0;
     text-transform: uppercase;
     font-size: 1em;
-    color: #51326a;
+    color: dimgray;
 }
 
 .login-screen .left-item .login-panel .inner-login-panel .content-panel input {
@@ -136,7 +136,7 @@ input
 }
 
 .login-screen .left-item .login-panel .inner-login-panel .content-panel button {
-    background-color: #51326a;
+    background-color: dimgray;
     border: 0;
     outline: none;
     color: #fff;

@@ -12,7 +12,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 }
 
 /*body {*/
-    /*background: url('https://i.pinimg.com/originals/5f/b4/b3/5fb4b3eabaa013d3246dc579d10617db.jpg') top left/cover no-repeat !important;*/
+/*background: url('https://i.pinimg.com/originals/5f/b4/b3/5fb4b3eabaa013d3246dc579d10617db.jpg') top left/cover no-repeat !important;*/
 /*}*/
 
 h1 { font-size: 60px; }
@@ -189,7 +189,7 @@ p {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    color: #ffffff;
+    color: blue;
     font-weight: 200;
     line-height: 1.5;
     margin: 0 0 1em 0;

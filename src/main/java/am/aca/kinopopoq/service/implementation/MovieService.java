@@ -4,9 +4,12 @@ import am.aca.kinopopoq.repository.dao.MovieRepository;
 import am.aca.kinopopoq.repository.dao.RatingRepository;
 import am.aca.kinopopoq.repository.entity.Movie;
 import am.aca.kinopopoq.repository.entity.Rating;
+import am.aca.kinopopoq.repository.entity.User;
 import am.aca.kinopopoq.service.dto.MovieDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.config.ResourceNotFoundException;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -40,6 +43,9 @@ public class MovieService {
     public List<MovieDto> findMoviesByActorName(String name){
         return MovieDto.mapEntitiesToDto(movieRepository.findAllByActorsName(name));
     }
+    public  List<MovieDto> findMoviesByGenreName(String genre){
+        return MovieDto.mapEntitiesToDto(movieRepository.findAllByGenres(genre));
+    }
 
     public MovieDto saveMovie(MovieDto movieDto) {
         Movie movie = MovieDto.mapDtoToEntity(movieDto);
@@ -69,12 +75,22 @@ public class MovieService {
         if (movie == null) {
             throw new ResourceNotFoundException("Movie not found", null);
         }
-        Rating ratingEntity = new Rating();
-        ratingEntity.setRating(rating);
-        ratingEntity.setMovie(movie);
-        ratingEntity.setUser(null); // TODO set single User
-        movie.getUserRatings().add(ratingEntity);
-
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User user = (User)authentication.getPrincipal();
+        boolean exists = false;
+        for (Rating ratingExisting : movie.getUserRatings()) {
+            if (ratingExisting.getUser().getId().equals(user.getId())) {
+                exists = true;
+                ratingExisting.setRating(rating);
+            }
+        }
+        if (!exists) {
+            Rating ratingEntity = new Rating();
+            ratingEntity.setRating(rating);
+            ratingEntity.setMovie(movie);
+            ratingEntity.setUser(user);
+            movie.getUserRatings().add(ratingEntity);
+        }
         double avg = movie.getUserRatings().stream().mapToDouble(Rating::getRating).average().orElse(0);
         movie.setAvgRating(avg);
 

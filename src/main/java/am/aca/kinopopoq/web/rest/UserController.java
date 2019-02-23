@@ -25,10 +25,10 @@ public class UserController {
     @Autowired
     PasswordEncoder passwordEncoder;
 
-    //@GetMapping("/")
-    //public String goMain() {
-       //return "index";
-    //}
+//    @GetMapping("/logout")
+//    public String goindex() {
+//       return "redirect:/index";
+//    }
 
     @GetMapping("/login")
     public String loginPage() {

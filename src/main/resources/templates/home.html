@@ -14,6 +14,18 @@
         <span class="navbar-toggler-icon"></span>
     </button>
 
+    <!--<li class="nav-item dropdown">-->
+        <!--<a class="navbar-brand" th:href="@{/genres}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+            <!--Genres-->
+        <!--</a>-->
+        <!--<div class="dropdown-menu" aria-labelledby="navbarDropdown">-->
+            <!--<a class="dropdown-item" href="#">Action</a>-->
+            <!--<a class="dropdown-item" href="#">Another action</a>-->
+            <!--<div class="dropdown-divider"></div>-->
+            <!--<a class="dropdown-item" href="#">Something else here</a>-->
+        <!--</div>-->
+    <!--</li>-->
+
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
@@ -21,8 +33,8 @@
             </li>
         </ul>
 
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
+        <form class="form-inline my-2 my-lg-0" method="post" th:action="@{/search}">
+            <input class="form-control mr-sm-2" name="search" type="search" placeholder="Search" aria-label="Search"/>
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
     </div>
@@ -30,112 +42,96 @@
 
 <div class="banner">
     <div class="banner-text">
-        <h1>Gor Vardanyan</h1>
-        <h3>ԽԱՎԱՐՄԱՆ  ՕՐԸ</h3>
-        <h6>Besampt Kino Production</h6>
+        <h1>KinoPopoQ</h1>
+        <!--<h3>ԽԱՎԱՐՄԱՆ  ՕՐԸ</h3>-->
+        <h3> Kino Production</h3>
     </div>
 </div>
 
 <div class="gold">
-    <section id="main">
+    <section id="mtusain">
         <section class="thumbnails">
-            <div>
-                <a href="" th:href="${movies.get(0).getMovieLink()}">
-                    <img alt="" th:src="${movies.get(0).getMovieLink()}"/>
-                    <h3 th:text="${movies.get(0).getTitle()}"></h3>
-                </a>
-            </div>
-            <div>
-                <a href="" th:href="${movies.get(1).getMovieLink()}">
-                    <img alt="" th:src="${movies.get(1).getMovieLink()}"/>
-                    <h3 th:text="${movies.get(1).getTitle()}"></h3>
-                </a>
-            </div>
-            <div>
-                <a href="" th:href="${movies.get(2).getMovieLink()}">
-                    <img alt="" th:src="${movies.get(2).getMovieLink()}"/>
-                    <h3 th:text="${movies.get(2).getTitle()}"></h3>
-                </a>
-            </div>
-            <div>
-                <a href="" th:href="${movies.get(3).getMovieLink()}">
-                    <img alt="" th:src="${movies.get(3).getMovieLink()}"/>
-                    <h3 th:text="${movies.get(3).getTitle()}"></h3>
-                </a>
-            </div>
-            <div>
-                <a href="" th:href="${movies.get(4).getMovieLink()}">
-                    <img alt="" th:src="${movies.get(4).getMovieLink()}"/>
-                    <h3 th:text="${movies.get(4).getTitle()}"></h3>
+            <div th:each="movies:${movies}">
+                <a th:href="@{'/movies/'+${movies.getId()}}">
+                    <img alt="" th:src="${movies.getMovieLink()}"/>
+                    <h3 th:text="${movies.getTitle()}"></h3>
                 </a>
             </div>
         </section>
+    </section>
+
+</div>
+<div class="gold">
+    <section id="mtusain">
         <section class="thumbnails">
-            <div>
-                <a href="" th:href="${movies.get(5).getMovieLink()}">
-                    <img alt="" th:src="${movies.get(5).getMovieLink()}"/>
-                    <h3 th:text="${movies.get(5).getTitle()}"></h3>
+            <div th:each="result:${result}">
+                <a th:href="@{'/movies/'+${result.getMvId()}}">
+                    <img alt="" th:src="${result.getMovieLink()}"/>
+                    <h3 th:text="${result.getTitle()}"></h3>
                 </a>
             </div>
-            <div>
-                <a href="" th:href="${movies.get(6).getMovieLink()}">
-                    <img alt="" th:src="${movies.get(6).getMovieLink()}"/>
-                    <h3 th:text="${movies.get(6).getTitle()}"></h3>
-                </a>
-            </div>
-            <div>
-                <a href="" th:href="${movies.get(7).getMovieLink()}">
-                    <img alt="" th:src="${movies.get(7).getMovieLink()}"/>
-                    <h3 th:text="${movies.get(7).getTitle()}"></h3>
-                </a>
-            </div>
-            <div>
-                <a href="" th:href="${movies.get(8).getMovieLink()}">
-                    <img alt="" th:src="${movies.get(8).getMovieLink()}"/>
-                    <h3 th:text="${movies.get(8).getTitle()}"></h3>
-                </a>
-            </div>
-            <div>
-                <a href="" th:href="${movies.get(9).getMovieLink()}">
-                    <img alt="" th:src="${movies.get(9).getMovieLink()}"/>
-                    <h3 th:text="${movies.get(9).getTitle()}"></h3>
-                </a>
-            </div>
-        </section>
-        <section class="thumbnails">
-            <div>
-                <a href="" th:href="${movies.get(10).getMovieLink()}">
-                    <img alt="" th:src="${movies.get(10).getMovieLink()}"/>
-                    <h3 th:text="${movies.get(10).getTitle()}"></h3>
-                </a>
-            </div>
-            <div>
-                <a href="" th:href="${movies.get(11).getMovieLink()}">
-                    <img alt="" th:src="${movies.get(11).getMovieLink()}"/>
-                    <h3 th:text="${movies.get(11).getTitle()}"></h3>
-                </a>
-            </div>
-            <div>
-                <a href="" th:href="${movies.get(12).getMovieLink()}">
-                    <img alt="" th:src="${movies.get(12).getMovieLink()}"/>
-                    <h3 th:text="${movies.get(12).getTitle()}"></h3>
-                </a>
-            </div>
-            <div>
-                <a href="" th:href="${movies.get(13).getMovieLink()}">
-                    <img alt="" th:src="${movies.get(13).getMovieLink()}"/>
-                    <h3 th:text="${movies.get(13).getTitle()}"></h3>
-                </a>
-            </div>
-            <div>
-                <a href="" th:href="${movies.get(14).getMovieLink()}">
-                    <img alt="" th:src="${movies.get(14).getMovieLink()}"/>
-                    <h3 th:text="${movies.get(14).getTitle()}"></h3>
+            <div th:each="actmovies:${actor_movies}">
+                <a th:href="@{'/movies/'+${actmovies.getMvId()}}">
+                    <img alt="" th:src="${actmovies.getMovieLink()}"/>
+                    <h3 th:text="${actmovies.getTitle()}"></h3>
                 </a>
             </div>
         </section>
     </section>
 </div>
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+        <li>
+            <form th:action="@{/movies/get}">
+                <label>
+                    <input type="hidden" name="limit" value="10"/>
+                    <input type="hidden" name="offset" value="0"/>
+                    <input type="submit" value="1" />
+                </label>
+            </form>
+        </li>
+
+        <li>
+            <form th:action="@{/movies/get}">
+                <label>
+                    <input type="hidden" name="limit" value="10"/>
+                    <input type="hidden" name="offset" value="10"/>
+                    <input type="submit" value="2" />
+                </label>
+            </form>
+        </li>
+
+        <li>
+            <form th:action="@{/movies/get}">
+                <label>
+                    <input type="hidden" name="limit" value="10"/>
+                    <input type="hidden" name="offset" value="20"/>
+                    <input type="submit" value="3" />
+                </label>
+            </form>
+        </li>
+
+        <li>
+            <form th:action="@{/movies/get}">
+                <label>
+                    <input type="hidden" name="limit" value="10"/>
+                    <input type="hidden" name="offset" value="30"/>
+                    <input type="submit" value="4" />
+                </label>
+            </form>
+        </li>
+        <li>
+            <form th:action="@{/movies/get}">
+                <label>
+                    <input type="hidden" name="limit" value="10"/>
+                    <input type="hidden" name="offset" value="40"/>
+                    <input type="submit" value="5" />
+                </label>
+            </form>
+        </li>
+    </ul>
+</nav>
 
 
 </body>

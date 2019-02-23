@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <title>Movie</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#" th:href="@{/index}">KinoPopoQ</a>
+    <!--<a style="color:blue;" class="navbar-brand" th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</a>-->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <!--<div class="collapse navbar-collapse" id="navbarSupportedContent">-->
+
+        <!--<form class="form-inline my-2 my-lg-0" method="post" th:action="@{/search}">-->
+            <!--<input class="form-control mr-sm-2" name="search" type="search" placeholder="Search" aria-label="Search"/>-->
+            <!--<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
+        <!--</form>-->
+    <!--</div>-->
+</nav>
+
+<div class="gold">
+    <img th:src="${movie.getMovieLink()}"/>
+
+    <h3>Title:</h3> <label th:text="${movie.getTitle()}"></label>
+    <h3>Duration:</h3> <label th:text="${movie.getDuration()}"></label>
+    <h3>Country:</h3>  <label th:text="${movie.getCountryDto().getName()}"></label>
+    <h3>Actors</h3>   <div th:each="actors:${movie.getActorDtos()}">
+    <label th:text="${actors.getName()}"></label>
+</div>
+    <h3>Genres</h3>   <div th:each="genres:${movie.getGenreDtos()}">
+    <label th:text="${genres.getName()}"></label>
+</div>
+    <h3>Year:</h3>   <label th:text="${movie.getYear()}"></label>
+    <h3>Budget:</h3>  <label th:text="${movie.getBudget()}"></label>
+    <h3>Director:</h3>  <label th:text="${movie.getDirectorDto().getName()}"></label>
+    <h3>Language:</h3>   <label th:text="${movie.getLanguageDto().getName()}"></label>
+    <h3>Rating:</h3>  <label th:text="${movie.getRating()}"></label>
+    <h3>Our rating:</h3>  <label th:text="${movie.getAvgRating()}"></label>
+</div>
+
+</body>
+</html>

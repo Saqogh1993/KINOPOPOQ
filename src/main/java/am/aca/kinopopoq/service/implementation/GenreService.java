@@ -21,4 +21,7 @@ public class GenreService {
 
         return GenreDto.mapEntitiesToDto(genreRepository.findAll());
     }
+    public GenreDto findGenreByName(String name){
+        return GenreDto.mapEntityToDto(genreRepository.findGenreByGenreName(name));
+    }
 }
