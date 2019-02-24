@@ -8,6 +8,7 @@ import am.aca.kinopopoq.repository.entity.User;
 import am.aca.kinopopoq.service.dto.MovieDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.config.ResourceNotFoundException;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -65,10 +66,14 @@ public class MovieService {
     }
 
     public List<MovieDto> findAllMoviesWithPages(int limit, int offset){
-        LimitOffsetPageRequest pageable = new LimitOffsetPageRequest(limit, offset);
+        Sort sort = new Sort(new Sort.Order(Sort.Direction.DESC, "avgRating"));
+        LimitOffsetPageRequest pageable = new LimitOffsetPageRequest(limit, offset, sort);
         return MovieDto.mapEntitiesToDto(movieRepository.findAll(pageable).getContent());
     }
 
+    public Long getAllMoviesCount(){
+        return movieRepository.count();
+    }
 
     public MovieDto setRating(Long movieId, Long rating) {
         Movie movie = movieRepository.findByMvId(movieId);

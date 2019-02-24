@@ -58,7 +58,8 @@ public class MovieRestController {
     @GetMapping("/home")
     public ModelAndView getMovies() {
         ModelAndView modelAndView = new ModelAndView("home");
-        modelAndView.addObject("movies", movieService.findAllMoviesWithPages(6, 0));
+        modelAndView.addObject("movies", movieService.findAllMoviesWithPages(10, 0));
+        modelAndView.addObject("result_size", movieService.getAllMoviesCount());
         return modelAndView;
     }
     @GetMapping("/actmovies/{name}")

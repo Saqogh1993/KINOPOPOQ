@@ -7,7 +7,7 @@
     <link rel="stylesheet" th:href="@{/css/main.css}"/>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="#" th:href="@{/home}">KinoPopoQ</a>
     <a style="color:blue;" class="navbar-brand" th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,9 +33,9 @@
             </li>
         </ul>
 
-        <form class="form-inline my-2 my-lg-0" method="post" th:action="@{/search}">
+        <form class="form-inline my-2 my-lg-0" method="get" th:action="@{/search}">
             <input class="form-control mr-sm-2" name="search" type="search" placeholder="Search" aria-label="Search"/>
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            <button class="btn btn-sm btn-outline-secondary" type="submit">Search</button>
         </form>
     </div>
 </nav>
@@ -81,55 +81,11 @@
 </div>
 
 <nav aria-label="Page navigation example">
-    <ul class="pagination justify-content-center">
-        <li>
-            <form th:action="@{/movies/get}">
-                <label>
-                    <input type="hidden" name="limit" value="10"/>
-                    <input type="hidden" name="offset" value="0"/>
-                    <input type="submit" value="1" />
-                </label>
-            </form>
-        </li>
-
-        <li>
-            <form th:action="@{/movies/get}">
-                <label>
-                    <input type="hidden" name="limit" value="10"/>
-                    <input type="hidden" name="offset" value="10"/>
-                    <input type="submit" value="2" />
-                </label>
-            </form>
-        </li>
-
-        <li>
-            <form th:action="@{/movies/get}">
-                <label>
-                    <input type="hidden" name="limit" value="10"/>
-                    <input type="hidden" name="offset" value="20"/>
-                    <input type="submit" value="3" />
-                </label>
-            </form>
-        </li>
-
-        <li>
-            <form th:action="@{/movies/get}">
-                <label>
-                    <input type="hidden" name="limit" value="10"/>
-                    <input type="hidden" name="offset" value="30"/>
-                    <input type="submit" value="4" />
-                </label>
-            </form>
-        </li>
-        <li>
-            <form th:action="@{/movies/get}">
-                <label>
-                    <input type="hidden" name="limit" value="10"/>
-                    <input type="hidden" name="offset" value="40"/>
-                    <input type="submit" value="5" />
-                </label>
-            </form>
-        </li>
+    <ul class="pagination" th:each="i: ${#numbers.sequence(0, result_size / 10)}">
+         <li class="page-item">
+            <a th:href="@{/search(search=${keyword}, limit = 10, offset = ${i * 10})}" th:text="(${i + 1})">
+            </a>
+         </li>
     </ul>
 </nav>
 

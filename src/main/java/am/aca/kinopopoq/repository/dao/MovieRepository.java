@@ -16,12 +16,11 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
     List<Movie> findAllByActorsName(String name);
     List<Movie> findAllByGenres(String name);
 
-   @Query(value = "SELECT * FROM movie m  WHERE m.title ILIKE %:title%", nativeQuery = true)
-   List<Movie> findMoviesByTitle(@Param("title") String title);
+   @Query(value = "SELECT * FROM movie m  WHERE m.title ILIKE %:title% --#pageable\n", nativeQuery = true)
+   List<Movie> findMoviesByTitle(@Param("title") String title, Pageable pageable);
 
-//   @Query("SELECT m FROM Movie m WHERE m.actors LIKE %:actor%")
-//   List<Movie> findMoviesByActors(@Param("actor") String actor);
-
+   @Query(value = "SELECT count(m.movie_id) FROM movie m  WHERE m.title ILIKE %:title%", nativeQuery = true)
+   Long findMoviesByTitleCount(@Param("title") String title);
 
     @Override
     Page<Movie> findAll(Pageable pageable);
