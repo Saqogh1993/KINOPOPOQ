@@ -1,28 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Movie</title>
-    <style>
-        .titles {
-            background-color: #7c7c7c;
-            width: 20%;
-            height: 100%;
-            float: left;
-        }
-
-        .content {
-            background-color: #7c7c7c;
-            width: 80%;
-            height: 100%;
-            float: left;
-        }
-    </style>
+    <title>Movie Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <link rel="stylesheet" th:href="@{/css/preview.css}"/>
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+    <link rel="stylesheet" th:href="@{/css/styles.css}"/>
+    <link rel="stylesheet" th:href="@{/css/rating.css}"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
-    <!--<link rel="stylesheet" th:href="@{/css/main.css}"/>-->
 </head>
-<body style="background-color: #7c7c7c">
+<body>
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="#" th:href="@{/home}">KinoPopoQ</a>
     <a style="color:blue;" class="navbar-brand" th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</a>
@@ -43,55 +35,195 @@
         </form>
     </div>
 </nav>
-<div class="titles">
-    <img th:src="${movie.getMovieLink()}"/>
-    <form th:action="@{'/movies/' + ${movie.getId()} + '/rating'}">
+
+<div id="base" class="">
+    <div id="u0" class="ax_default image">
+        <img id="u0_img" class="img " th:src="${movie.getMovieLink()}"/>
+    </div>
+
+    <!--YouTube-->
+    <div id="u2" class="ax_default box_1">
+        <div id="u2_div" class="">
+            <iframe width="560" height="315" th:src="${movieId}" frameborder="0"></iframe>
+        </div>
+    </div>
+
+    <!-- Unnamed (Rectangle) -->
+    <div id="u4" class="ax_default heading_4">
+        <div id="u4_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u5" class="text" style="visibility: visible;">
+            <p><span style="font-family:'Arial Bold', 'Arial';font-weight:700; color: white !important;">Movie Title</span></p>
+        </div>
+    </div>
+
+    <!-- Unnamed (Rectangle) -->
+    <div id="u6" class="ax_default heading_4">
+        <div id="u6_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u7" class="text" style="visibility: visible;">
+            <p><span th:text="${movie.getTitle()}"></span></p>
+        </div>
+    </div>
+
+    <!-- Unnamed (Rectangle) -->
+    <div id="u8" class="ax_default heading_4">
+        <div id="u8_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u9" class="text" style="visibility: visible;">
+            <p><span style="font-family:'Arial Bold', 'Arial';font-weight:700; color: white !important;">Year</span></p>
+        </div>
+    </div>
+
+    <!-- Unnamed (Rectangle) -->
+    <div id="u10" class="ax_default heading_4">
+        <div id="u10_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u11" class="text" style="visibility: visible;">
+            <p><span th:text="${movie.getYear()}"></span></p>
+        </div>
+    </div>
+
+    <!-- Unnamed (Rectangle) -->
+    <div id="u12" class="ax_default heading_4">
+        <div id="u12_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u13" class="text" style="visibility: visible;">
+            <p><span style="font-family:'Arial Bold', 'Arial';font-weight:700; color: white !important;">Country</span></p>
+        </div>
+    </div>
+
+    <!-- Unnamed (Rectangle) -->
+    <div id="u14" class="ax_default heading_4">
+        <div id="u14_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u15" class="text" style="visibility: visible;">
+            <p><span th:text="${movie.getCountryDto().getName()}"></span></p>
+        </div>
+    </div>
+
+    <!-- Unnamed (Rectangle) -->
+    <div id="u16" class="ax_default heading_4">
+        <div id="u16_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u17" class="text" style="visibility: visible;">
+            <p><span style="font-family:'Arial Bold', 'Arial';font-weight:700; color: white !important;">Genres</span></p>
+        </div>
+    </div>
+
+    <!-- Unnamed (Rectangle) -->
+    <div id="u18" class="ax_default heading_4">
+        <div id="u18_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u19" class="text" style="visibility: visible;">
+            <p><span th:text="${movie.getGenreDtos().get(0).getName()}"></span></p>
+        </div>
+    </div>
+
+    <!-- Unnamed (Rectangle) -->
+    <div id="u20" class="ax_default heading_4">
+        <div id="u20_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u21" class="text" style="visibility: visible;">
+            <p><span style="font-family:'Arial Bold', 'Arial';font-weight:700; color: white !important;">Duration</span></p>
+        </div>
+    </div>
+
+    <!-- Unnamed (Rectangle) -->
+    <div id="u22" class="ax_default heading_4">
+        <div id="u22_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u23" class="text" style="visibility: visible;">
+            <p><span th:text="${movie.getDuration()} + 'min'"></span></p>
+        </div>
+    </div>
+
+    <!-- Unnamed (Rectangle) -->
+    <div id="u24" class="ax_default heading_4">
+        <div id="u24_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u25" class="text" style="visibility: visible;">
+            <p><span style="font-family:'Arial Bold', 'Arial';font-weight:700; color: white !important;">Language</span></p>
+        </div>
+    </div>
+
+    <!-- Unnamed (Rectangle) -->
+    <div id="u26" class="ax_default heading_4">
+        <div id="u26_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u27" class="text" style="visibility: visible;">
+            <p><span th:text="${movie.getLanguageDto().getName()}"></span></p>
+        </div>
+    </div>
+
+    <!-- Unnamed (Rectangle) -->
+    <div id="u28" class="ax_default heading_4">
+        <div id="u28_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u29" class="text" style="visibility: visible;">
+            <p><span style="font-family:'Arial Bold', 'Arial';font-weight:700; color: white !important;">Actors</span></p>
+        </div>
+    </div>
+
+    <!-- Unnamed (Rectangle) -->
+    <div id="u30" class="ax_default heading_4">
+        <div id="u30_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u31" class="text" style="visibility: visible;" th:each="actor:${movie.getActorDtos()}">
+            <p><span th:text="${actor.getName()}"></span></p>
+        </div>
+    </div>
+
+    <!-- Unnamed (Rectangle) -->
+    <div id="u32" class="ax_default heading_4">
+        <div id="u32_div" class=""></div>
+        <div id="u33" class="text" style="visibility: visible;">
+            <p><span style="font-family:'Arial Bold', 'Arial',serif;font-weight:700; color: white !important;">Director</span></p>
+        </div>
+    </div>
+
+    <!-- Unnamed (Rectangle) -->
+    <div id="u34" class="ax_default heading_4">
+        <div id="u34_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u35" class="text" style="visibility: visible;">
+            <p><span th:text="${movie.getDirectorDto().getName()}"></span></p>
+        </div>
+    </div>
+
+    <div id="u36" class="ax_default placeholder">
         <label>
-            <select name="rating" style="background-color: lightyellow">
-                <option name="rating" selected="selected">Select rating</option>
-
-                <option th:each="rating:${rating}"
-                        th:value="${rating}"
-                        th:text="${rating}">
-                </option>
-            </select>
-            <input type="submit" value="Submit" style="background-color: #ff496e"/>
-            <h3>Kinopopoq rating:</h3>  <label th:text="${movie.getAvgRating()}"></label>
-
+            <fieldset class="rating">
+                <input type="radio" id="star10" name="rating" value="10"/><label class="full" for="star10"></label>
+                <input type="radio" id="star9" name="rating" value="9"/><label class="full" for="star9"></label>
+                <input type="radio" id="star8" name="rating" value="8"/><label class="full" for="star8"></label>
+                <input type="radio" id="star7" name="rating" value="7"/><label class="full" for="star7"></label>
+                <input type="radio" id="star6" name="rating" value="6"/><label class="full" for="star6"></label>
+                <input type="radio" id="star5" name="rating" value="5"/><label class="full" for="star5"></label>
+                <input type="radio" id="star4" name="rating" value="4"/><label class="full" for="star4"></label>
+                <input type="radio" id="star3" name="rating" value="3"/><label class="full" for="star3"></label>
+                <input type="radio" id="star2" name="rating" value="2"/><label class="full" for="star2"></label>
+                <input type="radio" id="star1" name="rating" value="1"/><label class="full" for="star1"></label>
+            </fieldset>
         </label>
-    </form>
-</div>
-<div class="content">
-    <h3>Title:</h3> <label th:text="${movie.getTitle()}"></label>
-    <h3>Duration:</h3> <label th:text="${movie.getDuration()}"></label>
-    <h3>Country:</h3>  <label th:text="${movie.getCountryDto().getName()}"></label>
-    <h3>Actors:</h3>
-    <div th:each="actors:${movie.getActorDtos()}">
-        <label th:text="${actors.getName()}"></label>
     </div>
-    <h3>Genres:</h3>
-    <div th:each="genres:${movie.getGenreDtos()}">
-        <label th:text="${genres.getName()}"></label>
+
+    <label id="u38">
+        <input type="submit" value="Submit" style="background-color: chocolate"/>
+    </label>
+
+    <div id="u40" class="ax_default heading_4">
+        <div id="u40_div" style="background-color: darkslategray">
+            <h6 style="color: #dddddd;">KPQ rating:</h6>  <label th:text="${movie.getAvgRating()}"></label>
+        </div>
     </div>
-    <div id="u4" class="ax_default heading_3">
-        <p>Year:</p>   <label th:text="${movie.getYear()}"></label>
-        <p>Budget:</p>  <label th:text="${movie.getBudget()}"></label>
-        <p>Director:</p>  <label th:text="${movie.getDirectorDto().getName()}"></label>
-        <p>Language:</p>   <label th:text="${movie.getLanguageDto().getName()}"></label>
-        <p>IMDB Rating:</p>  <label th:text="${movie.getRating()}"></label>
+
+    <div id="u42" class="ax_default heading_4">
+        <div id="u42_div" class=""></div>
+        <div id="u43" class="text" style="visibility: visible; background-color: coral;">
+            <h6>IMDB Rating</h6>
+        </div>
     </div>
 </div>
-
-<div id="u6" class="ax_default box_1">
-    <div id="u6_div" class="">
-        <iframe width="560" height="315" th:src="${movieId}" frameborder="0"
-                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
-    </div>
-    <div id="u7" class="text" style="display: none; visibility: visible">
-
-    </div>
-</div>
-
-
 </body>
 </html>

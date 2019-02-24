@@ -6,9 +6,14 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     vertical-align: baseline;
 }
 
+span {
+    color: black !important;
+}
+
 body {
-    background: #ffffff;
-    margin: 20px 20px 20px 20px;
+    line-height:1;
+    background-size:cover;
+    background:linear-gradient(90deg, rgb(83, 83, 83) 0%, #70736f 100%) top center !important;
 }
 
 .top {
@@ -34,4 +39,17 @@ iframe {
 img {
     width: inherit;
     height: 80%;
+}
+.titles {
+    background-color: #7c7c7c;
+    width: 20%;
+    height: 100%;
+    float: left;
+}
+
+.content {
+    background-color: #7c7c7c;
+    width: 80%;
+    height: 100%;
+    float: left;
 }
