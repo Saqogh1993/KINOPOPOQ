@@ -1,6 +1,8 @@
 package am.aca.kinopopoq.web.rest;
 
 //import org.springframework.security.access.prepost.PreAuthorize;
+
+import am.aca.kinopopoq.ApiHelper;
 import am.aca.kinopopoq.repository.entity.Movie;
 
 import am.aca.kinopopoq.service.dto.MovieDto;
@@ -10,6 +12,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -37,24 +40,30 @@ public class MovieRestController {
     @GetMapping("/")
     public ModelAndView findAllMoviesWithModelAndView() {
         ModelAndView modelAndView = new ModelAndView("index");
-        modelAndView.addObject("movies",  movieService.findAllMoviesWithPages(6, 0));
+        modelAndView.addObject("movies", movieService.findAllMoviesWithPages(6, 0));
         return modelAndView;
     }
+
     @GetMapping("/movies/{id}")
-    public ModelAndView goMovie(@PathVariable Long id) {
+    public ModelAndView goMovie(@PathVariable Long id) throws IOException {
+        ApiHelper apiHelper = new ApiHelper();
+        String trailerId = apiHelper.getTrailerId(movieService.findMovieById(id).getMovieLink().substring(28,35));
         ModelAndView modelAndView = new ModelAndView("movie");
         modelAndView.addObject("movie", movieService.findMovieById(id));
-        Integer a[] = new Integer[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+        modelAndView.addObject("movieId", trailerId);
+        Integer[] a = new Integer[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
         List<Integer> arr = Arrays.asList(a);
-        modelAndView.addObject("rating",arr);
+        modelAndView.addObject("rating", arr);
         return modelAndView;
     }
+
     @GetMapping("/movie/{id}")
     public ModelAndView goIndexMovie(@PathVariable Long id) {
         ModelAndView modelAndView = new ModelAndView("indexmovie");
         modelAndView.addObject("movie", movieService.findMovieById(id));
         return modelAndView;
     }
+
     @GetMapping("/home")
     public ModelAndView getMovies() {
         ModelAndView modelAndView = new ModelAndView("home");
@@ -62,8 +71,9 @@ public class MovieRestController {
         modelAndView.addObject("result_size", movieService.getAllMoviesCount());
         return modelAndView;
     }
+
     @GetMapping("/actmovies/{name}")
-    public ModelAndView getMoviesByActor(@PathVariable(name = "name") String name){
+    public ModelAndView getMoviesByActor(@PathVariable(name = "name") String name) {
         ModelAndView modelAndView = new ModelAndView("home");
         modelAndView.addObject("actor_movies", movieService.findMoviesByActorName(name));
         return modelAndView;
@@ -93,6 +103,13 @@ public class MovieRestController {
         modelAndView.addObject("movies", movieService.findAllMoviesWithPages(limit, offset));
         return modelAndView;
     }
+//    @GetMapping("/preview/{id}")
+//    public ModelAndView preview(@PathVariable Long id) {
+//        ModelAndView modelAndView = new ModelAndView("preview");
+//        modelAndView.addObject("movie", findByMovieId(id));
+//        modelAndView.addObject("movieId", findByMovieId(id).getMovieLink().substring(28,35));
+//        return modelAndView;
+//    }
 
     @GetMapping("/movies/{movieId}/rating")
     public ModelAndView setRating(@PathVariable Long movieId, @RequestParam("rating") Long rating) {

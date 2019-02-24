@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Movie</title>
     <style>
@@ -18,14 +18,16 @@
         }
     </style>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-    <link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
+    <link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
     <!--<link rel="stylesheet" th:href="@{/css/main.css}"/>-->
 </head>
 <body style="background-color: #7c7c7c">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="#" th:href="@{/home}">KinoPopoQ</a>
     <a style="color:blue;" class="navbar-brand" th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -41,7 +43,7 @@
         </form>
     </div>
 </nav>
-<div class="titles" >
+<div class="titles">
     <img th:src="${movie.getMovieLink()}"/>
     <form th:action="@{'/movies/' + ${movie.getId()} + '/rating'}">
         <label>
@@ -63,20 +65,32 @@
     <h3>Title:</h3> <label th:text="${movie.getTitle()}"></label>
     <h3>Duration:</h3> <label th:text="${movie.getDuration()}"></label>
     <h3>Country:</h3>  <label th:text="${movie.getCountryDto().getName()}"></label>
-    <h3>Actors:</h3>   <div th:each="actors:${movie.getActorDtos()}">
-    <label th:text="${actors.getName()}"></label>
-</div>
-    <h3>Genres:</h3>   <div th:each="genres:${movie.getGenreDtos()}">
-    <label th:text="${genres.getName()}"></label>
-</div>
-    <h3>Year:</h3>   <label th:text="${movie.getYear()}"></label>
-    <h3>Budget:</h3>  <label th:text="${movie.getBudget()}"></label>
-    <h3>Director:</h3>  <label th:text="${movie.getDirectorDto().getName()}"></label>
-    <h3>Language:</h3>   <label th:text="${movie.getLanguageDto().getName()}"></label>
-    <h3>IMDB Rating:</h3>  <label th:text="${movie.getRating()}"></label>
+    <h3>Actors:</h3>
+    <div th:each="actors:${movie.getActorDtos()}">
+        <label th:text="${actors.getName()}"></label>
+    </div>
+    <h3>Genres:</h3>
+    <div th:each="genres:${movie.getGenreDtos()}">
+        <label th:text="${genres.getName()}"></label>
+    </div>
+    <div id="u4" class="ax_default heading_3">
+        <p>Year:</p>   <label th:text="${movie.getYear()}"></label>
+        <p>Budget:</p>  <label th:text="${movie.getBudget()}"></label>
+        <p>Director:</p>  <label th:text="${movie.getDirectorDto().getName()}"></label>
+        <p>Language:</p>   <label th:text="${movie.getLanguageDto().getName()}"></label>
+        <p>IMDB Rating:</p>  <label th:text="${movie.getRating()}"></label>
+    </div>
 </div>
 
+<div id="u6" class="ax_default box_1">
+    <div id="u6_div" class="">
+        <iframe width="560" height="315" th:src="${movieId}" frameborder="0"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
+    </div>
+    <div id="u7" class="text" style="display: none; visibility: visible">
 
+    </div>
+</div>
 
 
 </body>
