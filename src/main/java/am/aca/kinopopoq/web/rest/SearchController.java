@@ -30,7 +30,7 @@ public class SearchController {
                                ModelAndView modelAndView){
         String searchVal = search.orElse("");
         offset = offset == null ? 0 : offset;
-        limit = limit == null ? 10 : limit;
+        limit = limit == null ? 6 : limit;
         Sort sort = new Sort(new Sort.Order(Sort.Direction.DESC, "avg_rating"));
         modelAndView.setViewName("home");
         LimitOffsetPageRequest pageable = new LimitOffsetPageRequest(limit, offset,sort);

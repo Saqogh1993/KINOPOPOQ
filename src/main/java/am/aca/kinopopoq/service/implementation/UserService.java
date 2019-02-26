@@ -38,7 +38,7 @@ public class UserService implements UserDetailsService {
         userRepository.save(user);
         if(!StringUtils.isEmpty(user.getEmail())){
             String message = String.format(
-                    "Hello %s! + \n" +
+                    "Hello %s! \n" +
                             "Welcome to Kinopopoq. Please, visit next link: http://localhost:8080/activate/%s",
                     user.getUsername(),
                     user.getActivationCode()

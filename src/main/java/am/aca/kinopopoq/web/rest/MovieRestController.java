@@ -67,7 +67,7 @@ public class MovieRestController {
     @GetMapping("/home")
     public ModelAndView getMovies() {
         ModelAndView modelAndView = new ModelAndView("home");
-        modelAndView.addObject("movies", movieService.findAllMoviesWithPages(10, 0));
+        modelAndView.addObject("movies", movieService.findAllMoviesWithPages(6, 0));
         modelAndView.addObject("result_size", movieService.getAllMoviesCount());
         return modelAndView;
     }
@@ -80,19 +80,19 @@ public class MovieRestController {
     }
 
     @PostMapping("/movies")
-    @PreAuthorize("hasAuthority('ADMIN')")
+//    @PreAuthorize("hasAuthority('ADMIN')")
     public MovieDto saveMovie(@RequestBody MovieDto movieDto) {
         return movieService.saveMovie(movieDto);
     }
 
     @PutMapping("/movies")
-    @PreAuthorize("hasAuthority('ADMIN')")
+//    @PreAuthorize("hasAuthority('ADMIN')")
     public MovieDto updateMovie(@RequestBody MovieDto movieDto) {
         return movieService.updateMovie(movieDto);
     }
 
     @DeleteMapping("/movies/{id}")
-    @PreAuthorize("hasAuthority('ADMIN')")
+//    @PreAuthorize("hasAuthority('ADMIN')")
     public void deleteMovie(@PathVariable Long id, HttpResponse httpResponse) {
         movieService.deleteMovie(id);
     }
@@ -103,13 +103,6 @@ public class MovieRestController {
         modelAndView.addObject("movies", movieService.findAllMoviesWithPages(limit, offset));
         return modelAndView;
     }
-//    @GetMapping("/preview/{id}")
-//    public ModelAndView preview(@PathVariable Long id) {
-//        ModelAndView modelAndView = new ModelAndView("preview");
-//        modelAndView.addObject("movie", findByMovieId(id));
-//        modelAndView.addObject("movieId", findByMovieId(id).getMovieLink().substring(28,35));
-//        return modelAndView;
-//    }
 
     @GetMapping("/movies/{movieId}/rating")
     public ModelAndView setRating(@PathVariable Long movieId, @RequestParam("rating") Long rating) {
